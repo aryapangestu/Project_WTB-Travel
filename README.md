@@ -1,3 +1,3 @@
 # Project_WTB-Travel
-How to run:
-php -S localhost:8000 -t public
+
+Use this command to run it: php -S localhost:8000 -t public
