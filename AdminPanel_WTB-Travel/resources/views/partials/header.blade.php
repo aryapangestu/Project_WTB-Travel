@@ -22,8 +22,8 @@
                     </li>
                     <li>
                         <a class="dropdown-item d-flex align-items-center" href="#">
-                        <i class="bi bi-box-arrow-right"></i>
-                        <span>Sign Out</span>
+                            <i class="bi bi-box-arrow-right"></i>
+                            <span>Sign Out</span>
                         </a>
                     </li>
                 </ul><!-- End Profile Dropdown Items -->
@@ -31,4 +31,4 @@
         </ul>
     </nav><!-- End Icons Navigation -->
 
-    </header><!-- End Header -->
+</header><!-- End Header -->
