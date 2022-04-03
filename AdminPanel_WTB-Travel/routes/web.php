@@ -14,5 +14,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    return view('index', [
+        "title" => "Dashboard"
+    ]);
+});
+
+Route::get('/login', function () {
     return view('login');
+});
+
+Route::get('/places', function () {
+    return view('places', [
+        "title" => "Places"
+    ]);
+});
+
+Route::get('/users', function () {
+    return view('users', [
+        "title" => "Users"
+    ]);
 });
