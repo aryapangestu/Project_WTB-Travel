@@ -49,6 +49,11 @@
                                         <p class="text-center small">Enter your username & password to login</p>
                                     </div>
 
+                                    @if (session()->has('loginError'))
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            {{ session('loginError') }} <button type="button" class="btn-close"
+                                                data-bs-dismiss="alert" aria-label="Close"></button></div>
+                                    @endif
                                     <form class="row g-3 needs-validation" action="/login" method="post" novalidate>
                                         @csrf
                                         <div class="col-12">
