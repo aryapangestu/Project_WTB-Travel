@@ -25,11 +25,15 @@
     ```bash
     copy .env.example .env
     ```
-5. Create the application key:
+5. Create tables into database:
+    ```bash
+    php artisan migrate
+    ```
+7. Create the application key:
     ```bash
     php artisan key:generate
     ```
-6. Start the laravel server:
+7. Start the laravel server:
     ```bash
     php artisan serve
     ```
