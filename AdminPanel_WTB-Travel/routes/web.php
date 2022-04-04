@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +20,6 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/login', function () {
-    return view('login');
-});
-
 Route::get('/places', function () {
     return view('places', [
         "title" => "Places"
@@ -34,3 +31,6 @@ Route::get('/users', function () {
         "title" => "Users"
     ]);
 });
+
+Route::get('/login', [LoginController::class, 'index']);
+Route::post('/login', [LoginController::class, 'authenticate']);
