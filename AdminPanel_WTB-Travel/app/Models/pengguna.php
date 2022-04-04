@@ -20,6 +20,7 @@ class pengguna extends Authenticatable
     protected $fillable = [
         'username',
         'password',
+        'is_admin',
     ];
 
     /**

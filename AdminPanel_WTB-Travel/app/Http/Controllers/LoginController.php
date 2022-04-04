@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\app\Models\pengguna;
 
 class LoginController extends Controller
 {
@@ -21,6 +22,9 @@ class LoginController extends Controller
             'username' => ['required'],
             'password' => ['required'],
         ]);
+        //Add cek Admin
+        $arrAdmin = array('is_admin' => 1);
+        $credentials = $credentials + $arrAdmin;
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
