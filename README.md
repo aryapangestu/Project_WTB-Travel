@@ -25,7 +25,8 @@
     ```bash
     copy .env.example .env
     ```
-5. Create tables into database:
+5. Run XAMPP and create an empty Database named wtb_travel
+   </br>Create tables into database:
     ```bash
     php artisan migrate:fresh
     ```
