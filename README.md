@@ -27,7 +27,7 @@
     ```
 5. Create tables into database:
     ```bash
-    php artisan migrate
+    php artisan migrate:fresh
     ```
 7. Create the application key:
     ```bash
