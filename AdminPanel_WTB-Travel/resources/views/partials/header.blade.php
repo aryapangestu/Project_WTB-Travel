@@ -20,7 +20,7 @@
                         <hr class="dropdown-divider">
                     </li>
                     <li>
-                        <form class="dropdown-item d-flex align-items-center" href="/logout" method="post">
+                        <form class="dropdown-item d-flex align-items-center" action="/logout" method="post">
                             @csrf
                             <i class="bi bi-box-arrow-right"></i>
                             <button class="dropdown-item" type="submit">Sign Out</button>
