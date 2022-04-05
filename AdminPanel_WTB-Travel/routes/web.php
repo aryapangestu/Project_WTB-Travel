@@ -29,8 +29,13 @@ use App\Http\Controllers\UserController;
 //     ]);
 // });
 
-Route::get('/users', function () {
-    return view('users', [
+Route::get('/placeslist', function () {
+    return view('Dashboard.placeslist', [
+        "title" => "Users"
+    ]);
+});
+Route::get('/form', function () {
+    return view('Dashboard.formtambaheditplace', [
         "title" => "Users"
     ]);
 });
