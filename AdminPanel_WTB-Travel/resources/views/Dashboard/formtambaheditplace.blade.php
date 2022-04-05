@@ -23,31 +23,13 @@
             <!-- General Form Elements -->
             <form>
               <div class="row mb-3">
-                <label for="inputText" class="col-sm-2 col-form-label">Nama</label>
+                <label for="inputText" class="col-sm-2 col-form-label">Name</label>
                 <div class="col-sm-10">
                   <input type="text" class="form-control">
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="inputPassword" class="col-sm-2 col-form-label">Longitude</label>
-                <div class="col-sm-10">
-                  <input type="password" class="form-control">
-                </div>
-              </div>
-              <div class="row mb-3">
-                <label for="inputPassword" class="col-sm-2 col-form-label">Latitude</label>
-                <div class="col-sm-10">
-                  <input type="password" class="form-control">
-                </div>
-              </div>
-              <div class="row mb-3">
-                <label for="inputNumber" class="col-sm-2 col-form-label">File Upload</label>
-                <div class="col-sm-10">
-                  <input class="form-control" type="file" id="formFile">
-                </div>
-              </div>
-              <div class="row mb-3">
-                <label for="inputPassword" class="col-sm-2 col-form-label">Deskripsi</label>
+                <label for="inputPassword" class="col-sm-2 col-form-label">Description</label>
                 <div class="col-sm-10">
                   <textarea class="form-control" style="height: 100px"></textarea>
                 </div>
@@ -56,12 +38,35 @@
                 <label class="col-sm-2 col-form-label">Category</label>
                 <div class="col-sm-10">
                   <select class="form-select" aria-label="Default select example">
-                    <option value="1">Kebun Binatang</option>
+                    <option value="1">Zoo</option>
                     <option value="2">Museum</option>
-                    <option value="3">Taman</option>
+                    <option value="3">Landmark</option>
                   </select>
                 </div>
               </div>
+              <div id="location" class="row mb-3">
+                  <label for="inputLocation" class="col-sm-2 col-form-label">Location</label>
+                  <div class="col-sm-10">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="place_address">Latitude</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="place_address">Longitude</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="row mb-3">
+                <label for="inputNumber" class="col-sm-2 col-form-label">Image Upload</label>
+                <div class="col-sm-10">
+                  <input class="form-control" type="file" id="formFile">
+                </div>
+              </div>
+
+
               <div class="row mb-3">
                 <label class="col-sm-2 col-form-label"></label>
                 <div class="col-sm-10">

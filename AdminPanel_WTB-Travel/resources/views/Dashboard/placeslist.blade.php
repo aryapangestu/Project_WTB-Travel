@@ -38,7 +38,7 @@
                     <th scope="row">1</th>
                     <td><img class="place_list_thumb" src="assets/img/gedungsate.jpg" style="width: 70px; height:70px"></td>
                     <td>Gedung Sate</td>
-                    <td>Gedung</td>
+                    <td>Landmark</td>
                     <td>
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="">
