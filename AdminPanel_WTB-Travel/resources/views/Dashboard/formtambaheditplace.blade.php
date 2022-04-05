@@ -2,12 +2,12 @@
 
 @section('konten')
 <div class="pagetitle">
-    <h1>Form Elements</h1>
+    <h1>Edit Place</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item">Forms</li>
-        <li class="breadcrumb-item active">Elements</li>
+        <li class="breadcrumb-item">Places</li>
+        <li class="breadcrumb-item active">Edit</li>
       </ol>
     </nav>
   </div><!-- End Page Title -->
@@ -18,7 +18,7 @@
 
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">General Form Elements</h5>
+            <h5 class="card-title">Info</h5>
 
             <!-- General Form Elements -->
             <form>

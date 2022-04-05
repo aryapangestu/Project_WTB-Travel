@@ -18,11 +18,27 @@
 
         <div class="card">
             <div class="card-body">
-            <h5 class="card-title">Datatables</h5>
-            <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p>
+            <h5 class="card-title">Places</h5>
 
             <!-- Table with stripped rows -->
-            <table class="table datatable">
+            <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">WARNING</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" style="text-align: center; font-weight:bold">
+                            Are you sure want to DELETE
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">YES</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table class="table datatable table-striped table-bordered">
                 <thead>
                 <tr>
                     <th scope="col">ID</th>
@@ -45,8 +61,10 @@
                         </div>
                     </td>
                     <td>
-                        <a href="" class="btn btn-outline-warning" style="margin-right:2px">Edit</a>
-                        <a href="" class="btn btn-outline-danger" style="margin-left: 2px">Delete</a>
+                        <a href="/form" class="btn btn-outline-warning" style="margin-right:2px">Edit</a>
+                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete" data-bs-whatever="@getbootstrap">
+                            Delete
+                        </button>
                     </td>
                 </tr>
                 <tr>
@@ -60,8 +78,10 @@
                         </div>
                     </td>
                     <td>
-                        <a href="" class="btn btn-outline-warning" style="margin-right:2px">Edit</a>
-                        <a href="" class="btn btn-outline-danger" style="margin-left: 2px">Delete</a>
+                        <a href="/form" class="btn btn-outline-warning" style="margin-right:2px">Edit</a>
+                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete" data-bs-whatever="@getbootstrap">
+                            Delete
+                        </button>
                     </td>
                 </tr>
                 <tr>
@@ -75,8 +95,10 @@
                         </div>
                     </td>
                     <td>
-                        <a href="" class="btn btn-outline-warning" style="margin-right:2px">Edit</a>
-                        <a href="" class="btn btn-outline-danger" style="margin-left: 2px">Delete</a>
+                        <a href="/form" class="btn btn-outline-warning" style="margin-right:2px">Edit</a>
+                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete" data-bs-whatever="@getbootstrap">
+                            Delete
+                        </button>
                     </td>
                 </tr>
                 </tbody>
