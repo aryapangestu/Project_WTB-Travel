@@ -4,7 +4,6 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
 return new class extends Migration
 {
@@ -15,20 +14,24 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('penggunas', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('username', 255);
-            $table->string('password', 255);
-            $table->integer('is_admin')->default(0);
-            $table->integer('status')->default(1);
+            $table->string('name')->unique;
             $table->timestamps();
         });
-        // Insert akun admin
-        DB::table('penggunas')->insert(
+        DB::table('categories')->insert(
             array(
-                'username' => 'admin',
-                'password' => Hash::make('admin'),
-                'is_admin' => 1
+                'name' => 'Zoo',
+            )
+        );
+        DB::table('categories')->insert(
+            array(
+                'name' => 'Museum',
+            )
+        );
+        DB::table('categories')->insert(
+            array(
+                'name' => 'Landmark',
             )
         );
     }
@@ -40,6 +43,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('penggunas');
+        Schema::dropIfExists('categories');
     }
 };

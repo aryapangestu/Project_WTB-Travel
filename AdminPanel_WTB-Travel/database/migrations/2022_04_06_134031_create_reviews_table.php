@@ -13,17 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ulasans', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('pengguna_id')->default(null);
-            $table->unsignedBigInteger('tempat_wisata_id')->default(null);
+            $table->unsignedBigInteger('user_id')->default(null);
+            $table->unsignedBigInteger('place_id')->default(null);
             $table->integer('rating')->default(null);
             $table->string('comment', 500)->default(null);
             $table->timestamps();
 
             // Indexes
-            $table->foreign('pengguna_id')->references('id')->on('penggunas');
-            $table->foreign('tempat_wisata_id')->references('id')->on('tempat_wisatas');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('place_id')->references('id')->on('places');
         });
     }
 
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ulasans');
+        Schema::dropIfExists('reviews');
     }
 };

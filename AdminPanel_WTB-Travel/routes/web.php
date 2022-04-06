@@ -29,17 +29,6 @@ use App\Http\Controllers\UserController;
 //     ]);
 // });
 
-Route::get('/placeslist', function () {
-    return view('Dashboard.placeslist', [
-        "title" => "Users"
-    ]);
-});
-Route::get('/form', function () {
-    return view('Dashboard.formtambaheditplace', [
-        "title" => "Users"
-    ]);
-});
-
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
@@ -48,5 +37,6 @@ Route::get('/', [DashboardController::class, 'index'])->middleware('auth');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 
 Route::get('/places', [PlaceController::class, 'index']);
+Route::get('/places/create', [PlaceController::class, 'create']);
 
 Route::get('/users', [UserController::class, 'index']);

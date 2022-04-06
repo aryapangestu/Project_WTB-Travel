@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Place;
 
 class PlaceController extends Controller
 {
@@ -13,8 +14,9 @@ class PlaceController extends Controller
      */
     public function index()
     {
-        return view('Dashboard.places', [
-            "title" => "Places"
+        return view('places.index', [
+            "title" => "Places",
+            "places" => Place::all()
         ]);
     }
 
@@ -25,7 +27,9 @@ class PlaceController extends Controller
      */
     public function create()
     {
-        //
+        return view('places.create', [
+            "title" => "Create Place"
+        ]);
     }
 
     /**
