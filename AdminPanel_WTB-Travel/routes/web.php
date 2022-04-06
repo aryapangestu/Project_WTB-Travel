@@ -37,7 +37,8 @@ Route::get('/', [DashboardController::class, 'index'])->middleware('auth');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 
 Route::get('/places', [PlaceController::class, 'index'])->middleware('auth');
-Route::post('/places', [PlaceController::class, 'store'])->middleware('auth');
+Route::post('/places/store', [PlaceController::class, 'store'])->middleware('auth');
+Route::delete('/places/{id}', [PlaceController::class, 'destroy'])->middleware('auth');
 Route::get('/places/create', [PlaceController::class, 'create'])->middleware('auth');
 
 Route::get('/users', [UserController::class, 'index'])->middleware('auth');

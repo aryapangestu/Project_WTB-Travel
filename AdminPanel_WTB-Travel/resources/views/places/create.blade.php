@@ -18,10 +18,16 @@
 
                 <div class="card">
                     <div class="card-body">
+                        @if (session()->has('alert'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ session('alert') }} <button type="button" class="btn-close"
+                                    data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
                         <h5 class="card-title">Details</h5>
 
                         <!-- General Form Elements -->
-                        <form action="/places" method="POST" enctype="multipart/form-data">
+                        <form action="/places/store" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">Name</label>

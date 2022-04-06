@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Place;
+use App\Models\User;
 
 class DashboardController extends Controller
 {
@@ -13,7 +15,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('Dashboard.index', ["title" => "Dashboard"]);
+        return view('Dashboard.index', ["title" => "Dashboard", "totPlace" => Place::count(), "totUser" => User::count()]);
     }
 
     /**

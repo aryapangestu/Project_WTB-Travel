@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Place;
+use Illuminate\Support\Facades\File;
 
 class PlaceController extends Controller
 {
@@ -56,10 +57,10 @@ class PlaceController extends Controller
 
         if ($file->getClientOriginalExtension() === 'jpg' && $file->getSize() <= 500000) {
             // isi dengan nama folder tempat kemana file diupload
-            $tujuan_upload = 'assets\img';
+            $tujuan_upload = 'assets/img/places/';
             // upload file
             $file->move($tujuan_upload, $file->getClientOriginalName());
-            $validated['src'] = "assets/img/" . $file->getClientOriginalName();
+            $validated['src'] = $tujuan_upload . $file->getClientOriginalName();
             Place::create($validated);
             return redirect('/places')->with('alert', 'Place added successfully!');
         } else {
@@ -113,6 +114,9 @@ class PlaceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $locImg = Place::find($id)->src;
+        File::delete($locImg);
+        Place::destroy($id);
+        return redirect('/places')->with('alert', 'Place deleted successfully!');
     }
 }

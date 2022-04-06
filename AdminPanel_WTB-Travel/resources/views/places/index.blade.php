@@ -20,8 +20,8 @@
                     <div class="card-body">
                         @if (session()->has('alert'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                {{ session('alert') }} <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
+                                {{ session('alert') }} <button type="button" class="btn-close"
+                                    data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif
                         <a type="button" class="btn btn-primary" href="/places/create">Create a new place</a>
@@ -41,7 +41,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
-                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">YES</button>
+                                        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">YES</button>
                                     </div>
                                 </div>
                             </div>
@@ -74,10 +74,14 @@
                                         <td>
                                             <a href="#" class="btn btn-info" style="margin-right:2px">View</a>
                                             <a href="#" class="btn btn-warning" style="margin-right:2px">Edit</a>
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#delete" data-bs-whatever="@getbootstrap">
-                                                Delete
-                                            </button>
+                                            <form action="/places/{{ $place->id }}" method="post">
+                                                @method('delete')
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger"
+                                                    onclick="return confirm('Are you sure you want to delete this place?')">
+                                                    Delete
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
