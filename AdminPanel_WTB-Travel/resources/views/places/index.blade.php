@@ -17,14 +17,14 @@
             <div class="col-lg-12">
 
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body" style="padding: 1rem">
                         @if (session()->has('alert'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 {{ session('alert') }} <button type="button" class="btn-close"
                                     data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif
-                        <a type="button" class="btn btn-primary" href="/places/create">Create a new place</a>
+                        <a type="button" class="btn btn-primary" href="/places/create">Add new place</a>
 
                         <!-- Table with stripped rows -->
                         <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -46,7 +46,7 @@
                                 </div>
                             </div>
                         </div>
-                        <table class="table datatable table-striped table-bordered">
+                        <table class="table datatable table-striped table-bordered" style="margin-top: 1rem">
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
@@ -78,7 +78,8 @@
                                                 @method('delete')
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger"
-                                                    onclick="return confirm('Are you sure you want to delete this place?')">
+                                                    onclick="return confirm('Are you sure you want to delete this place?')"
+                                                    style="margin-top: 2px">
                                                     Delete
                                                 </button>
                                             </form>
