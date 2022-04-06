@@ -18,6 +18,12 @@
 
                 <div class="card">
                     <div class="card-body">
+                        @if (session()->has('alert'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ session('alert') }} <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        @endif
                         <a type="button" class="btn btn-primary" href="/places/create">Create a new place</a>
 
                         <!-- Table with stripped rows -->

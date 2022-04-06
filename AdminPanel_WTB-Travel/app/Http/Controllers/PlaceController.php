@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Place;
 
@@ -16,7 +17,7 @@ class PlaceController extends Controller
     {
         return view('places.index', [
             "title" => "Places",
-            "places" => Place::all()
+            "places" => Place::all(),
         ]);
     }
 
@@ -28,7 +29,8 @@ class PlaceController extends Controller
     public function create()
     {
         return view('places.create', [
-            "title" => "Create Place"
+            "title" => "Create Place",
+            "categories" => Category::all(),
         ]);
     }
 
@@ -40,7 +42,33 @@ class PlaceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'description' => 'required',
+            'category_id' => 'required',
+            'lat' => 'required',
+            'lng' => 'required',
+            'src' => 'required',
+        ]);
+
+        // menyimpan data file yang diupload ke variabel $file
+        $file = $request->file('src');
+
+        if ($file->getClientOriginalExtension() === 'jpg' && $file->getSize() <= 500000) {
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'assets\img';
+            // upload file
+            $file->move($tujuan_upload, $file->getClientOriginalName());
+            $validated['src'] = "assets/img/" . $file->getClientOriginalName();
+            Place::create($validated);
+            return redirect('/places')->with('alert', 'Place added successfully!');
+        } else {
+            if ($file->getClientOriginalExtension() !== 'jpg') {
+                return redirect('/places/create')->with('alert', 'The file type can only be JPG!');
+            } else if ($file->getSize() > 500000) {
+                return redirect('/places/create')->with('alert', 'Maximum file size 500 KB');
+            }
+        }
     }
 
     /**
