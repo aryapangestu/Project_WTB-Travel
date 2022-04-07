@@ -30,11 +30,15 @@
     ```bash
     php artisan migrate:fresh
     ```
-7. Create the application key:
+6. Create the application key:
     ```bash
     php artisan key:generate
     ```
-7. Start the laravel server:
+7. To create the symbolic link:
+    ```bash
+    php artisan storage:link
+    ```
+8. Start the laravel server:
     ```bash
     php artisan serve
     ```
