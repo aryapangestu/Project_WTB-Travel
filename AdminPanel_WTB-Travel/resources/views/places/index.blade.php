@@ -61,7 +61,7 @@
                                 @foreach ($places as $place)
                                     <tr>
                                         <th scope="row">{{ $place->id }}</th>
-                                        <td><img class="place_list_thumb" src="{{ $place->src }}"
+                                        <td><img class="place_list_thumb" src="{{ asset('storage/' . $place->src) }}"
                                                 style="width: 70px; height:70px"></td>
                                         <td>{{ $place->name }}</td>
                                         <td>{{ $place->category->name }}</td>
@@ -72,8 +72,10 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <a href="#" class="btn btn-info" style="margin-right:2px">View</a>
-                                            <a href="#" class="btn btn-warning" style="margin-right:2px">Edit</a>
+                                            <a href="/places/{{ $place->id }}/view" class="btn btn-info"
+                                                style="margin-right:2px">View</a>
+                                            <a href="/places/{{ $place->id }}/edit" class="btn btn-warning"
+                                                style="margin-right:2px">Edit</a>
                                             <form action="/places/{{ $place->id }}" method="post">
                                                 @method('delete')
                                                 @csrf

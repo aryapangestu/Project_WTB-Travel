@@ -35,6 +35,20 @@
 
     <!-- Template Main JS File -->
     <script src="{{ URL::asset('assets/js/main.js') }}"></script>
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    document.getElementById("preview").innerHTML =
+                        "<img src='" + e.target.result + "' width='250'>";
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 
 </body>
 

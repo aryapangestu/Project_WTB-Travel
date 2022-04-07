@@ -31,7 +31,7 @@ return new class extends Migration
         // Insert akun admin
         DB::table('places')->insert(
             array(
-                'src' => 'assets/img/gedungsate.jpg',
+                'src' => 'place-img/gedungsate.jpg',
                 'name' => 'Gedung Sate',
                 'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus quas odit ex veritatis, ipsa rerum, doloremque quia culpa hic, ab neque fuga et. Itaque adipisci accusantium facere, repellat consectetur facilis!',
                 'lat' => -6.913890,
@@ -42,7 +42,7 @@ return new class extends Migration
         );
         DB::table('places')->insert(
             array(
-                'src' => 'assets/img/museumgeologi.jpg',
+                'src' => 'place-img/museumgeologi.jpg',
                 'name' => 'Museum Geologi',
                 'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus quas odit ex veritatis, ipsa rerum, doloremque quia culpa hic, ab neque fuga et. Itaque adipisci accusantium facere, repellat consectetur facilis!',
                 'lat' => -6.9007162,
@@ -53,7 +53,7 @@ return new class extends Migration
         );
         DB::table('places')->insert(
             array(
-                'src' => 'assets/img/museumasaf.jpg',
+                'src' => 'place-img/museumasaf.jpg',
                 'name' => 'Museum Konfrensi Asia Afrika',
                 'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus quas odit ex veritatis, ipsa rerum, doloremque quia culpa hic, ab neque fuga et. Itaque adipisci accusantium facere, repellat consectetur facilis!',
                 'lat' => -6.9213389,

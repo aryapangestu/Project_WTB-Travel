@@ -5,9 +5,9 @@
         <h1>Create Place</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
                 <li class="breadcrumb-item">Places</li>
-                <li class="breadcrumb-item active">Create</li>
+                <li class="breadcrumb-item active">Edit</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -27,13 +27,14 @@
                         <h5 class="card-title">Details</h5>
 
                         <!-- General Form Elements -->
-                        <form action="/places/store" method="POST" enctype="multipart/form-data">
+                        <form action="/places/{{ $place->id }}" method="POST" enctype="multipart/form-data">
+                            @method('put')
                             @csrf
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">Name</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                                        required value="{{ old('name') }}">
+                                        required value="{{ old('name', $place->name) }}">
                                     @error('name')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -44,8 +45,9 @@
                             <div class="row mb-3">
                                 <label for="inputPassword" class="col-sm-2 col-form-label">Description</label>
                                 <div class="col-sm-10">
-                                    <textarea class="form-control @error('description') is-invalid @enderror" style="height: 100px" name="description"
-                                        required>{{ old('description') }}</textarea>
+                                    <textarea class="form-control @error('description') is-invalid @enderror" aria-label="description" style="height: 100px"
+                                        name="description"
+                                        required>{{ old('description', $place->description) }}</textarea>
                                     @error('description')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -60,7 +62,8 @@
                                         aria-label="Default select example" name="category_id" required>
                                         <option selected="" disabled="" value="">Choose...</option>
                                         @foreach ($categories as $category)
-                                            <option {{ old('category') === $category->id ? 'selected=""' : '' }}
+                                            <option
+                                                {{ old('category', $place->category_id) === $category->id ? 'selected=""' : '' }}
                                                 value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
                                         @error('category')
@@ -78,7 +81,7 @@
                                         <div class="col-md-6">
                                             <label for="place_address">Latitude</label>
                                             <input type="text" class="form-control @error('lat') is-invalid @enderror"
-                                                name="lat" required value="{{ old('lat') }}">
+                                                name="lat" required value="{{ old('lat', $place->lat) }}">
                                             @error('lat')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -88,7 +91,7 @@
                                         <div class="col-md-6">
                                             <label for="place_address">Longitude</label>
                                             <input type="text" class="form-control @error('lng') is-invalid @enderror"
-                                                name="lng" required value="{{ old('lng') }}">
+                                                name="lng" required value="{{ old('lng', $place->lng) }}">
                                             @error('lng')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -103,8 +106,10 @@
                                 <div class="col-sm-10">
                                     <input class="form-control @error('formFile') is-invalid @enderror" type="file"
                                         accept="image/jpg, image/jpeg" id="src" name="src" onchange="readURL(this);"
-                                        required value=" {{ old('scr') }}">
-                                    <div id="preview"></div>
+                                        value=" {{ old('scr', URL::asset($place->src)) }}">
+                                    <div id="preview">
+                                        <img src='{{ asset('storage/' . $place->src) }}' width='250'>
+                                    </div>
                                     @error('src')
                                         <div class="invalid-feedback">
                                             {{ $message }}

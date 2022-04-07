@@ -49,27 +49,15 @@ class PlaceController extends Controller
             'category_id' => 'required',
             'lat' => 'required',
             'lng' => 'required',
-            'src' => 'required',
+            'src' => 'required|file|max:500',
         ]);
 
-        // menyimpan data file yang diupload ke variabel $file
-        $file = $request->file('src');
-
-        if ($file->getClientOriginalExtension() === 'jpg' && $file->getSize() <= 500000) {
-            // isi dengan nama folder tempat kemana file diupload
-            $tujuan_upload = 'assets/img/places/';
-            // upload file
-            $file->move($tujuan_upload, $file->getClientOriginalName());
-            $validated['src'] = $tujuan_upload . $file->getClientOriginalName();
-            Place::create($validated);
-            return redirect('/places')->with('alert', 'Place added successfully!');
-        } else {
-            if ($file->getClientOriginalExtension() !== 'jpg') {
-                return redirect('/places/create')->with('alert', 'The file type can only be JPG!');
-            } else if ($file->getSize() > 500000) {
-                return redirect('/places/create')->with('alert', 'Maximum file size 500 KB');
-            }
+        if ($request->file('src')) {
+            $validated['src'] = $request->file('src')->store('place-img');
         }
+
+        Place::create($validated);
+        return redirect('/places')->with('alert', 'Place added successfully!');
     }
 
     /**
@@ -80,7 +68,11 @@ class PlaceController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('places.view', [
+            "title" => "Edit Place",
+            "categories" => Category::all(),
+            "place" => Place::find($id),
+        ]);
     }
 
     /**
@@ -91,7 +83,11 @@ class PlaceController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('places.edit', [
+            "title" => "Edit Place",
+            "categories" => Category::all(),
+            "place" => Place::find($id),
+        ]);
     }
 
     /**
@@ -103,7 +99,22 @@ class PlaceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'description' => 'required',
+            'category_id' => 'required',
+            'lat' => 'required',
+            'lng' => 'required',
+        ]);
+
+        if ($request->file('src')) {
+            $validated['src'] = $request->file('src')->store('place-img');
+            $locImg = "storage/" . Place::find($id)->src;
+            File::delete($locImg);
+        }
+
+        Place::where('id', $id)->update($validated);
+        return redirect('/places')->with('alert', 'Place updated successfully!');
     }
 
     /**
@@ -114,7 +125,7 @@ class PlaceController extends Controller
      */
     public function destroy($id)
     {
-        $locImg = Place::find($id)->src;
+        $locImg = "storage/" . Place::find($id)->src;
         File::delete($locImg);
         Place::destroy($id);
         return redirect('/places')->with('alert', 'Place deleted successfully!');
