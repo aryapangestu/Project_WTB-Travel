@@ -11,6 +11,12 @@ body {
   color: #444444;
 }
 
+.lgnbg{
+    background-image: url('bg.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
 a {
   color: #f2b740;
   text-decoration: none;

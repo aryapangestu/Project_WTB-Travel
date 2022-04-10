@@ -22,7 +22,7 @@
 
 </head>
 
-<body>
+<body class="lgnbg">
 
     <main>
         <div class="container">
@@ -40,7 +40,7 @@
                                 </a>
                             </div><!-- End Logo -->
 
-                            <div class="card mb-3">
+                            <div class="card mb-3" style="background:transparent; font-weight:bold">
 
                                 <div class="card-body">
 
