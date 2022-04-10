@@ -18,18 +18,6 @@ use App\Http\Controllers\CategoriesController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('index', [
-//         "title" => "Dashboard"
-//     ]);
-// });
-
-// Route::get('/places', function () {
-//     return view('places', [
-//         "title" => "Places"
-//     ]);
-// });
-
 //Login
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
