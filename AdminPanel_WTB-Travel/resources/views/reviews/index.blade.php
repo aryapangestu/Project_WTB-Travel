@@ -50,10 +50,10 @@
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col">Thumbnail</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Category</th>
-                                    <th scope="col">Status</th>
+                                    <th scope="col">Username</th>
+                                    <th scope="col">Place name</th>
+                                    <th scope="col">Rating</th>
+                                    <th scope="col">Comment</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -61,16 +61,10 @@
                                 @foreach ($reviews as $review)
                                     <tr>
                                         <th scope="row">{{ $review->id }}</th>
-                                        <td><img class="place_list_thumb" src="{{ asset('storage/' . $review->src) }}"
-                                                style="width: 70px; height:70px"></td>
-                                        <td>{{ $review->name }}</td>
-                                        <td>{{ $review->category->name }}</td>
-                                        <td>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
-                                                    {{ $review->status === 1 ? 'checked = ""' : '' }}>
-                                            </div>
-                                        </td>
+                                        <th scope="row">{{ $review->user_id }}</th>
+                                        <th scope="row">{{ $review->place_id }}</th>
+                                        <th scope="row">{{ $review->raing }}</th>
+                                        <th scope="row">{{ $review->comment }}</th>
                                         <td>
                                             <a href="/reviews/{{ $review->id }}/view" class="btn btn-info"
                                                 style="margin-right:2px">View</a>
