@@ -61,8 +61,8 @@
                                 @foreach ($reviews as $review)
                                     <tr>
                                         <th scope="row">{{ $review->id }}</th>
-                                        <th scope="row">{{ $review->user_id }}</th>
-                                        <th scope="row">{{ $review->place_id }}</th>
+                                        <th scope="row">{{ $review->user->username }}</th>
+                                        <th scope="row">{{ $review->place->name }}</th>
                                         <th scope="row">{{ $review->raing }}</th>
                                         <th scope="row">{{ $review->comment }}</th>
                                         <td>
