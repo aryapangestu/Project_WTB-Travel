@@ -14,7 +14,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        return view('Category.index', [
+        return view('category.index', [
             "title" => "Categories",
             "categories" => Category::all(),
         ]);
