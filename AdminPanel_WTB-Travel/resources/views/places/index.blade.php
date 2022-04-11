@@ -72,19 +72,21 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <a href="/places/{{ $place->id }}/view" class="btn btn-info"
-                                                style="margin-right:2px">View</a>
-                                            <a href="/places/{{ $place->id }}/edit" class="btn btn-warning"
-                                                style="margin-right:2px">Edit</a>
-                                            <form action="/places/{{ $place->id }}" method="post">
-                                                @method('delete')
-                                                @csrf
-                                                <button type="submit" class="btn btn-danger"
-                                                    onclick="return confirm('Are you sure you want to delete this place?')"
-                                                    style="margin-top: 2px">
-                                                    Delete
-                                                </button>
-                                            </form>
+                                            <div class="d-flex">
+                                                <a href="/places/{{ $place->id }}/view" class="btn btn-info"
+                                                    style="margin-right:2px">View</a>
+                                                <a href="/places/{{ $place->id }}/edit" class="btn btn-warning"
+                                                    style="margin-right:2px">Edit</a>
+                                                <form action="/places/{{ $place->id }}" method="post">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger"
+                                                        onclick="return confirm('Are you sure you want to delete this place?')"
+                                                        style="margin-top: 2px">
+                                                        Delete
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach
