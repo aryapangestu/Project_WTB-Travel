@@ -42,3 +42,7 @@ Route::get('/users', [UserController::class, 'index'])->middleware('auth');
 
 //Category
 Route::get('/categories', [CategoriesController::class, 'index'])->middleware('auth');
+
+
+//Review
+Route::get('/reviews', [ReviewsController::class, 'index'])->middleware('auth');
