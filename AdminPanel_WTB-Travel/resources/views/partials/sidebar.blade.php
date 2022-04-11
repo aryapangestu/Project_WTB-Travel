@@ -18,17 +18,17 @@
         </li><!-- End Places Nav -->
 
         <li>
-        <a class="nav-link {{ $title === 'Users' ? '' : 'collapsed' }}" href="/users">
-            <i class="bi bi-people"></i>
-            <span>Users</span>
-        </a>
+            <a class="nav-link {{ $title === 'Users' ? '' : 'collapsed' }}" href="/users">
+                <i class="bi bi-people"></i>
+                <span>Users</span>
+            </a>
         </li><!-- End Users Nav -->
 
         <li>
-        <a class="nav-link {{ $title === 'Categories' ? '' : 'collapsed' }}" href="/categories">
-            <i class="bi bi-boxes"></i>
-            <span>Category</span>
-        </a>
+            <a class="nav-link {{ $title === 'Categories' ? '' : 'collapsed' }}" href="/categories">
+                <i class="bi bi-boxes"></i>
+                <span>Category</span>
+            </a>
         </li><!-- End Category Nav -->
         <li>
             <a class="nav-link {{ $title === 'Reviews' ? '' : 'collapsed' }}" href="/reviews">
