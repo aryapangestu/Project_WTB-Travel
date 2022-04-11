@@ -24,7 +24,7 @@
                                     data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif
-                        <a type="button" class="btn btn-primary" href="/places/create">Add new place</a>
+                        <a type="button" class="btn btn-primary" href="/reviews/create">Add new review</a>
 
                         <!-- Table with stripped rows -->
                         <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -58,29 +58,29 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($places as $place)
+                                @foreach ($reviews as $review)
                                     <tr>
-                                        <th scope="row">{{ $place->id }}</th>
-                                        <td><img class="place_list_thumb" src="{{ asset('storage/' . $place->src) }}"
+                                        <th scope="row">{{ $review->id }}</th>
+                                        <td><img class="place_list_thumb" src="{{ asset('storage/' . $review->src) }}"
                                                 style="width: 70px; height:70px"></td>
-                                        <td>{{ $place->name }}</td>
-                                        <td>{{ $place->category->name }}</td>
+                                        <td>{{ $review->name }}</td>
+                                        <td>{{ $review->category->name }}</td>
                                         <td>
                                             <div class="form-check form-switch">
                                                 <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
-                                                    {{ $place->status === 1 ? 'checked = ""' : '' }}>
+                                                    {{ $review->status === 1 ? 'checked = ""' : '' }}>
                                             </div>
                                         </td>
                                         <td>
-                                            <a href="/places/{{ $place->id }}/view" class="btn btn-info"
+                                            <a href="/reviews/{{ $review->id }}/view" class="btn btn-info"
                                                 style="margin-right:2px">View</a>
-                                            <a href="/places/{{ $place->id }}/edit" class="btn btn-warning"
+                                            <a href="/reviews/{{ $review->id }}/edit" class="btn btn-warning"
                                                 style="margin-right:2px">Edit</a>
-                                            <form action="/places/{{ $place->id }}" method="post">
+                                            <form action="/reviews/{{ $review->id }}" method="post">
                                                 @method('delete')
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger"
-                                                    onclick="return confirm('Are you sure you want to delete this place?')"
+                                                    onclick="return confirm('Are you sure you want to delete this review?')"
                                                     style="margin-top: 2px">
                                                     Delete
                                                 </button>
