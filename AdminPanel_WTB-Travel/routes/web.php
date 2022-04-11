@@ -47,3 +47,5 @@ Route::get('/categories', [CategoryController::class, 'index'])->middleware('aut
 
 //Review
 Route::get('/reviews', [ReviewController::class, 'index'])->middleware('auth');
+Route::get('/reviews/create', [ReviewController::class, 'create'])->middleware('auth');
+Route::post('/reviews/store', [ReviewController::class, 'store'])->middleware('auth');

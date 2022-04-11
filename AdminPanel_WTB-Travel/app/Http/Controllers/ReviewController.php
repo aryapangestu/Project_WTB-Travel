@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Review;
+use App\Models\Place;
+use App\Models\User;
 
 class ReviewController extends Controller
 {
@@ -27,7 +29,12 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        //
+        return view('reviews.create', [
+            "title" => "Review Place",
+            "reviews" => Review::all(),
+            "users" => User::all(),
+            "places" => Place::all(),
+        ]);
     }
 
     /**
