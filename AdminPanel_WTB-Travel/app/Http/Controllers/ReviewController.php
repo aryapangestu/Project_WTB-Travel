@@ -45,7 +45,16 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $validated = $request->validate([
+            'user_id' => 'required',
+            'place_id' => 'required',
+            'rating' => 'required',
+            'comment' => 'required|max:255',
+        ]);
+
+        Review::create($validated);
+        return redirect('/reviews')->with('alert', 'review added successfully!');
     }
 
     /**

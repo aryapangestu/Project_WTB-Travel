@@ -63,7 +63,7 @@
                                         <th scope="row">{{ $review->id }}</th>
                                         <th scope="row">{{ $review->user->username }}</th>
                                         <th scope="row">{{ $review->place->name }}</th>
-                                        <th scope="row">{{ $review->raing }}</th>
+                                        <th scope="row">{{ $review->rating }}</th>
                                         <th scope="row">{{ $review->comment }}</th>
                                         <td>
                                             <a href="/reviews/{{ $review->id }}/view" class="btn btn-info"
