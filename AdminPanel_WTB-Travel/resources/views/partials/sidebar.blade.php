@@ -29,7 +29,13 @@
             <i class="bi bi-boxes"></i>
             <span>Category</span>
         </a>
-        </li><!-- End Users Nav -->
+        </li><!-- End Category Nav -->
+        <li>
+            <a class="nav-link {{ $title === 'Reviews' ? '' : 'collapsed' }}" href="/reviews">
+                <i class="bi bi-card-text"></i>
+                <span>Review</span>
+            </a>
+        </li><!-- End Category Nav -->
 
 
 </aside><!-- End Sidebar-->
