@@ -35,9 +35,10 @@
                                     <select class="form-select @error('user') is-invalid @enderror"
                                         aria-label="Default select example" name="user_id" required>
                                         <option selected="" disabled="" value="">Choose...</option>
-                                        @foreach ($reviews as $review)
-                                            <option {{ old('user_id') === $review->user_id ? 'selected=""' : '' }}
-                                                value="{{ $review->user_id }}">{{ $review->name->username }}</option>
+                                        @foreach ($users as $user)
+                                            <option {{ old('user_id') === $user->user_id ? 'selected=""' : '' }}
+                                                value="{{ $user->id }}">{{ $user->username }}
+                                            </option>
                                         @endforeach
                                         @error('user')
                                             <div class="invalid-feedback">
@@ -51,11 +52,11 @@
                                 <label class="col-sm-2 col-form-label">Name Place</label>
                                 <div class="col-sm-10">
                                     <select class="form-select @error('user') is-invalid @enderror"
-                                        aria-label="Default select example" name="category_id" required>
+                                        aria-label="Default select example" name="place_id" required>
                                         <option selected="" disabled="" value="">Choose...</option>
-                                        @foreach ($users as $user)
-                                            <option {{ old('user') === $user->id ? 'selected=""' : '' }}
-                                                value="{{ $user->id }}">{{ $user->name }}</option>
+                                        @foreach ($places as $place)
+                                            <option {{ old('place_id') === $place->id ? 'selected=""' : '' }}
+                                                value="{{ $place->id }}">{{ $place->name }}</option>
                                         @endforeach
                                         @error('user')
                                             <div class="invalid-feedback">
