@@ -14,7 +14,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        return view('places.view', [
+        return view('reviews.index', [
             "title" => "Review Place",
             "review" => Review::all(),
         ]);

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 
-class CategoriesController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +19,6 @@ class CategoriesController extends Controller
             "categories" => Category::all(),
         ]);
     }
-
 
     /**
      * Show the form for creating a new resource.

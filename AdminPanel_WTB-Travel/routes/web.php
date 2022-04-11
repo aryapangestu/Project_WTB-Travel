@@ -5,7 +5,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,8 +42,8 @@ Route::get('/places/{id}/view', [PlaceController::class, 'show'])->middleware('a
 Route::get('/users', [UserController::class, 'index'])->middleware('auth');
 
 //Category
-Route::get('/categories', [CategoriesController::class, 'index'])->middleware('auth');
+Route::get('/categories', [CategoryController::class, 'index'])->middleware('auth');
 
 
 //Review
-Route::get('/reviews', [ReviewsController::class, 'index'])->middleware('auth');
+Route::get('/reviews', [ReviewController::class, 'index'])->middleware('auth');
