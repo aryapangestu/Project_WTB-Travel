@@ -40,6 +40,9 @@ Route::get('/places/{id}/view', [PlaceController::class, 'show'])->middleware('a
 
 //User
 Route::get('/users', [UserController::class, 'index'])->middleware('auth');
+Route::get('/users/create', [UserController::class, 'create'])->middleware('auth');
+Route::post('/users/store', [UserController::class, 'store'])->middleware('auth');
+Route::delete('/users/{id}', [UserController::class, 'destroy'])->middleware('auth');
 
 //Category
 Route::get('/categories', [CategoryController::class, 'index'])->middleware('auth');

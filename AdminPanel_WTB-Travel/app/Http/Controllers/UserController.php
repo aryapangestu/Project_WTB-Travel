@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -27,7 +28,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create', [
+            "title" => "Create Users",
+        ]);
     }
 
     /**
@@ -38,7 +41,15 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'username' => ['required'],
+            'password' => ['required'],
+        ]);
+
+        $validated['password'] = Hash::make($validated['password']);
+
+        User::create($validated);
+        return redirect('/users')->with('alert', 'User added successfully!');
     }
 
     /**
@@ -83,6 +94,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::destroy($id);
+        return redirect('/users')->with('alert', 'User deleted successfully!');
     }
 }
