@@ -112,6 +112,7 @@ class ReviewController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Review::destroy($id);
+        return redirect('/reviews')->with('alert', 'Review deleted successfully!');
     }
 }
