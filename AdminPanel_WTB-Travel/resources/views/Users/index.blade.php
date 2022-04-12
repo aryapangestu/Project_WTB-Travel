@@ -46,21 +46,17 @@
                                         <td>
                                             <div class="form-check form-switch">
                                                 <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
-                                                    checked="">
+                                                {{ $user->status === 1 ? 'checked = ""' : '' }}>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-check form-switch">
                                                 <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
-                                                    checked="">
+                                                {{ $user->is_admin === 1 ? 'checked = ""' : '' }}>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="d-flex">
-                                                <a href="/users/{{ $user->id }}/view" class="btn btn-info"
-                                                    style="margin-right:2px">View</a>
-                                                <a href="/users/{{ $user->id }}/edit" class="btn btn-warning"
-                                                    style="margin-right:2px">Edit</a>
                                                 <form action="/users/{{ $user->id }}" method="post">
                                                     @method('delete')
                                                     @csrf
