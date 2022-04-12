@@ -64,7 +64,7 @@
                                         <td><img class="place_list_thumb" src="{{ asset('storage/' . $place->src) }}"
                                                 style="width: 70px; height:70px"></td>
                                         <td>{{ $place->name }}</td>
-                                        <td>{{ $place->category->name }}</td>
+                                        <td>{{ $place->category->name_category }}</td>
                                         <td>
                                             <div class="form-check form-switch">
                                                 <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"

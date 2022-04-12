@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 
+
 class CategoryController extends Controller
 {
     /**
@@ -27,7 +28,10 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        //menampilkan halaman create
+        return view('categories.create', [
+            "title" => "Category",
+        ]);
     }
 
     /**
@@ -38,7 +42,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name_category' => 'required',   
+        ]);
+
+        Category::create($validated);
+        return redirect('/categories')->with('alert', 'category added successfully!');
     }
 
     /**
@@ -60,7 +69,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('categories.edit', [
+            "title" => "Edit Category",
+            "category" => Category::find($id), 
+        ]);
     }
 
     /**
@@ -72,7 +84,12 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+             'name_category' => 'required',
+        ]);
+
+        Category::where('id', $id)->update($validated);
+        return redirect('/categories')->with('alert', 'category updated successfully!');
     }
 
     /**
@@ -83,6 +100,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Category::destroy($id);
+        return redirect('/categories')->with('alert', 'Category deleted successfully!');
     }
 }

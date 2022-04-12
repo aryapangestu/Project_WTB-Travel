@@ -46,7 +46,11 @@ Route::delete('/users/{id}', [UserController::class, 'destroy'])->middleware('au
 
 //Category
 Route::get('/categories', [CategoryController::class, 'index'])->middleware('auth');
-
+Route::get('/categories/create', [CategoryController::class, 'create'])->middleware('auth');
+Route::post('/categories/store', [CategoryController::class, 'store'])->middleware('auth');
+Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->middleware('auth');
+Route::put('/categories/{id}', [CategoryController::class, 'update'])->middleware('auth');
+Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->middleware('auth');
 
 //Review
 Route::get('/reviews', [ReviewController::class, 'index'])->middleware('auth');

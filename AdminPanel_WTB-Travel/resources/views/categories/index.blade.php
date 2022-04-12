@@ -59,7 +59,7 @@
                                     <tr>
                                         <th scope="row">{{ $category->id }}</th>
 
-                                        <td>{{ $category->name }}</td>
+                                        <td>{{ $category->name_category }}</td>
 
                                         <td>
                                             <div class="d-flex">
