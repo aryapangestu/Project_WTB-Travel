@@ -56,7 +56,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <div style="display:flex">
+                                            <div class="d-flex">
                                                 <a href="/users/{{ $user->id }}/view" class="btn btn-info"
                                                     style="margin-right:2px">View</a>
                                                 <a href="/users/{{ $user->id }}/edit" class="btn btn-warning"
