@@ -56,15 +56,7 @@
                                             </div>
                                         </td>
                                         <td>
-<<<<<<< HEAD
-                                            <div style="display:flex">
-=======
                                             <div class="d-flex">
-                                                <a href="/users/{{ $user->id }}/view" class="btn btn-info"
-                                                    style="margin-right:2px">View</a>
-                                                <a href="/users/{{ $user->id }}/edit" class="btn btn-warning"
-                                                    style="margin-right:2px">Edit</a>
->>>>>>> a0150bf0eccc05d1ed716b24954f4f3a4f7f8f49
                                                 <form action="/users/{{ $user->id }}" method="post">
                                                     @method('delete')
                                                     @csrf
