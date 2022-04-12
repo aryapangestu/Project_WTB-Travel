@@ -33,7 +33,6 @@ Route::get('/places', [PlaceController::class, 'index'])->middleware('auth');
 Route::post('/places/store', [PlaceController::class, 'store'])->middleware('auth');
 Route::delete('/places/{id}', [PlaceController::class, 'destroy'])->middleware('auth');
 Route::put('/places/{id}', [PlaceController::class, 'update'])->middleware('auth');
-
 Route::get('/places/create', [PlaceController::class, 'create'])->middleware('auth');
 Route::get('/places/{id}/edit', [PlaceController::class, 'edit'])->middleware('auth');
 Route::get('/places/{id}/view', [PlaceController::class, 'show'])->middleware('auth');
@@ -51,3 +50,4 @@ Route::get('/reviews/create', [ReviewController::class, 'create'])->middleware('
 Route::post('/reviews/store', [ReviewController::class, 'store'])->middleware('auth');
 Route::get('/reviews/{id}/edit', [ReviewController::class, 'edit'])->middleware('auth');
 Route::put('/reviews/{id}', [ReviewController::class, 'update'])->middleware('auth');
+Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->middleware('auth');
