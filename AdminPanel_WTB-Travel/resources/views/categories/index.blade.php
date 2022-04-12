@@ -58,11 +58,11 @@
                                 @foreach ($categories as $category)
                                     <tr>
                                         <th scope="row">{{ $category->id }}</th>
-        
+
                                         <td>{{ $category->name }}</td>
-                                       
+
                                         <td>
-                                            <div style= "display:flex">
+                                            <div class="d-flex">
                                             <a href="/categories/{{ $category->id }}/edit" class="btn btn-warning"
                                                 style="margin-right:2px">Edit</a>
                                             <form action="/categories/{{ $category->id }}" method="post">
