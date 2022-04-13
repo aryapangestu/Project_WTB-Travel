@@ -117,6 +117,17 @@ class PlaceController extends Controller
         return redirect('/places')->with('alert', 'Place updated successfully!');
     }
 
+    public function updateStatus($id)
+    {
+        if (Place::find($id)->status === 1) {
+            $update = array('status' => 0);
+        } else {
+            $update = array('status' => 1);
+        }
+        Place::where('id', $id)->update($update);
+        return;
+    }
+
     /**
      * Remove the specified resource from storage.
      *

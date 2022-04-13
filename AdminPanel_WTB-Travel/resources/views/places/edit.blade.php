@@ -105,7 +105,7 @@
                                 <label for="inputNumber" class="col-sm-2 col-form-label">Image Upload</label>
                                 <div class="col-sm-10">
                                     <input class="form-control @error('formFile') is-invalid @enderror" type="file"
-                                        accept="image/jpg, image/jpeg" id="src" name="src" onchange="readURL(this);"
+                                        accept="image/jpg, image/jpeg" id="src" name="src" onchange="previewImgs(this);"
                                         value=" {{ old('scr', URL::asset($place->src)) }}">
                                     <div id="preview">
                                         <img src='{{ asset('storage/' . $place->src) }}' width='250'>

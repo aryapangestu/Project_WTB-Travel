@@ -102,7 +102,7 @@
                                 <label for="inputNumber" class="col-sm-2 col-form-label">Image Upload</label>
                                 <div class="col-sm-10">
                                     <input class="form-control @error('formFile') is-invalid @enderror" type="file"
-                                        accept="image/jpg, image/jpeg" id="src" name="src" onchange="readURL(this);"
+                                        accept="image/jpg, image/jpeg" id="src" name="src" onchange="previewImg(this);"
                                         required value=" {{ old('scr') }}">
                                     <div id="preview"></div>
                                     @error('src')

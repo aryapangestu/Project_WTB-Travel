@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Admin Panel | WTB Travel</title>
 
     <!-- Google Fonts -->
@@ -34,21 +35,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Template Main JS File -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="{{ URL::asset('assets/js/main.js') }}"></script>
-    <script>
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function(e) {
-                    document.getElementById("preview").innerHTML =
-                        "<img src='" + e.target.result + "' width='250'>";
-                };
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-    </script>
 
 </body>
 

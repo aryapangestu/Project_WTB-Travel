@@ -24,6 +24,11 @@
                                     data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif
+
+                        <div class="alert alert-success" id="alertStatusPlace" style="display:none;">
+                            Place status updated successfully!
+                        </div>
+
                         <a type="button" class="btn btn-primary" href="/places/create">Add new place</a>
 
                         <!-- Table with stripped rows -->
@@ -67,9 +72,11 @@
                                         <td>{{ $place->category->name_category }}</td>
                                         <td>
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
+                                                <input class="form-check-input" type="checkbox"
+                                                    onclick="ubahStatus({{ $place->id }})"
                                                     {{ $place->status === 1 ? 'checked = ""' : '' }}>
                                             </div>
+
                                         </td>
                                         <td>
                                             <div class="d-flex">
