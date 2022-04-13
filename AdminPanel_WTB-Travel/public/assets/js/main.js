@@ -71,3 +71,54 @@ function ubahStatus(id) {
         }
     });
 }
+
+// Vendor Mapbox
+mapboxgl.accessToken = 'pk.eyJ1IjoiYXJ5YXAyIiwiYSI6ImNsMXU1MmJ3NjJpemQzcXVrNnQ3cDFibmEifQ.WtmVOqIR6MWhE9HNjQpPkw';
+const latitude = document.getElementById('lat');
+const longitude = document.getElementById('lng');
+const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [107.604, -6.934],
+    zoom: 15
+});
+
+// Marker Awal
+const marker = new mapboxgl.Marker({
+    color: 'orange',
+    draggable: true
+})
+    .setLngLat([107.604, -6.934])
+    .addTo(map);
+
+function onDragEnd() {
+    const lngLat = marker.getLngLat();
+    latitude.value = `${lngLat.lng}`;
+    longitude.value = `${lngLat.lat}`;
+}
+marker.on('dragend', onDragEnd);
+
+
+// Search
+var geocoder = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    marker: {
+        color: 'orange',
+        draggable: true
+    },
+    mapboxgl: mapboxgl
+});
+
+map.addControl(geocoder);
+
+geocoder.on('result', e => {
+    marker.remove();
+    const lngLat = e.result.center;
+    latitude.value = lngLat[0];
+    longitude.value = lngLat[1];
+    geocoder.mapMarker.on('dragend', (e) => {
+        const lngLat = e.target.getLngLat();
+        latitude.value = `${lngLat.lng}`;
+        longitude.value = `${lngLat.lat}`;
+    });
+})

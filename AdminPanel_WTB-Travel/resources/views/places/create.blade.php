@@ -78,7 +78,7 @@
                                         <div class="col-md-6">
                                             <label for="place_address">Latitude</label>
                                             <input type="text" class="form-control @error('lat') is-invalid @enderror"
-                                                name="lat" required value="{{ old('lat') }}">
+                                                name="lat" id="lat" required value="{{ old('lat') }}">
                                             @error('lat')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -88,13 +88,14 @@
                                         <div class="col-md-6">
                                             <label for="place_address">Longitude</label>
                                             <input type="text" class="form-control @error('lng') is-invalid @enderror"
-                                                name="lng" required value="{{ old('lng') }}">
+                                                name="lng" id="lng" required value="{{ old('lng') }}">
                                             @error('lng')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
                                             @enderror
-                                        </div>
+                                        </div></br></br></br>
+                                        <div id="map"></div>
                                     </div>
                                 </div>
                             </div>
@@ -103,7 +104,7 @@
                                 <div class="col-sm-10">
                                     <input class="form-control @error('formFile') is-invalid @enderror" type="file"
                                         accept="image/jpg, image/jpeg" id="src" name="src" onchange="previewImg(this);"
-                                        required value=" {{ old('scr') }}">
+                                        required value=" {{ old('scr') }}"></br>
                                     <div id="preview"></div>
                                     @error('src')
                                         <div class="invalid-feedback">
