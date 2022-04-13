@@ -16,22 +16,22 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique;
+            $table->string('name_category')->unique;
             $table->timestamps();
         });
         DB::table('categories')->insert(
             array(
-                'name' => 'Zoo',
+                'name_category' => 'Zoo',
             )
         );
         DB::table('categories')->insert(
             array(
-                'name' => 'Museum',
+                'name_category' => 'Museum',
             )
         );
         DB::table('categories')->insert(
             array(
-                'name' => 'Landmark',
+                'name_category' => 'Landmark',
             )
         );
     }

@@ -45,7 +45,16 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $validated = $request->validate([
+            'user_id' => 'required',
+            'place_id' => 'required',
+            'rating' => 'required',
+            'comment' => 'required|max:255',
+        ]);
+
+        Review::create($validated);
+        return redirect('/reviews')->with('alert', 'review added successfully!');
     }
 
     /**
@@ -67,7 +76,12 @@ class ReviewController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('reviews.edit', [
+            "title" => "Edit Review",
+            "review" => Review::find($id),
+            "users" => User::all(),
+            "places" => Place::all(),
+        ]);
     }
 
     /**
@@ -79,7 +93,15 @@ class ReviewController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'user_id' => 'required',
+            'place_id' => 'required',
+            'rating' => 'required',
+            'comment' => 'required|max:255',
+        ]);
+
+        Review::where('id', $id)->update($validated);
+        return redirect('/reviews')->with('alert', 'review updated successfully!');
     }
 
     /**
@@ -90,6 +112,7 @@ class ReviewController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Review::destroy($id);
+        return redirect('/reviews')->with('alert', 'Review deleted successfully!');
     }
 }

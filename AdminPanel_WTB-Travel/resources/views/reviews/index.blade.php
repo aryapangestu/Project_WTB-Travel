@@ -63,22 +63,22 @@
                                         <th scope="row">{{ $review->id }}</th>
                                         <th scope="row">{{ $review->user->username }}</th>
                                         <th scope="row">{{ $review->place->name }}</th>
-                                        <th scope="row">{{ $review->raing }}</th>
+                                        <th scope="row">{{ $review->rating }}</th>
                                         <th scope="row">{{ $review->comment }}</th>
                                         <td>
-                                            <a href="/reviews/{{ $review->id }}/view" class="btn btn-info"
-                                                style="margin-right:2px">View</a>
-                                            <a href="/reviews/{{ $review->id }}/edit" class="btn btn-warning"
-                                                style="margin-right:2px">Edit</a>
-                                            <form action="/reviews/{{ $review->id }}" method="post">
-                                                @method('delete')
-                                                @csrf
-                                                <button type="submit" class="btn btn-danger"
-                                                    onclick="return confirm('Are you sure you want to delete this review?')"
-                                                    style="margin-top: 2px">
-                                                    Delete
-                                                </button>
-                                            </form>
+                                            <div class="d-flex">
+                                                <a href="/reviews/{{ $review->id }}/edit" class="btn btn-warning"
+                                                    style="margin-right:2px">Edit</a>
+                                                <form action="/reviews/{{ $review->id }}" method="post">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger"
+                                                        onclick="return confirm('Are you sure you want to delete this review?')"
+                                                        style="margin-top: 2px">
+                                                        Delete
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach

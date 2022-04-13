@@ -2,7 +2,7 @@
 
 @section('konten')
     <div class="pagetitle">
-        <h1>Create Place</h1>
+        <h1>Create Review</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -32,7 +32,7 @@
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Username</label>
                                 <div class="col-sm-10">
-                                    <select class="form-select @error('user') is-invalid @enderror"
+                                    <select class="form-select @error('user_id') is-invalid @enderror"
                                         aria-label="Default select example" name="user_id" required>
                                         <option selected="" disabled="" value="">Choose...</option>
                                         @foreach ($users as $user)
@@ -40,7 +40,7 @@
                                                 value="{{ $user->id }}">{{ $user->username }}
                                             </option>
                                         @endforeach
-                                        @error('user')
+                                        @error('user_id')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
@@ -51,14 +51,14 @@
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Name Place</label>
                                 <div class="col-sm-10">
-                                    <select class="form-select @error('user') is-invalid @enderror"
+                                    <select class="form-select @error('place_id') is-invalid @enderror"
                                         aria-label="Default select example" name="place_id" required>
                                         <option selected="" disabled="" value="">Choose...</option>
                                         @foreach ($places as $place)
                                             <option {{ old('place_id') === $place->id ? 'selected=""' : '' }}
                                                 value="{{ $place->id }}">{{ $place->name }}</option>
                                         @endforeach
-                                        @error('user')
+                                        @error('place_id')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
@@ -69,23 +69,28 @@
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Rating</label>
                                 <div class="col-sm-10">
-                                    <select class="form-select @error('user') is-invalid @enderror"
-                                        aria-label="Default select example" name="category_id" required>
+                                    <select class="form-select @error('rating') is-invalid @enderror"
+                                        aria-label="Default select example" name="rating" required>
                                         <option selected="" disabled="" value="">Choose...</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
                                         <option value="5">5</option>
+                                        @error('rating')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </select>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="review" class="col-sm-2 col-form-label">Review</label>
                                 <div class="col-sm-10">
-                                    <textarea class="form-control @error('description') is-invalid @enderror" style="height: 100px" name="description"
-                                        required>{{ old('description') }}</textarea>
-                                    @error('description')
+                                    <textarea class="form-control @error('comment') is-invalid @enderror" style="height: 100px" name="comment"
+                                        required>{{ old('comment') }}</textarea>
+                                    @error('comment')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>

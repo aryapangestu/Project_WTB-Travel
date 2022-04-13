@@ -64,7 +64,7 @@
                                         @foreach ($categories as $category)
                                             <option
                                                 {{ old('category', $place->category_id) === $category->id ? 'selected=""' : '' }}
-                                                value="{{ $category->id }}">{{ $category->name }}</option>
+                                                value="{{ $category->id }}">{{ $category->name_category }}</option>
                                         @endforeach
                                         @error('category')
                                             <div class="invalid-feedback">
