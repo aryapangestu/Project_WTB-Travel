@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Place;
+use App\Models\Review;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,6 +20,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         User::factory(10)->create();
+
+        Review::factory(10)->create();
 
         // Insert akun admin
         User::create([
