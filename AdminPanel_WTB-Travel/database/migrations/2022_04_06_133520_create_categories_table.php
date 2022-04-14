@@ -19,21 +19,6 @@ return new class extends Migration
             $table->string('name_category')->unique;
             $table->timestamps();
         });
-        DB::table('categories')->insert(
-            array(
-                'name_category' => 'Zoo',
-            )
-        );
-        DB::table('categories')->insert(
-            array(
-                'name_category' => 'Museum',
-            )
-        );
-        DB::table('categories')->insert(
-            array(
-                'name_category' => 'Landmark',
-            )
-        );
     }
 
     /**
