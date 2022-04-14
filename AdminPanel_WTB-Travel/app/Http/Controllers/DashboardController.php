@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Place;
 use App\Models\User;
+use App\Models\Category;
+use App\Models\Review;
 
 class DashboardController extends Controller
 {
@@ -15,7 +17,14 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('Dashboard.index', ["title" => "Dashboard", "totPlace" => Place::count(), "totUser" => User::count()]);
+        return view('Dashboard.index', [
+            "title" => "Dashboard",
+            "totPlace" => Place::count(),
+            "places" => Place::all(),
+            "totUser" => User::count(),
+            "totCategory" => Category::count(),
+            "totReview" => Review::count(),
+        ]);
     }
 
     /**

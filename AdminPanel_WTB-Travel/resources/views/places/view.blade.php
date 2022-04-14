@@ -78,10 +78,13 @@
                                 <label for="inputLocation" class="col-sm-2 col-form-label">Location</label>
                                 <div class="col-sm-10">
                                     <div class="row mb-3">
+                                        <div class="col-md-12">
+                                            <div id="map"></div>
+                                        </div>
                                         <div class="col-md-6">
                                             <label for="place_address">Latitude</label>
                                             <input type="text" class="form-control @error('lat') is-invalid @enderror"
-                                                name="lat" disabled value="{{ old('lat', $place->lat) }}">
+                                                name="lat" id="lat" disabled value="{{ old('lat', $place->lat) }}">
                                             @error('lat')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -91,7 +94,7 @@
                                         <div class="col-md-6">
                                             <label for="place_address">Longitude</label>
                                             <input type="text" class="form-control @error('lng') is-invalid @enderror"
-                                                name="lng" disabled value="{{ old('lng', $place->lng) }}">
+                                                name="lng" id="lng" disabled value="{{ old('lng', $place->lng) }}">
                                             @error('lng')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -120,4 +123,23 @@
             </div>
         </div>
     </section>
+    <script>
+        // Vendor Mapbox
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYXJ5YXAyIiwiYSI6ImNsMXU1MmJ3NjJpemQzcXVrNnQ3cDFibmEifQ.WtmVOqIR6MWhE9HNjQpPkw';
+        const latitude = document.getElementById('lat');
+        const longitude = document.getElementById('lng');
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [longitude.value, latitude.value],
+            zoom: 15
+        });
+
+        // Marker Awal
+        const marker = new mapboxgl.Marker({
+                color: 'orange'
+            })
+            .setLngLat([longitude.value, latitude.value])
+            .addTo(map);
+    </script>
 @endsection
