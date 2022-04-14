@@ -71,3 +71,37 @@ function ubahStatus(id) {
         }
     });
 }
+
+function ubahStatusUser(id) {
+    $.ajax({
+        type: 'POST',
+        url: '/users/status/' + id,
+        data: {
+            Userid: id
+        },
+        success: function () {
+            $('#alertStatusUser').fadeOut();
+            $('#alertStatusUser').fadeIn();
+            setTimeout(function () {
+                $('#alertStatusUser').fadeOut();
+            }, 5000);
+        }
+    });
+}
+
+function ubahAdminUser(id) {
+    $.ajax({
+        type: 'POST',
+        url: '/users/admin/' + id,
+        data: {
+            Userid: id
+        },
+        success: function () {
+            $('#alertAdminUser').fadeOut();
+            $('#alertAdminUser').fadeIn();
+            setTimeout(function () {
+                $('#alertAdminUser').fadeOut();
+            }, 5000);
+        }
+    });
+}

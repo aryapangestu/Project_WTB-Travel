@@ -81,10 +81,27 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateUserStatus($id)
     {
-        //
+        if (User::find($id)->status === 1) {
+            $update = array('status' => 0);
+        } else {
+            $update = array('status' => 1);
+        }
+        User::where('id', $id)->update($update);
+        return;
     }
+    public function updateUserAdmin($id)
+    {
+        if (User::find($id)->is_admin === 1) {
+            $update = array('is_admin' => 0);
+        } else {
+            $update = array('is_admin' => 1);
+        }
+        User::where('id', $id)->update($update);
+        return;
+    }
+
 
     /**
      * Remove the specified resource from storage.
@@ -97,4 +114,5 @@ class UserController extends Controller
         User::destroy($id);
         return redirect('/users')->with('alert', 'User deleted successfully!');
     }
+
 }

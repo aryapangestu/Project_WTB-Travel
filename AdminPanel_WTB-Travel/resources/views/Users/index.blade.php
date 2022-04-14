@@ -23,6 +23,12 @@
                                     data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif
+                        <div class="alert alert-success" id="alertStatusUser" style="display:none;">
+                            User status updated successfully!
+                        </div>
+                        <div class="alert alert-success" id="alertAdminUser" style="display:none;">
+                            User admin updated successfully!
+                        </div>
                         <a type="button" class="btn btn-primary mb-3" href="/users/create">Add new user</a>
 
                         <!-- Table with stripped rows -->
@@ -45,13 +51,13 @@
                                         <td>{{ $user->username }}</td>
                                         <td>
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
+                                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" onclick="ubahStatusUser({{ $user->id }})"
                                                 {{ $user->status === 1 ? 'checked = ""' : '' }}>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
+                                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" onclick="ubahAdminUser({{ $user->id }})"
                                                 {{ $user->is_admin === 1 ? 'checked = ""' : '' }}>
                                             </div>
                                         </td>

@@ -43,6 +43,8 @@ Route::get('/users', [UserController::class, 'index'])->middleware('auth');
 Route::get('/users/create', [UserController::class, 'create'])->middleware('auth');
 Route::post('/users/store', [UserController::class, 'store'])->middleware('auth');
 Route::delete('/users/{id}', [UserController::class, 'destroy'])->middleware('auth');
+Route::post('/users/status/{id}', [UserController::class, 'updateUserStatus'])->middleware('auth');
+Route::post('/users/admin/{id}', [UserController::class, 'updateUserAdmin'])->middleware('auth');
 
 //Category
 Route::get('/categories', [CategoryController::class, 'index'])->middleware('auth');
