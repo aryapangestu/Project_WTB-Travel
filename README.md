@@ -26,9 +26,9 @@
     copy .env.example .env
     ```
 5. Run XAMPP and create an empty Database named wtb_travel
-   </br>Create tables into database:
+   </br>Create tables into database using Laravel migration and seeder:
     ```bash
-    php artisan migrate:fresh
+    php artisan migrate:fresh --seed
     ```
 6. Create the application key:
     ```bash
