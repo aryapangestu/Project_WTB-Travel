@@ -24,7 +24,7 @@
                                     data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif
-                        <a type="button" class="btn btn-primary" href="/reviews/create">Add new review</a>
+                        <a type="button" class="btn btn-primary mb-3" href="/reviews/create">Add new review</a>
 
                         <!-- Table with stripped rows -->
                         <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel"

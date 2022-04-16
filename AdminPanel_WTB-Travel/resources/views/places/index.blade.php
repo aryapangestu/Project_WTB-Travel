@@ -29,7 +29,7 @@
                             Place status updated successfully!
                         </div>
 
-                        <a type="button" class="btn btn-primary" href="/places/create">Add new place</a>
+                        <a type="button" class="btn btn-primary mb-3" href="/places/create">Add new place</a>
 
                         <!-- Table with stripped rows -->
                         <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel"

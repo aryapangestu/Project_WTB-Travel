@@ -24,7 +24,7 @@
                                     data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif
-                        <a type="button" class="btn btn-primary" href="/categories/create">Add new category</a>
+                        <a type="button" class="btn btn-primary mb-3" href="/categories/create">Add new category</a>
 
                         <!-- Table with stripped rows -->
                         <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel"
