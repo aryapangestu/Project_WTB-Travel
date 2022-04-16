@@ -32,7 +32,7 @@
                         <a type="button" class="btn btn-primary mb-3" href="/users/create">Add new user</a>
 
                         <!-- Table with stripped rows -->
-                        <table class="table table-striped table-bordered">
+                        <table class="table datatable">
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
@@ -51,14 +51,16 @@
                                         <td>{{ $user->username }}</td>
                                         <td>
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" onclick="ubahStatusUser({{ $user->id }})"
-                                                {{ $user->status === 1 ? 'checked = ""' : '' }}>
+                                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
+                                                    onclick="ubahStatusUser({{ $user->id }})"
+                                                    {{ $user->status === 1 ? 'checked = ""' : '' }}>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" onclick="ubahAdminUser({{ $user->id }})"
-                                                {{ $user->is_admin === 1 ? 'checked = ""' : '' }}>
+                                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
+                                                    onclick="ubahAdminUser({{ $user->id }})"
+                                                    {{ $user->is_admin === 1 ? 'checked = ""' : '' }}>
                                             </div>
                                         </td>
                                         <td>

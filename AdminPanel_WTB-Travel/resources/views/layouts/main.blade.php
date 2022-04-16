@@ -22,6 +22,8 @@
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
 
     <!-- Template Main CSS File -->
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
     <link href="{{ URL::asset('assets/css/style.css') }}" rel="stylesheet">
 </head>
 

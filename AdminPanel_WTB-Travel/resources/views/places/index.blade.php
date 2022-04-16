@@ -51,7 +51,7 @@
                                 </div>
                             </div>
                         </div>
-                        <table class="table datatable table-striped table-bordered" style="margin-top: 1rem">
+                        <table class="table datatable">
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>

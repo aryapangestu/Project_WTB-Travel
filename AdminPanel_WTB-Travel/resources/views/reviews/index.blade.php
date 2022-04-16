@@ -46,7 +46,8 @@
                                 </div>
                             </div>
                         </div>
-                        <table class="table datatable table-striped table-bordered" style="margin-top: 1rem">
+
+                        <table class="table datatable">
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
@@ -61,10 +62,10 @@
                                 @foreach ($reviews as $review)
                                     <tr>
                                         <th scope="row">{{ $review->id }}</th>
-                                        <th scope="row">{{ $review->user->username }}</th>
-                                        <th scope="row">{{ $review->place->name }}</th>
-                                        <th scope="row">{{ $review->rating }}</th>
-                                        <th scope="row">{{ $review->comment }}</th>
+                                        <td>{{ $review->user->username }}</td>
+                                        <td>{{ $review->place->name }}</td>
+                                        <td>{{ $review->rating }}</td>
+                                        <td>{{ $review->comment }}</td>
                                         <td>
                                             <div class="d-flex">
                                                 <a href="/reviews/{{ $review->id }}/edit" class="btn btn-warning"

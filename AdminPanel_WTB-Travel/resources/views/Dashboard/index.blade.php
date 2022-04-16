@@ -18,6 +18,29 @@
             <div class="col-lg-8">
                 <div class="row">
 
+                    <!-- Customers Card -->
+                    <div class="col-xxl-3 col-md-6">
+
+                        <div class="card info-card customers-card">
+
+                            <div class="card-body">
+                                <h5 class="card-title">Places <span>| Total</span></h5>
+
+                                <div class="d-flex align-items-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-building"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6>{{ $totPlace }}</h6>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div><!-- End Customers Card -->
+
                     <!-- Sales Card -->
                     <div class="col-xxl-3 col-md-6">
                         <div class="card info-card sales-card">
@@ -45,34 +68,11 @@
                         <div class="card info-card customers-card">
 
                             <div class="card-body">
-                                <h5 class="card-title">Places <span>| Total</span></h5>
-
-                                <div class="d-flex align-items-center">
-                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-building"></i>
-                                    </div>
-                                    <div class="ps-3">
-                                        <h6>{{ $totPlace }}</h6>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div><!-- End Customers Card -->
-
-                    <!-- Customers Card -->
-                    <div class="col-xxl-3 col-md-6">
-
-                        <div class="card info-card customers-card">
-
-                            <div class="card-body">
                                 <h5 class="card-title">Category <span>| Total</span></h5>
 
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-building"></i>
+                                        <i class="bi bi-boxes"></i>
                                     </div>
                                     <div class="ps-3">
                                         <h6>{{ $totCategory }}</h6>
@@ -95,7 +95,7 @@
 
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-building"></i>
+                                        <i class="bi bi-card-text"></i>
                                     </div>
                                     <div class="ps-3">
                                         <h6>{{ $totReview }}</h6>
@@ -119,7 +119,7 @@
         mapboxgl.accessToken = 'pk.eyJ1IjoiYXJ5YXAyIiwiYSI6ImNsMXU1MmJ3NjJpemQzcXVrNnQ3cDFibmEifQ.WtmVOqIR6MWhE9HNjQpPkw';
         const map = new mapboxgl.Map({
             container: 'map',
-            style: 'mapbox://styles/mapbox/streets-v11',
+            style: 'mapbox://styles/mapbox/satellite-streets-v11',
             center: [107.604, -6.934],
             zoom: 11.15
         });
@@ -129,41 +129,44 @@
             var places = {!! json_encode($places->toArray()) !!};
             var jsonArr = [];
             var jsonStr = "";
-            var jsonTot = "{" +
-                "'type': 'geojson'," +
-                "'data': {" +
-                "'type': 'FeatureCollection'," +
-                "'features': ["
+            var jsonTot = '{' +
+                '"type": "FeatureCollection",' +
+                '"features": ['
             for (const place of places) {
                 jsonStr = "{" +
-                    "'type': 'Feature'," +
-                    "'properties': {" +
-                    "'description': '<strong>" + place.name + "</strong><p>" + place.description + "</p>'," +
-                    "'icon': 'theatre-15'" +
-                    "}," +
-                    "'geometry': {" +
-                    "'type': 'Point'," +
-                    "'coordinates': [" + place.lng + ", " + place.lat + "]" +
-                    "}" +
-                    "},"
+                    '"type": "Feature",' +
+                    '"properties": { ' +
+                    '"description": "<strong>' + place.name + '</strong><p>' + place.description + '</p>"' +
+                    '},' +
+                    '"geometry": {' +
+                    '"type": "Point",' +
+                    '"coordinates": [' + place.lng + ', ' + place.lat + ']' +
+                    '}' +
+                    '},'
 
                 jsonTot = jsonTot + jsonStr;
             }
-            jsonStr = "]" +
-                "}" +
-                "}"
+            jsonTot = jsonTot.slice(0, -1);
+            jsonStr = ']' +
+                '}';
             jsonTot = jsonTot + jsonStr;
             console.log(jsonTot);
+            map.addSource('places', {
+                type: 'geojson',
 
-            map.addSource('places', jsonTot);
+                // Use a URL for the value for the `data` property.
+                data: JSON.parse(jsonTot)
+            });
             // Add a layer showing the places.
             map.addLayer({
                 'id': 'places',
-                'type': 'symbol',
+                'type': 'circle',
                 'source': 'places',
-                'layout': {
-                    'icon-image': '{icon}',
-                    'icon-allow-overlap': true
+                'paint': {
+                    'circle-radius': 8,
+                    'circle-stroke-width': 2,
+                    'circle-color': 'orange',
+                    'circle-stroke-color': 'white'
                 }
             });
 

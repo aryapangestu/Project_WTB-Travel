@@ -20,9 +20,9 @@ class ReviewFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::factory(),
-            'place_id' => Place::factory(),
-            'rating' => $this->faker->numberBetween(1,5),
+            'user_id' => User::all(['id'])->random(),
+            'place_id' => Place::all(['id'])->random(),
+            'rating' => $this->faker->numberBetween(1, 5),
             'comment' => $this->faker->paragraph(5),
         ];
     }

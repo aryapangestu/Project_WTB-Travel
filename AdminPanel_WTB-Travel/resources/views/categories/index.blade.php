@@ -46,7 +46,8 @@
                                 </div>
                             </div>
                         </div>
-                        <table class="table datatable table-striped table-bordered" style="margin-top: 1rem">
+
+                        <table class="table datatable">
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
@@ -63,17 +64,17 @@
 
                                         <td>
                                             <div class="d-flex">
-                                            <a href="/categories/{{ $category->id }}/edit" class="btn btn-warning"
-                                                style="margin-right:2px">Edit</a>
-                                            <form action="/categories/{{ $category->id }}" method="post">
-                                                @method('delete')
-                                                @csrf
-                                                <button type="submit" class="btn btn-danger"
-                                                    onclick="return confirm('Are you sure you want to delete this category?')"
-                                                    style="margin-top: 2px">
-                                                    Delete
-                                                </button>
-                                            </form>
+                                                <a href="/categories/{{ $category->id }}/edit" class="btn btn-warning"
+                                                    style="margin-right:2px">Edit</a>
+                                                <form action="/categories/{{ $category->id }}" method="post">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger"
+                                                        onclick="return confirm('Are you sure you want to delete this category?')"
+                                                        style="margin-top: 2px">
+                                                        Delete
+                                                    </button>
+                                                </form>
                                             </div>
 
                                         </td>
