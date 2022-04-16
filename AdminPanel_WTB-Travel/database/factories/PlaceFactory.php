@@ -19,7 +19,7 @@ class PlaceFactory extends Factory
      */
     public function definition()
     {
-        $image = $this->faker->image(public_path('assets\img'), 640, 480, 'animals', true);
+        $image = $this->faker->image();
         $imageFile = new File($image);
         return [
             'src' => Storage::disk('public')->put('place-img', $imageFile),
