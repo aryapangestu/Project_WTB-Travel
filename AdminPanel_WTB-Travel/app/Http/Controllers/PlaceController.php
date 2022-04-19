@@ -69,7 +69,7 @@ class PlaceController extends Controller
     public function show($id)
     {
         return view('places.view', [
-            "title" => "Edit Place",
+            "title" => "Show Place",
             "categories" => Category::all(),
             "place" => Place::find($id),
         ]);
