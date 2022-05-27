@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wtb_travel/views/review_screen.dart';
 
 class WtbTravelFullAppScreen extends StatefulWidget {
   const WtbTravelFullAppScreen({Key? key, required this.title})
@@ -23,10 +24,7 @@ class _WtbTravelFullAppScreen extends State<WtbTravelFullAppScreen> {
       'Index 1: Category',
       style: optionStyle,
     ),
-    const Text(
-      'Index 2: Review',
-      style: optionStyle,
-    ),
+    const WtbTravelReviewScreen(),
     const Text(
       'Index 3: Profil',
       style: optionStyle,
