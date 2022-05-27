@@ -1,5 +1,4 @@
-Arya Pangestu (1301190144): Places
+Arya Pangestu (1301190144): Dashboard & Places
 Najla Nur Adila (1301194001): Users
 Putri Samapa Hutapea (1301190336): Category
 Muhammad Ihsan Adly (1301194446): Review
-
