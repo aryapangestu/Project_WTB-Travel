@@ -138,7 +138,10 @@ class _WtbTravelReviewScreen extends State<WtbTravelReviewScreen> {
       children: <Widget>[
         CustomListItemTwo(
           thumbnail: Container(
-            decoration: const BoxDecoration(color: Colors.pink),
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: NetworkImage(
+                        'https://cdn-icons-png.flaticon.com/512/33/33308.png'))),
           ),
           title: 'James Bond',
           subtitle: 'Tempat nya bagus banget',
