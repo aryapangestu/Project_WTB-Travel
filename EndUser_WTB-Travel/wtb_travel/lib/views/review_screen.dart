@@ -140,12 +140,11 @@ class _WtbTravelReviewScreen extends State<WtbTravelReviewScreen> {
           thumbnail: Container(
             decoration: const BoxDecoration(color: Colors.pink),
           ),
-          title: 'Flutter 1.0 Launch',
-          subtitle: 'Flutter continues to improve and expand its horizons. '
-              'This text should max out at two lines and clip',
-          author: 'Dash',
-          publishDate: 'Dec 28',
-          readDuration: '5 mins',
+          title: 'James Bond',
+          subtitle: 'Tempat nya bagus banget',
+          author: 'Gedung Sate',
+          publishDate: 'Mei 12 2022',
+          readDuration: '',
         ),
         CustomListItemTwo(
           thumbnail: Container(
