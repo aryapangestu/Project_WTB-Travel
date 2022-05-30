@@ -50,13 +50,40 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const SizedBox(height: 10.0),
-          const Text(
-            'Category',
-            style: TextStyle(fontWeight: FontWeight.bold),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Text(
+                  'Category',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
           ),
-          const Padding(padding: EdgeInsets.all(8)),
-          categoryList(),
           const SizedBox(height: 10.0),
+          categoryList(),
+          const SizedBox(height: 20.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Text(
+                  'Top views',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 10.0),
+          recommendPlaceList(),
+          const SizedBox(height: 20.0),
         ],
       ),
     );
@@ -95,102 +122,103 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
     );
   }
 
-  // Widget recommendPlaceList() {
-  //   return Container(
-  //     width: 250,
-  //     decoration: BoxDecoration(
-  //         color: Colors.white, borderRadius: BorderRadius.circular(32)),
-  //     child: Stack(
-  //       children: [
-  //         Column(
-  //           crossAxisAlignment: CrossAxisAlignment.start,
-  //           children: [
-  //             Image.network(
-  //               'https://picsum.photos/250?image=9',
-  //               width: 250,
-  //               height: 150,
-  //               fit: BoxFit.cover,
-  //             ).cornerRadiusWithClipRRectOnly(topLeft: 32, topRight: 32),
-  //             widget.element.saveTag
-  //                 ? Container(
-  //                     color: bmTextColorDarkMode.shade400,
-  //                     padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-  //                     child: Row(
-  //                       children: [
-  //                         Icon(Icons.local_offer_rounded,
-  //                             color: Color(0xff808080), size: 16),
-  //                         2.width,
-  //                         Text(
-  //                           'Save up to 20% for next booking!',
-  //                           style: secondaryTextStyle(color: Color(0xff636161)),
-  //                         ).expand(),
-  //                       ],
-  //                     ),
-  //                   )
-  //                 : Offstage(),
-  //             const SizedBox(height: 8.0),
-  //             Text(widget.element.title,
-  //                     style: boldTextStyle(
-  //                         size: 18,
-  //                         color: appStore.isDarkModeOn
-  //                             ? Colors.white
-  //                             : bmSpecialColorDark))
-  //                 .paddingSymmetric(horizontal: 8),
-  //             const SizedBox(height: 4.0),
-  //             Text(widget.element.subtitle!,
-  //                     style: secondaryTextStyle(
-  //                         color: appStore.isDarkModeOn
-  //                             ? bmTextColorDarkMode
-  //                             : bmPrimaryColor,
-  //                         size: 12))
-  //                 .paddingSymmetric(horizontal: 8),
-  //             const SizedBox(height: 4.0),
-  //             Row(
-  //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //               children: [
-  //                 Row(
-  //                   children: [
-  //                     Icon(
-  //                       Icons.star,
-  //                       color: Colors.amber,
-  //                     ),
-  //                     4.width,
-  //                     Text(widget.element.rating!, style: boldTextStyle()),
-  //                     2.width,
-  //                     Text('(${widget.element.comments!})',
-  //                         style: secondaryTextStyle(
-  //                             color: appStore.isDarkModeOn
-  //                                 ? bmTextColorDarkMode
-  //                                 : bmPrimaryColor)),
-  //                   ],
-  //                 ),
-  //                 Text(widget.element.distance!,
-  //                     style: secondaryTextStyle(
-  //                         color: appStore.isDarkModeOn
-  //                             ? bmTextColorDarkMode
-  //                             : bmPrimaryColor)),
-  //               ],
-  //             ).paddingSymmetric(horizontal: 8),
-  //             const SizedBox(height: 16.0),
-  //           ],
-  //         ),
-  //         Positioned(
-  //           top: 15,
-  //           right: 15,
-  //           child: Icon(
-  //             Icons.favorite,
-  //             color: widget.element.liked! ? Colors.amber : bmTextColorDarkMode,
-  //             size: 24,
-  //           ).onTap(() {
-  //             widget.element.liked = !widget.element.liked.validate();
-  //             if (widget.isFavList) {
-  //               favList.remove(widget.element);
-  //             }
-  //             setState(() {});
-  //           }),
-  //         )
-  //       ],
-  //     ),
-  //   );
-  // }
+  Widget recommendPlaceList() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Wrap(
+        spacing: 16,
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        direction: Axis.horizontal,
+        runAlignment: WrapAlignment.start,
+        crossAxisAlignment: WrapCrossAlignment.start,
+        runSpacing: 8,
+        children: categories.map((e) {
+          return Container(
+            width: 250,
+            decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(32))),
+            child: Stack(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ClipRRect(
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(32),
+                        topRight: Radius.circular(32),
+                      ),
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      child: Image.network(
+                        'https://lh5.googleusercontent.com/p/AF1QipNXWXmYuRaRCTFhROcJ9MAq0ocIErS4M-wRP9vd=w426-h240-k-no',
+                        width: 250,
+                        height: 150,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    const Offstage(),
+                    const SizedBox(height: 8.0),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8),
+                      child: Text("Museum Konferensi Asia Afrika",
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Color(0xff520d1c),
+                              fontWeight: FontWeight.bold)),
+                    ),
+                    const SizedBox(height: 4.0),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8),
+                      child: Text(
+                          "Jl. Asia Afrika No.65, Braga, Kec. Sumur Bandung, Kota Bandung, Jawa Barat 40111",
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Color(0xffc79a9a),
+                          )),
+                    ),
+                    const SizedBox(height: 4.0),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: const [
+                              Icon(
+                                Icons.star,
+                                color: Colors.amber,
+                              ),
+                              SizedBox(height: 4.0),
+                              Text('4.8',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                              SizedBox(height: 2.0),
+                              Text('(1.2k)',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Color(0xffc79a9a),
+                                  )),
+                            ],
+                          ),
+                          const Text('0.5 mil',
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xffc79a9a),
+                              )),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 16.0),
+                  ],
+                ),
+              ],
+            ),
+          );
+        }).toList(),
+      ),
+    );
+  }
 }
