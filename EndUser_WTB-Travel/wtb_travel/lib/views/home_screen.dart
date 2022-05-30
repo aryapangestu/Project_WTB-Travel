@@ -164,7 +164,7 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
                       child: Text("Museum Konferensi Asia Afrika",
                           style: TextStyle(
                               fontSize: 18,
-                              color: Color(0xff520d1c),
+                              color: Colors.black,
                               fontWeight: FontWeight.bold)),
                     ),
                     const SizedBox(height: 4.0),
@@ -174,7 +174,7 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
                           "Jl. Asia Afrika No.65, Braga, Kec. Sumur Bandung, Kota Bandung, Jawa Barat 40111",
                           style: TextStyle(
                             fontSize: 12,
-                            color: Color(0xffc79a9a),
+                            color: Colors.grey,
                           )),
                     ),
                     const SizedBox(height: 4.0),
@@ -199,14 +199,14 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
                               Text('(1.2k)',
                                   style: TextStyle(
                                     fontSize: 12,
-                                    color: Color(0xffc79a9a),
+                                    color: Colors.grey,
                                   )),
                             ],
                           ),
                           const Text('0.5 mil',
                               style: TextStyle(
                                 fontSize: 14,
-                                color: Color(0xffc79a9a),
+                                color: Colors.grey,
                               )),
                         ],
                       ),
