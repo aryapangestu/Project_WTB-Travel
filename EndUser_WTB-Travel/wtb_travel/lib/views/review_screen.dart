@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class WtbTravelReviewScreen extends StatefulWidget {
   const WtbTravelReviewScreen({Key? key}) : super(key: key);
@@ -13,15 +14,11 @@ class _ArticleDescription extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.author,
-    required this.publishDate,
-    required this.readDuration,
   }) : super(key: key);
 
   final String title;
   final String subtitle;
   final String author;
-  final String publishDate;
-  final String readDuration;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +26,7 @@ class _ArticleDescription extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Expanded(
+          flex: 12,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -37,6 +35,7 @@ class _ArticleDescription extends StatelessWidget {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
+                  fontSize: 18.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -46,14 +45,31 @@ class _ArticleDescription extends StatelessWidget {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
-                  fontSize: 12.0,
-                  color: Colors.black54,
+                  fontSize: 15.5,
+                  color: Colors.black87,
                 ),
+              ),
+              RatingBar.builder(
+                itemSize: 18,
+                initialRating: 5,
+                minRating: 1,
+                direction: Axis.horizontal,
+                allowHalfRating: true,
+                itemCount: 5,
+                itemPadding: EdgeInsets.symmetric(horizontal: 2.0),
+                itemBuilder: (context, _) => Icon(
+                  Icons.star,
+                  color: Colors.amber,
+                ),
+                onRatingUpdate: (rating) {
+                  print(rating);
+                },
               ),
             ],
           ),
         ),
         Expanded(
+          flex: 3,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.end,
@@ -61,15 +77,8 @@ class _ArticleDescription extends StatelessWidget {
               Text(
                 author,
                 style: const TextStyle(
-                  fontSize: 12.0,
+                  fontSize: 14.0,
                   color: Colors.black87,
-                ),
-              ),
-              Text(
-                '$publishDate - $readDuration',
-                style: const TextStyle(
-                  fontSize: 12.0,
-                  color: Colors.black54,
                 ),
               ),
             ],
@@ -87,16 +96,12 @@ class CustomListItemTwo extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.author,
-    required this.publishDate,
-    required this.readDuration,
   }) : super(key: key);
 
   final Widget thumbnail;
   final String title;
   final String subtitle;
   final String author;
-  final String publishDate;
-  final String readDuration;
 
   @override
   Widget build(BuildContext context) {
@@ -118,8 +123,6 @@ class CustomListItemTwo extends StatelessWidget {
                   title: title,
                   subtitle: subtitle,
                   author: author,
-                  publishDate: publishDate,
-                  readDuration: readDuration,
                 ),
               ),
             )
@@ -143,21 +146,20 @@ class _WtbTravelReviewScreen extends State<WtbTravelReviewScreen> {
                     image: NetworkImage(
                         'https://cdn-icons-png.flaticon.com/512/33/33308.png'))),
           ),
-          title: 'James Bond',
-          subtitle: 'Tempat nya bagus banget',
-          author: 'Gedung Sate',
-          publishDate: 'Mei 12 2022',
-          readDuration: '',
+          title: 'Gedung Sate',
+          subtitle: 'Sate nya gosong ah',
+          author: 'James Bond',
         ),
         CustomListItemTwo(
           thumbnail: Container(
-            decoration: const BoxDecoration(color: Colors.blue),
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: NetworkImage(
+                        'https://cdn-icons-png.flaticon.com/512/33/33308.png'))),
           ),
-          title: 'Flutter 1.2 Release - Continual updates to the framework',
-          subtitle: 'Flutter once again improves and makes updates.',
-          author: 'Flutter',
-          publishDate: 'Feb 26',
-          readDuration: '12 mins',
+          title: 'Museum Geologi',
+          subtitle: 'Trex nya boongan',
+          author: 'Ihsan',
         ),
       ],
     );
