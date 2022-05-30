@@ -22,41 +22,19 @@ class _DrawwerScreenState extends State<DrawerScreen> {
             color: Colors.black,
           ),
         ),
-        Text(
-          'Flutter Developer',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 15,
-          ),
-        ),
         DrawerListTitle(
           iconData: Icons.account_circle,
           title: "Profile Settings",
           onTilePressed: () {},
         ),
         DrawerListTitle(
-          iconData: Icons.group,
-          title: "New Secret Group",
+          iconData: Icons.reviews,
+          title: "My Reviews",
           onTilePressed: () {},
         ),
         DrawerListTitle(
-          iconData: Icons.group,
-          title: "New Channel Chat",
-          onTilePressed: () {},
-        ),
-        DrawerListTitle(
-          iconData: Icons.group,
-          title: "Contacts",
-          onTilePressed: () {},
-        ),
-        DrawerListTitle(
-          iconData: Icons.group,
-          title: "Saved Message",
-          onTilePressed: () {},
-        ),
-        DrawerListTitle(
-          iconData: Icons.group,
-          title: "Calls",
+          iconData: Icons.logout,
+          title: "Logout",
           onTilePressed: () {},
         ),
       ],
