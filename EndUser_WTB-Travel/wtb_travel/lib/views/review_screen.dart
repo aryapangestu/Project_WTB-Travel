@@ -49,7 +49,7 @@ class _ArticleDescription extends StatelessWidget {
                 ),
               ),
               RatingBar.builder(
-                itemSize: 15,
+                itemSize: 5,
                 initialRating: 5,
                 minRating: 1,
                 direction: Axis.horizontal,
