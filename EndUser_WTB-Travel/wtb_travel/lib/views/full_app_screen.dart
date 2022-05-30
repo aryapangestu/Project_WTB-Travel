@@ -19,8 +19,7 @@ class _WtbTravelFullAppScreen extends State<WtbTravelFullAppScreen> {
   final List<Widget> _widgetOptions = <Widget>[
     const WtbTravelHomeScreen(),
     const WtbTravelCategoryScreen(),
-    const WtbTravelReviewScreen(),
-    DrawerScreen()
+    const WtbTravelReviewScreen()
   ];
 
   void _onItemTapped(int index) {
@@ -55,12 +54,7 @@ class _WtbTravelFullAppScreen extends State<WtbTravelFullAppScreen> {
             icon: Icon(Icons.reviews),
             label: 'Review',
             backgroundColor: Colors.purple,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-            backgroundColor: Colors.pink,
-          ),
+          )
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],

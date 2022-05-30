@@ -8,6 +8,15 @@ class Category {
   Category({this.name, this.icon});
 }
 
+class Place {
+  String? image;
+  String? title;
+  String? rating;
+  String? comments;
+
+  Place({this.image, this.title, this.rating, this.comments});
+}
+
 class WtbTravelHomeScreen extends StatefulWidget {
   const WtbTravelHomeScreen({Key? key}) : super(key: key);
 
@@ -86,19 +95,19 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
     );
   }
 
-  // Widget horizontalProductListView() {
+  // Widget recommendPlaceList() {
   //   return Container(
   //     width: 250,
-  //     decoration:
-  //         BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(radiusCircular(32)),
+  //     decoration: BoxDecoration(
+  //         color: Colors.white, borderRadius: BorderRadius.circular(32)),
   //     child: Stack(
   //       children: [
   //         Column(
   //           crossAxisAlignment: CrossAxisAlignment.start,
   //           children: [
-  //             Image.asset(
-  //               widget.element.image,
-  //               width: widget.fullScreenComponent ? context.width() - 32 : 250,
+  //             Image.network(
+  //               'https://picsum.photos/250?image=9',
+  //               width: 250,
   //               height: 150,
   //               fit: BoxFit.cover,
   //             ).cornerRadiusWithClipRRectOnly(topLeft: 32, topRight: 32),
@@ -119,7 +128,7 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
   //                     ),
   //                   )
   //                 : Offstage(),
-  //             8.height,
+  //             const SizedBox(height: 8.0),
   //             Text(widget.element.title,
   //                     style: boldTextStyle(
   //                         size: 18,
@@ -127,7 +136,7 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
   //                             ? Colors.white
   //                             : bmSpecialColorDark))
   //                 .paddingSymmetric(horizontal: 8),
-  //             4.height,
+  //             const SizedBox(height: 4.0),
   //             Text(widget.element.subtitle!,
   //                     style: secondaryTextStyle(
   //                         color: appStore.isDarkModeOn
@@ -135,7 +144,7 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
   //                             : bmPrimaryColor,
   //                         size: 12))
   //                 .paddingSymmetric(horizontal: 8),
-  //             4.height,
+  //             const SizedBox(height: 4.0),
   //             Row(
   //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
   //               children: [
@@ -162,7 +171,7 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
   //                             : bmPrimaryColor)),
   //               ],
   //             ).paddingSymmetric(horizontal: 8),
-  //             16.height,
+  //             const SizedBox(height: 16.0),
   //           ],
   //         ),
   //         Positioned(
