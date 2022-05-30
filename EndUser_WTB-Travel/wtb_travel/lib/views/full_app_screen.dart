@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wtb_travel/views/home_screen.dart';
 import 'package:wtb_travel/views/review_screen.dart';
 import 'package:wtb_travel/views/category_screen.dart';
 import 'package:wtb_travel/views/profile_screen.dart';
@@ -15,13 +16,8 @@ class WtbTravelFullAppScreen extends StatefulWidget {
 
 class _WtbTravelFullAppScreen extends State<WtbTravelFullAppScreen> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   final List<Widget> _widgetOptions = <Widget>[
-    const Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
+    const WtbTravelHomeScreen(),
     const WtbTravelCategoryScreen(),
     const WtbTravelReviewScreen(),
     DrawerScreen()
