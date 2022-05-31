@@ -51,13 +51,13 @@ class _ArticleDescription extends StatelessWidget {
               ),
               RatingBar.builder(
                 itemSize: 18,
-                initialRating: 5,
+                initialRating: 4,
                 minRating: 1,
                 direction: Axis.horizontal,
                 allowHalfRating: true,
                 itemCount: 5,
-                itemPadding: EdgeInsets.symmetric(horizontal: 2.0),
-                itemBuilder: (context, _) => Icon(
+                itemPadding: const EdgeInsets.symmetric(horizontal: 2.0),
+                itemBuilder: (context, _) => const Icon(
                   Icons.star,
                   color: Colors.amber,
                 ),
@@ -147,7 +147,7 @@ class _WtbTravelReviewScreen extends State<WtbTravelReviewScreen> {
                         'https://cdn-icons-png.flaticon.com/512/33/33308.png'))),
           ),
           title: 'Gedung Sate',
-          subtitle: 'Sate nya gosong ah',
+          subtitle: 'Enak satenya',
           author: 'James Bond',
         ),
         CustomListItemTwo(
@@ -158,7 +158,7 @@ class _WtbTravelReviewScreen extends State<WtbTravelReviewScreen> {
                         'https://cdn-icons-png.flaticon.com/512/33/33308.png'))),
           ),
           title: 'Museum Geologi',
-          subtitle: 'Trex nya boongan',
+          subtitle: 'Bagus museumnya',
           author: 'Ihsan',
         ),
       ],
