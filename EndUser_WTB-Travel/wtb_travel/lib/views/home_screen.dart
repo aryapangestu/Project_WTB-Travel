@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:wtb_travel/models/category.dart';
 
 class Category {
   String? name;
@@ -82,7 +81,7 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
             ),
           ),
           const SizedBox(height: 10.0),
-          recommendPlaceList(),
+          topViewlaceList(),
           const SizedBox(height: 20.0),
         ],
       ),
@@ -96,33 +95,38 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: categories.map((e) {
-          return Container(
-            width: 100,
-            alignment: Alignment.center,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: const BoxDecoration(
-                      shape: BoxShape.circle, color: Color(0xFF1157FA)),
-                  child: Icon(e.icon!, size: 30, color: Colors.white),
-                ),
-                const SizedBox(height: 4.0),
-                Text(e.name!,
-                    style: const TextStyle(fontSize: 12),
-                    maxLines: 1,
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.ellipsis),
-              ],
+          return InkWell(
+            child: Container(
+              width: 100,
+              alignment: Alignment.center,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.circle, color: Color(0xFF1157FA)),
+                    child: Icon(e.icon!, size: 30, color: Colors.white),
+                  ),
+                  const SizedBox(height: 4.0),
+                  Text(e.name!,
+                      style: const TextStyle(fontSize: 12),
+                      maxLines: 1,
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.ellipsis),
+                ],
+              ),
             ),
+            onTap: () {
+              print("tapped on container");
+            },
           );
         }).toList(),
       ),
     );
   }
 
-  Widget recommendPlaceList() {
+  Widget topViewlaceList() {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -134,88 +138,93 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
         crossAxisAlignment: WrapCrossAlignment.start,
         runSpacing: 8,
         children: categories.map((e) {
-          return Container(
-            width: 250,
-            decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(32))),
-            child: Stack(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ClipRRect(
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(32),
-                        topRight: Radius.circular(32),
+          return InkWell(
+            child: Container(
+              width: 250,
+              decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(32))),
+              child: Stack(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(32),
+                          topRight: Radius.circular(32),
+                        ),
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        child: Image.network(
+                          'https://lh5.googleusercontent.com/p/AF1QipNXWXmYuRaRCTFhROcJ9MAq0ocIErS4M-wRP9vd=w426-h240-k-no',
+                          width: 250,
+                          height: 150,
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      child: Image.network(
-                        'https://lh5.googleusercontent.com/p/AF1QipNXWXmYuRaRCTFhROcJ9MAq0ocIErS4M-wRP9vd=w426-h240-k-no',
-                        width: 250,
-                        height: 150,
-                        fit: BoxFit.cover,
+                      const Offstage(),
+                      const SizedBox(height: 8.0),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8),
+                        child: Text("Museum Konferensi Asia Afrika",
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold)),
                       ),
-                    ),
-                    const Offstage(),
-                    const SizedBox(height: 8.0),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8),
-                      child: Text("Museum Konferensi Asia Afrika",
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold)),
-                    ),
-                    const SizedBox(height: 4.0),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8),
-                      child: Text(
-                          "Jl. Asia Afrika No.65, Braga, Kec. Sumur Bandung, Kota Bandung, Jawa Barat 40111",
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.grey,
-                          )),
-                    ),
-                    const SizedBox(height: 4.0),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: const [
-                              Icon(
-                                Icons.star,
-                                color: Colors.amber,
-                              ),
-                              SizedBox(height: 4.0),
-                              Text('4.8',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                              SizedBox(height: 2.0),
-                              Text('(1.2k)',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.grey,
-                                  )),
-                            ],
-                          ),
-                          const Text('0.5 mil',
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.grey,
-                              )),
-                        ],
+                      const SizedBox(height: 4.0),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8),
+                        child: Text(
+                            "Jl. Asia Afrika No.65, Braga, Kec. Sumur Bandung, Kota Bandung, Jawa Barat 40111",
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey,
+                            )),
                       ),
-                    ),
-                    const SizedBox(height: 16.0),
-                  ],
-                ),
-              ],
+                      const SizedBox(height: 4.0),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: const [
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.amber,
+                                ),
+                                SizedBox(height: 4.0),
+                                Text('4.8',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                                SizedBox(height: 2.0),
+                                Text('(1.2k)',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.grey,
+                                    )),
+                              ],
+                            ),
+                            const Text('0.5 mil',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.grey,
+                                )),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 16.0),
+                    ],
+                  ),
+                ],
+              ),
             ),
+            onTap: () {
+              print("tapped on container");
+            },
           );
         }).toList(),
       ),
