@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class DrawerScreen extends StatefulWidget {
+  const DrawerScreen({Key? key}) : super(key: key);
+
   @override
-  _DrawwerScreenState createState() => _DrawwerScreenState();
+  State<DrawerScreen> createState() => _DrawwerScreenState();
 }
 
 class _DrawwerScreenState extends State<DrawerScreen> {
@@ -58,7 +60,7 @@ class DrawerListTitle extends StatelessWidget {
       leading: Icon(iconData),
       title: Text(
         title!,
-        style: TextStyle(fontSize: 16),
+        style: const TextStyle(fontSize: 16),
       ),
     );
   }

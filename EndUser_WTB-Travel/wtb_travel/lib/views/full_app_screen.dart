@@ -34,7 +34,7 @@ class _WtbTravelFullAppScreen extends State<WtbTravelFullAppScreen> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      drawer: DrawerScreen(),
+      drawer: const DrawerScreen(),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),

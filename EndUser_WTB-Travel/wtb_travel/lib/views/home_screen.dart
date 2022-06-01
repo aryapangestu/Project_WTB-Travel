@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 class Category {
   String? name;
@@ -48,7 +49,11 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const SizedBox(height: 10.0),
+          const SizedBox(height: 16.0),
+          searchTxt(),
+          const SizedBox(height: 16.0),
+          bannerWidget(),
+          const SizedBox(height: 8.0),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
@@ -72,7 +77,7 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const [
                 Text(
-                  'Top views',
+                  'Popular place',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
@@ -81,8 +86,48 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
             ),
           ),
           const SizedBox(height: 10.0),
-          topViewlaceList(),
+          popularPlaceList(),
           const SizedBox(height: 20.0),
+        ],
+      ),
+    );
+  }
+
+  Widget searchTxt() {
+    return Container(
+      margin: const EdgeInsets.only(left: 8, right: 8),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(color: Colors.grey),
+        borderRadius: const BorderRadius.all(Radius.circular(32)),
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: AppTextField(
+        decoration: InputDecoration(
+            border: InputBorder.none,
+            prefixIcon: const Icon(Icons.search_sharp, color: Colors.black),
+            hintText: 'Search your services..',
+            hintStyle: boldTextStyle(color: Colors.black)),
+        textFieldType: TextFieldType.NAME,
+        cursorColor: const Color(0xffc79a9a),
+      ),
+    );
+  }
+
+  Widget bannerWidget() {
+    return Container(
+      margin: const EdgeInsets.only(left: 8, right: 8),
+      child: Row(
+        children: [
+          Expanded(
+            child: ClipRRect(
+              borderRadius: const BorderRadius.all(Radius.circular(8)),
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              child: Image.network(
+                'https://live.staticflickr.com/7601/17147483356_9f86e26a29_c.jpg',
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -126,7 +171,7 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
     );
   }
 
-  Widget topViewlaceList() {
+  Widget popularPlaceList() {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -139,6 +184,10 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
         runSpacing: 8,
         children: categories.map((e) {
           return InkWell(
+            onTap: () {
+              print("tapped on container");
+            },
+            borderRadius: const BorderRadius.all(Radius.circular(32)),
             child: Container(
               width: 250,
               decoration: const BoxDecoration(
@@ -222,9 +271,6 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
                 ],
               ),
             ),
-            onTap: () {
-              print("tapped on container");
-            },
           );
         }).toList(),
       ),
