@@ -106,7 +106,7 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
         decoration: InputDecoration(
             border: InputBorder.none,
             prefixIcon: const Icon(Icons.search_sharp, color: Colors.black),
-            hintText: 'Find your place..',
+            hintText: 'Find your place...',
             hintStyle: boldTextStyle(color: Colors.black)),
         textFieldType: TextFieldType.NAME,
         cursorColor: const Color(0xffc79a9a),
