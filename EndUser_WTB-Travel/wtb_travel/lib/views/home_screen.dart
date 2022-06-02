@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:wtb_travel/views/detail_place_screen.dart';
 
 class Category {
   String? name;
@@ -185,7 +186,7 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
         children: categories.map((e) {
           return InkWell(
             onTap: () {
-              print("tapped on container");
+              const WtbTravelDetailPlace().launch(context);
             },
             borderRadius: const BorderRadius.all(Radius.circular(32)),
             child: Container(
