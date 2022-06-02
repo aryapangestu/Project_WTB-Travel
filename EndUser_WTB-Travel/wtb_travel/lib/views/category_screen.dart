@@ -22,7 +22,8 @@ class _ArticleDescription extends StatelessWidget {
       children: <Widget>[
         Expanded(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center, mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
                 title,
@@ -33,7 +34,6 @@ class _ArticleDescription extends StatelessWidget {
                 ),
               ),
               const Padding(padding: EdgeInsets.only(bottom: 2.0)),
-                
             ],
           ),
         ),
@@ -98,12 +98,12 @@ class _WtbTravelCategoryScreen extends State<WtbTravelCategoryScreen> {
           ),
           title: 'Museum Geologi',
         ),
-         CustomListItemTwo(
+        CustomListItemTwo(
           thumbnail: Container(
             decoration: const BoxDecoration(color: Colors.blue),
           ),
           title: 'Museum Konfrensi Asia Afrika',
-         ),
+        ),
       ],
     );
   }
