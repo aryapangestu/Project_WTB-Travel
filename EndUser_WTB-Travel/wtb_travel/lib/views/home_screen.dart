@@ -186,7 +186,7 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
         children: categories.map((e) {
           return InkWell(
             onTap: () {
-              const WtbTravelDetailPlace().launch(context);
+              SampleNavigationApp().launch(context);
             },
             borderRadius: const BorderRadius.all(Radius.circular(32)),
             child: Container(

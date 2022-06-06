@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WTB-Travel</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoiYXJ5YXAyIiwiYSI6ImNsMXU1MmJ3NjJpemQzcXVrNnQ3cDFibmEifQ.WtmVOqIR6MWhE9HNjQpPkw</string>
+    <string name="user_location_permission_explanation">This app needs location permissions to show its functionality.</string>
+    <string name="user_location_permission_not_granted">You didn\'t grant location permissions.</string>
+</resources>
