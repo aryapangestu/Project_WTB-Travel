@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wtb_travel/views/login_screen.dart';
 
 class DrawerScreen extends StatefulWidget {
   const DrawerScreen({Key? key}) : super(key: key);
@@ -39,7 +40,14 @@ class _DrawwerScreenState extends State<DrawerScreen> {
             DrawerListTitle(
               iconData: Icons.logout_outlined,
               title: "Logout",
-              onTilePressed: () {},
+              onTilePressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LoginPage(title: 'WTB-Travel'),
+                  ),
+                );
+              },
             ),
           ],
         ));
