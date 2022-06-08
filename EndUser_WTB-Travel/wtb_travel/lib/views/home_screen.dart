@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:wtb_travel/views/detail_place_screen.dart';
+import 'package:wtb_travel/views/list_place_screen.dart';
 import 'package:wtb_travel/views/map_place_screen.dart';
 
 class Category {
@@ -165,7 +166,7 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
               ),
             ),
             onTap: () {
-              print("tapped on container");
+              const WtbTravelListPlaceScreen().launch(context);
             },
           );
         }).toList(),
