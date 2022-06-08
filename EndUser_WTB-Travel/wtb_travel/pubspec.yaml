@@ -37,6 +37,7 @@ dependencies:
   nb_utils: ^4.5.2
   flutter_mapbox_navigation: ^0.0.26
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

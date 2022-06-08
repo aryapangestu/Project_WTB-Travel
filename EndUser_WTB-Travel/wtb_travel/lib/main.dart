@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wtb_travel/views/full_app_screen.dart';
+import 'package:wtb_travel/views/login_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const WtbTravelFullAppScreen(title: 'WTB-Travel'),
+      home: const LoginPage(title: 'WTB-Travel'),
     );
   }
 }
