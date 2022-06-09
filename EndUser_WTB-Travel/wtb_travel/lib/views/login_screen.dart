@@ -16,7 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: const Color(0xfff6f0e4),
       body: Container(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -48,9 +48,14 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: InputDecoration(
                       hintText: 'Enter your username',
                       prefixIcon: const Icon(Icons.supervisor_account),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
+                      focusedBorder: new OutlineInputBorder(
+                        borderRadius: new BorderRadius.circular(10),
+                        borderSide: BorderSide(color: Color(0xff464544)),
                       ),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide:
+                              const BorderSide(color: Color(0xff543c0d))),
                     ),
                   ),
                   const SizedBox(
@@ -67,6 +72,10 @@ class _LoginPageState extends State<LoginPage> {
                     obscureText: true,
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.lock),
+                      focusedBorder: new OutlineInputBorder(
+                        borderRadius: new BorderRadius.circular(10),
+                        borderSide: BorderSide(color: Color(0xff543c0d)),
+                      ),
                       hintText: 'Enter your password',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -87,8 +96,8 @@ class _LoginPageState extends State<LoginPage> {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.fromLTRB(40, 15, 40, 15),
-                    ),
+                        padding: const EdgeInsets.fromLTRB(40, 15, 40, 15),
+                        primary: const Color(0xff543c0d)),
                     child: const Text(
                       'Log In',
                       style: TextStyle(
