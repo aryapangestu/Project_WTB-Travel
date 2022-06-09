@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:wtb_travel/views/home_screen.dart';
 import 'package:wtb_travel/views/map_place_screen.dart';
 import 'package:wtb_travel/views/review_screen.dart';
 

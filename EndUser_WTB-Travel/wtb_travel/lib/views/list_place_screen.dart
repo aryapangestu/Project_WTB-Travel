@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:wtb_travel/views/detail_place_screen.dart';
-import 'package:wtb_travel/views/home_screen.dart';
 
 class Place {
   String image;

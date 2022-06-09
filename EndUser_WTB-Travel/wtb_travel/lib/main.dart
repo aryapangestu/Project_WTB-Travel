@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:wtb_travel/views/full_app_screen.dart';
 import 'package:wtb_travel/views/login_screen.dart';
 
 void main() {
