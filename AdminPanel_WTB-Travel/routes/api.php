@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\PlaceController;
+use App\Http\Controllers\API\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,4 @@ use App\Http\Controllers\API\PlaceController;
 // });
 
 Route::apiResource('places', PlaceController::class);
+Route::apiResource('reviews', ReviewController::class);
