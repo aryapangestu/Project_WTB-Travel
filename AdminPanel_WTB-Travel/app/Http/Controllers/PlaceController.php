@@ -45,6 +45,7 @@ class PlaceController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|max:255',
+            'address' => 'required',
             'description' => 'required',
             'category_id' => 'required',
             'lat' => 'required',
@@ -101,6 +102,7 @@ class PlaceController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|max:255',
+            'address' => 'required',
             'description' => 'required',
             'category_id' => 'required',
             'lat' => 'required',

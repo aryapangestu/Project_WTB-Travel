@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:wtb_travel/models/place.dart';
 import 'package:wtb_travel/views/map_place_screen.dart';
 import 'package:wtb_travel/views/review_screen.dart';
 
 class WtbTravelDetailPlaceScreen extends StatefulWidget {
-  const WtbTravelDetailPlaceScreen({Key? key}) : super(key: key);
+  final Place element;
+  const WtbTravelDetailPlaceScreen({Key? key, required this.element})
+      : super(key: key);
 
   @override
   State<WtbTravelDetailPlaceScreen> createState() =>
@@ -25,7 +28,7 @@ class _WtbTravelDetailPlaceScreen extends State<WtbTravelDetailPlaceScreen> {
           children: [
             16.height,
             Text(
-              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.',
+              widget.element.description!,
               style: primaryTextStyle(color: const Color(0xff543c0d)),
             ),
             20.height,
@@ -59,7 +62,7 @@ class _WtbTravelDetailPlaceScreen extends State<WtbTravelDetailPlaceScreen> {
                 },
               ).visible(innerBoxIsScrolled),
               title: Text(
-                "Museum Konferensi Asia Afrika",
+                widget.element.name!,
                 style: boldTextStyle(size: 20, color: const Color(0xff543c0d)),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
@@ -77,7 +80,7 @@ class _WtbTravelDetailPlaceScreen extends State<WtbTravelDetailPlaceScreen> {
                     Stack(
                       children: [
                         Image.network(
-                          'https://lh5.googleusercontent.com/p/AF1QipNXWXmYuRaRCTFhROcJ9MAq0ocIErS4M-wRP9vd=w426-h240-k-no',
+                          widget.element.image!,
                           height: 300,
                           width: context.width(),
                           fit: BoxFit.cover,
@@ -108,7 +111,7 @@ class _WtbTravelDetailPlaceScreen extends State<WtbTravelDetailPlaceScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Museum Konferensi Asia Afrika",
+                            widget.element.name!,
                             style: boldTextStyle(
                                 size: 20, color: const Color(0xff543c0d)),
                             maxLines: 1,
@@ -116,7 +119,7 @@ class _WtbTravelDetailPlaceScreen extends State<WtbTravelDetailPlaceScreen> {
                           ),
                           8.height,
                           Text(
-                            "Jl. Asia Afrika No.65, Braga, Kec. Sumur Bandung, Kota Bandung, Jawa Barat 40111",
+                            widget.element.address!,
                             style: secondaryTextStyle(
                                 color: const Color(0xffc7b899), size: 12),
                           ),

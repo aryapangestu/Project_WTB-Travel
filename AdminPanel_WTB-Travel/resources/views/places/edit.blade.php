@@ -43,11 +43,22 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Address</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control @error('address') is-invalid @enderror"
+                                        name="address" required value="{{ old('address', $place->address) }}">
+                                    @error('address')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="row mb-3">
                                 <label for="inputPassword" class="col-sm-2 col-form-label">Description</label>
                                 <div class="col-sm-10">
                                     <textarea class="form-control @error('description') is-invalid @enderror" aria-label="description" style="height: 100px"
-                                        name="description"
-                                        required>{{ old('description', $place->description) }}</textarea>
+                                        name="description" required>{{ old('description', $place->description) }}</textarea>
                                     @error('description')
                                         <div class="invalid-feedback">
                                             {{ $message }}

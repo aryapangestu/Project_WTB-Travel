@@ -1,23 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:wtb_travel/views/detail_place_screen.dart';
-
-class Place {
-  String image;
-  String title;
-  String? subtitle;
-  String? rating;
-  String? comments;
-  String? distance;
-
-  Place(
-      {required this.image,
-      required this.title,
-      this.subtitle,
-      this.comments,
-      this.distance,
-      this.rating});
-}
+import 'package:wtb_travel/models/place.dart';
 
 class WtbTravelListPlaceScreen extends StatefulWidget {
   const WtbTravelListPlaceScreen({Key? key}) : super(key: key);
@@ -29,50 +13,60 @@ class WtbTravelListPlaceScreen extends StatefulWidget {
 class _WtbTravelListPlaceScreen extends State<WtbTravelListPlaceScreen> {
   List<Place> place = [
     Place(
-      title: "Museum Konferensi Asia Afrika",
+      name: "Museum Konferensi Asia Afrika",
       image:
           'https://lh5.googleusercontent.com/p/AF1QipNXWXmYuRaRCTFhROcJ9MAq0ocIErS4M-wRP9vd=w426-h240-k-no',
-      subtitle:
+      description:
           'Jl. Asia Afrika No.65, Braga, Kec. Sumur Bandung, Kota Bandung, Jawa Barat 40111',
       rating: '5.0',
       comments: '240',
       distance: '0.5 mil',
     ),
     Place(
-      title: "Museum Konferensi Asia Afrika",
+      name: "Museum Konferensi Asia Afrika",
       image:
           'https://lh5.googleusercontent.com/p/AF1QipNXWXmYuRaRCTFhROcJ9MAq0ocIErS4M-wRP9vd=w426-h240-k-no',
-      subtitle:
+      description:
           'Jl. Asia Afrika No.65, Braga, Kec. Sumur Bandung, Kota Bandung, Jawa Barat 40111',
       rating: '5.0',
       comments: '240',
       distance: '0.5 mil',
     ),
     Place(
-      title: "Museum Konferensi Asia Afrika",
+      name: "Museum Konferensi Asia Afrika",
       image:
           'https://lh5.googleusercontent.com/p/AF1QipNXWXmYuRaRCTFhROcJ9MAq0ocIErS4M-wRP9vd=w426-h240-k-no',
-      subtitle:
+      description:
           'Jl. Asia Afrika No.65, Braga, Kec. Sumur Bandung, Kota Bandung, Jawa Barat 40111',
       rating: '5.0',
       comments: '240',
       distance: '0.5 mil',
     ),
     Place(
-      title: "Museum Konferensi Asia Afrika",
+      name: "Museum Konferensi Asia Afrika",
       image:
           'https://lh5.googleusercontent.com/p/AF1QipNXWXmYuRaRCTFhROcJ9MAq0ocIErS4M-wRP9vd=w426-h240-k-no',
-      subtitle:
+      description:
           'Jl. Asia Afrika No.65, Braga, Kec. Sumur Bandung, Kota Bandung, Jawa Barat 40111',
       rating: '5.0',
       comments: '240',
       distance: '0.5 mil',
     ),
     Place(
-      title: "Museum Konferensi Asia Afrika",
+      name: "Museum Konferensi Asia Afrika",
       image:
           'https://lh5.googleusercontent.com/p/AF1QipNXWXmYuRaRCTFhROcJ9MAq0ocIErS4M-wRP9vd=w426-h240-k-no',
-      subtitle:
+      description:
+          'Jl. Asia Afrika No.65, Braga, Kec. Sumur Bandung, Kota Bandung, Jawa Barat 40111',
+      rating: '5.0',
+      comments: '240',
+      distance: '0.5 mil',
+    ),
+    Place(
+      name: "Museum Konferensi Asia Afrika",
+      image:
+          'https://lh5.googleusercontent.com/p/AF1QipNXWXmYuRaRCTFhROcJ9MAq0ocIErS4M-wRP9vd=w426-h240-k-no',
+      description:
           'Jl. Asia Afrika No.65, Braga, Kec. Sumur Bandung, Kota Bandung, Jawa Barat 40111',
       rating: '5.0',
       comments: '240',
@@ -132,7 +126,7 @@ class _WtbTravelListPlaceScreen extends State<WtbTravelListPlaceScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Image.network(
-                        e.image,
+                        e.image!,
                         width: context.width() - 32,
                         height: 150,
                         fit: BoxFit.cover,
@@ -140,12 +134,12 @@ class _WtbTravelListPlaceScreen extends State<WtbTravelListPlaceScreen> {
                           topLeft: 32, topRight: 32),
                       const Offstage(),
                       8.height,
-                      Text(e.title,
+                      Text(e.name!,
                               style: boldTextStyle(
                                   size: 18, color: const Color(0xff543c0d)))
                           .paddingSymmetric(horizontal: 8),
                       4.height,
-                      Text(e.subtitle!,
+                      Text(e.description!,
                               style: secondaryTextStyle(
                                   color: const Color(0xffc7b899), size: 12))
                           .paddingSymmetric(horizontal: 8),
@@ -179,7 +173,7 @@ class _WtbTravelListPlaceScreen extends State<WtbTravelListPlaceScreen> {
               ),
             ).onTap(() {
               // const WtbTravelDetailPlaceScreen(element: e).launch(context);
-              const WtbTravelDetailPlaceScreen().launch(context);
+              WtbTravelDetailPlaceScreen(element: e).launch(context);
             });
           }).toList(),
         ).paddingOnly(top: 16, bottom: 70, left: 16, right: 16),

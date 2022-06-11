@@ -18,6 +18,7 @@ return new class extends Migration
             $table->id();
             $table->string('src');
             $table->string('name', 255);
+            $table->string('address', 255);
             $table->longText('description');
             $table->double('lat', 15, 8)->default(null);
             $table->double('lng', 15, 8)->default(null);

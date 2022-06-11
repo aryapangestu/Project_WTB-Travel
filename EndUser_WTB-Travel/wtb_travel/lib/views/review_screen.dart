@@ -126,7 +126,6 @@ class _WtbTravelReviewScreen extends State<WtbTravelReviewScreen> {
             ),
           ).onTap(() {
             // const WtbTravelDetailPlaceScreen(element: e).launch(context);
-            const WtbTravelDetailPlaceScreen().launch(context);
           });
         }).toList(),
       ).paddingOnly(top: 16, bottom: 70, left: 16, right: 16),

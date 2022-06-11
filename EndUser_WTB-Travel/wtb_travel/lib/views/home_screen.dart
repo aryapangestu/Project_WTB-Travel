@@ -1,22 +1,17 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:wtb_travel/controllers/place_controller.dart';
 import 'package:wtb_travel/views/detail_place_screen.dart';
 import 'package:wtb_travel/views/list_place_screen.dart';
+import 'package:wtb_travel/models/place.dart';
 
 class Category {
   String? name;
   IconData? icon;
 
   Category({this.name, this.icon});
-}
-
-class Place {
-  String? image;
-  String? title;
-  String? rating;
-  String? comments;
-
-  Place({this.image, this.title, this.rating, this.comments});
 }
 
 class WtbTravelHomeScreen extends StatefulWidget {
@@ -44,53 +39,80 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
     Category(name: 'Electronics', icon: Icons.audiotrack),
     Category(name: 'Electronics', icon: Icons.audiotrack),
   ];
+  Future places = getPlaces();
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const SizedBox(height: 16.0),
-          searchTxt(),
-          const SizedBox(height: 16.0),
-          bannerWidget(),
-          const SizedBox(height: 8.0),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Text(
-                  'Category',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
+    return RefreshIndicator(
+      onRefresh: () async {
+        setState(() {
+          places = getPlaces();
+        });
+      },
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const SizedBox(height: 16.0),
+            searchTxt(),
+            const SizedBox(height: 16.0),
+            bannerWidget(),
+            const SizedBox(height: 8.0),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Text(
+                    'Category',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
             ),
-          ),
-          const SizedBox(height: 10.0),
-          categoryList(),
-          const SizedBox(height: 20.0),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Text(
-                  'Popular place',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
+            const SizedBox(height: 10.0),
+            categoryList(),
+            const SizedBox(height: 20.0),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Text(
+                    'Popular place',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
             ),
-          ),
-          const SizedBox(height: 10.0),
-          popularPlaceList(),
-          const SizedBox(height: 20.0),
-        ],
+            const SizedBox(height: 10.0),
+            FutureBuilder(
+              future: places,
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return const Center(
+                    child: Text("Error when fetching data"),
+                  );
+                } else if (snapshot.hasData) {
+                  List<Place> data = snapshot.data as List<Place>;
+
+                  if (data.isEmpty) {
+                    return const Center(child: Text("Data is empty"));
+                  }
+                  return popularPlaceList(data);
+                }
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              },
+            ),
+            const SizedBox(height: 20.0),
+          ],
+        ),
       ),
     );
   }
@@ -173,7 +195,7 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
     );
   }
 
-  Widget popularPlaceList() {
+  Widget popularPlaceList(List<Place> places) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -184,10 +206,10 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
         runAlignment: WrapAlignment.start,
         crossAxisAlignment: WrapCrossAlignment.start,
         runSpacing: 8,
-        children: categories.map((e) {
+        children: places.map((e) {
           return InkWell(
             onTap: () {
-              const WtbTravelDetailPlaceScreen().launch(context);
+              WtbTravelDetailPlaceScreen(element: e).launch(context);
             },
             borderRadius: const BorderRadius.all(Radius.circular(32)),
             child: Container(
@@ -207,7 +229,7 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
                         ),
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         child: Image.network(
-                          'https://lh5.googleusercontent.com/p/AF1QipNXWXmYuRaRCTFhROcJ9MAq0ocIErS4M-wRP9vd=w426-h240-k-no',
+                          e.image!,
                           width: 250,
                           height: 150,
                           fit: BoxFit.cover,
@@ -215,20 +237,23 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
                       ),
                       const Offstage(),
                       const SizedBox(height: 8.0),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8),
-                        child: Text("Museum Konferensi Asia Afrika",
-                            style: TextStyle(
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: Text(e.name!,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
                                 fontSize: 18,
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold)),
                       ),
                       const SizedBox(height: 4.0),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8),
-                        child: Text(
-                            "Jl. Asia Afrika No.65, Braga, Kec. Sumur Bandung, Kota Bandung, Jawa Barat 40111",
-                            style: TextStyle(
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: Text(e.address!,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
                               fontSize: 12,
                               color: Colors.grey,
                             )),

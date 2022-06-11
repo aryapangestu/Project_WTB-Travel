@@ -15,13 +15,11 @@ class PlaceController extends Controller
      */
     public function index()
     {
-        $places = Place::where('status', true)->get();
+        $places = Place::where('status', true)->orderBy('view', 'desc')->get();
         foreach ($places as $key => $place) {
             $places[$key]['src'] = asset('storage/' . $place->src);
         }
-        return response()->json([
-            'places' => $places
-        ]);
+        return response()->json($places);
     }
 
     /**
