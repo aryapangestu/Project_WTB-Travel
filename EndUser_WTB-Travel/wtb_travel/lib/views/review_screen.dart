@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:wtb_travel/views/detail_place_screen.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class Review {
