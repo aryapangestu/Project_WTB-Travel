@@ -4,7 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:wtb_travel/models/place.dart';
 
 Future<List<Place>> getPlaces() async {
-  var response = await http.get(Uri.parse("http://10.0.2.2:8000/api/places"));
+  var response =
+      await http.get(Uri.parse("https://wtb-travel.herokuapp.com/api/places"));
 
   if (response.statusCode != 200) {
     throw "Gagal dalam fetching data";

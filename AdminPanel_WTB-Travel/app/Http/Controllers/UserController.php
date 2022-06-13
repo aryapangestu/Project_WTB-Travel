@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('users.index', [
+        return view('Users.index', [
             "title" => "Users",
             "users" => User::all(),
         ]);
@@ -28,7 +28,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create', [
+        return view('Users.create', [
             "title" => "Create Users",
         ]);
     }
@@ -114,5 +114,4 @@ class UserController extends Controller
         User::destroy($id);
         return redirect('/users')->with('alert', 'User deleted successfully!');
     }
-
 }
