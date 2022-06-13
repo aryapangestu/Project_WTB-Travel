@@ -14,16 +14,25 @@ Future<List<Place>> getPlaces() async {
   List body = jsonDecode(response.body);
 
   List<Place> finalList = [];
+  var latTemp;
+  var lngTemp;
 
   for (var place in body) {
+    if (place["lat"] is String) {
+      latTemp = double.parse(place["lat"]);
+      lngTemp = double.parse(place["lng"]);
+    } else {
+      latTemp = place["lat"];
+      lngTemp = place["lng"];
+    }
     finalList.add(Place(
         image: place["src"],
         name: place["name"],
         address: place["address"],
         description: place["description"],
         comments: place["comments"],
-        lat: place["lat"],
-        lng: place["lng"],
+        lat: lngTemp,
+        lng: lngTemp,
         view: place["view"]));
   }
 
