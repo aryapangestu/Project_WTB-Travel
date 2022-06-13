@@ -5,6 +5,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:wtb_travel/views/secrets.dart';
 
+import 'dart:math' show cos, sqrt, asin;
+
 class SampleNavigationApp extends StatefulWidget {
   const SampleNavigationApp({Key? key}) : super(key: key);
 
