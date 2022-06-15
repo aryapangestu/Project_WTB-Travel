@@ -35,7 +35,7 @@ class _WtbTravelDetailPlaceScreen extends State<WtbTravelDetailPlaceScreen> {
           ]).paddingAll(16);
     } else {
       return WtbTravelReviewScreen(
-        id: 1,
+        id: widget.element.id!,
       );
     }
   }
@@ -128,10 +128,12 @@ class _WtbTravelDetailPlaceScreen extends State<WtbTravelDetailPlaceScreen> {
                           8.height,
                           Row(
                             children: [
-                              Text("3.0", style: boldTextStyle()),
+                              Text(widget.element.rating!,
+                                  style: boldTextStyle()),
                               2.width,
                               RatingBar.builder(
-                                initialRating: "3".toDouble(),
+                                initialRating:
+                                    widget.element.rating!.toDouble(),
                                 minRating: 5,
                                 direction: Axis.horizontal,
                                 allowHalfRating: true,
@@ -148,7 +150,7 @@ class _WtbTravelDetailPlaceScreen extends State<WtbTravelDetailPlaceScreen> {
                                 },
                               ),
                               6.width,
-                              Text("1.2k reviews",
+                              Text("${widget.element.comments!} reviews",
                                   style:
                                       secondaryTextStyle(color: Colors.grey)),
                             ],

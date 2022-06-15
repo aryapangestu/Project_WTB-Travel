@@ -20,7 +20,6 @@ class _WtbTravelListPlaceScreen extends State<WtbTravelListPlaceScreen> {
           'Jl. Asia Afrika No.65, Braga, Kec. Sumur Bandung, Kota Bandung, Jawa Barat 40111',
       rating: '5.0',
       comments: '240',
-      distance: '0.5 mil',
     ),
     Place(
       name: "Museum Konferensi Asia Afrika",
@@ -30,7 +29,6 @@ class _WtbTravelListPlaceScreen extends State<WtbTravelListPlaceScreen> {
           'Jl. Asia Afrika No.65, Braga, Kec. Sumur Bandung, Kota Bandung, Jawa Barat 40111',
       rating: '5.0',
       comments: '240',
-      distance: '0.5 mil',
     ),
     Place(
       name: "Museum Konferensi Asia Afrika",
@@ -40,7 +38,6 @@ class _WtbTravelListPlaceScreen extends State<WtbTravelListPlaceScreen> {
           'Jl. Asia Afrika No.65, Braga, Kec. Sumur Bandung, Kota Bandung, Jawa Barat 40111',
       rating: '5.0',
       comments: '240',
-      distance: '0.5 mil',
     ),
     Place(
       name: "Museum Konferensi Asia Afrika",
@@ -50,7 +47,6 @@ class _WtbTravelListPlaceScreen extends State<WtbTravelListPlaceScreen> {
           'Jl. Asia Afrika No.65, Braga, Kec. Sumur Bandung, Kota Bandung, Jawa Barat 40111',
       rating: '5.0',
       comments: '240',
-      distance: '0.5 mil',
     ),
     Place(
       name: "Museum Konferensi Asia Afrika",
@@ -60,7 +56,6 @@ class _WtbTravelListPlaceScreen extends State<WtbTravelListPlaceScreen> {
           'Jl. Asia Afrika No.65, Braga, Kec. Sumur Bandung, Kota Bandung, Jawa Barat 40111',
       rating: '5.0',
       comments: '240',
-      distance: '0.5 mil',
     ),
     Place(
       name: "Museum Konferensi Asia Afrika",
@@ -70,7 +65,6 @@ class _WtbTravelListPlaceScreen extends State<WtbTravelListPlaceScreen> {
           'Jl. Asia Afrika No.65, Braga, Kec. Sumur Bandung, Kota Bandung, Jawa Barat 40111',
       rating: '5.0',
       comments: '240',
-      distance: '0.5 mil',
     ),
   ];
 
@@ -161,9 +155,6 @@ class _WtbTravelListPlaceScreen extends State<WtbTravelListPlaceScreen> {
                                       color: const Color(0xffc7b899))),
                             ],
                           ),
-                          Text(e.distance!,
-                              style: secondaryTextStyle(
-                                  color: const Color(0xffc7b899))),
                         ],
                       ).paddingSymmetric(horizontal: 8),
                       16.height,

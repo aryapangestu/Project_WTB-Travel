@@ -26,6 +26,7 @@ Future<List<Place>> getPlaces() async {
       lngTemp = place["lng"];
     }
     finalList.add(Place(
+        id: place["id"],
         image: place["src"],
         name: place["name"],
         address: place["address"],
@@ -33,7 +34,8 @@ Future<List<Place>> getPlaces() async {
         comments: place["comments"],
         lat: lngTemp,
         lng: lngTemp,
-        view: place["view"]));
+        view: place["view"],
+        rating: place["rating"]));
   }
 
   return finalList;

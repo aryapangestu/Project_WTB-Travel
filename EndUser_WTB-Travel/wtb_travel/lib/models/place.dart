@@ -1,4 +1,5 @@
 class Place {
+  int? id;
   String? image;
   String? name;
   String? address;
@@ -8,10 +9,10 @@ class Place {
   double? lng;
   int? view;
   String? rating;
-  String? distance;
 
   Place(
-      {this.image,
+      {this.id,
+      this.image,
       this.name,
       this.address,
       this.description,
@@ -19,6 +20,5 @@ class Place {
       this.lat,
       this.lng,
       this.view,
-      this.rating,
-      this.distance});
+      this.rating});
 }

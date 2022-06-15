@@ -263,30 +263,25 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Row(
-                              children: const [
-                                Icon(
+                              children: [
+                                const Icon(
                                   Icons.star,
                                   color: Colors.amber,
                                 ),
-                                SizedBox(height: 4.0),
-                                Text('4.8',
-                                    style: TextStyle(
+                                const SizedBox(height: 4.0),
+                                Text(e.rating!,
+                                    style: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
                                     )),
-                                SizedBox(height: 2.0),
-                                Text('(1.2k)',
-                                    style: TextStyle(
+                                const SizedBox(height: 2.0),
+                                Text('(${e.comments!})',
+                                    style: const TextStyle(
                                       fontSize: 12,
                                       color: Colors.grey,
                                     )),
                               ],
                             ),
-                            const Text('0.5 mil',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.grey,
-                                )),
                           ],
                         ),
                       ),
