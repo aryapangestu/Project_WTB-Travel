@@ -1,50 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-
-class Review {
-  String title;
-  String? subtitle;
-  String? rating;
-
-  Review({required this.title, this.subtitle, this.rating});
-}
+import 'package:wtb_travel/controllers/review_controller.dart';
+import 'package:wtb_travel/models/review.dart';
 
 class WtbTravelReviewScreen extends StatefulWidget {
-  const WtbTravelReviewScreen({Key? key}) : super(key: key);
+  WtbTravelReviewScreen({Key? key, required int id}) : super(key: key);
 
   @override
   State<WtbTravelReviewScreen> createState() => _WtbTravelReviewScreen();
 }
 
 class _WtbTravelReviewScreen extends State<WtbTravelReviewScreen> {
-  List<Review> review = [
-    Review(
-      title: "Ihsan",
-      subtitle: 'Bagus museumnya',
-      rating: '4.0',
-    ),
-    Review(
-      title: "Ihsan",
-      subtitle: 'Bagus museumnya',
-      rating: '4.0',
-    ),
-    Review(
-      title: "Ihsan",
-      subtitle: 'Bagus museumnya',
-      rating: '4.0',
-    ),
-    Review(
-      title: "Ihsan",
-      subtitle: 'Bagus museumnya',
-      rating: '4.0',
-    ),
-    Review(
-      title: "Ihsan",
-      subtitle: 'Bagus museumnya',
-      rating: '4.0',
-    ),
-  ];
+  Future reviews = getReviews();
 
   @override
   void initState() {
@@ -58,8 +26,7 @@ class _WtbTravelReviewScreen extends State<WtbTravelReviewScreen> {
     super.dispose();
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget reviewPlace(List<Review> data) {
     return SingleChildScrollView(
       child: Wrap(
         spacing: 16,
@@ -68,7 +35,7 @@ class _WtbTravelReviewScreen extends State<WtbTravelReviewScreen> {
         runAlignment: WrapAlignment.start,
         crossAxisAlignment: WrapCrossAlignment.start,
         runSpacing: 8,
-        children: review.map((e) {
+        children: data.map((e) {
           return Container(
             width: context.width() - 32,
             decoration: BoxDecoration(
@@ -79,7 +46,7 @@ class _WtbTravelReviewScreen extends State<WtbTravelReviewScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     16.height,
-                    Text(e.title,
+                    Text(e.username!,
                             style: boldTextStyle(
                                 size: 18, color: const Color(0xff543c0d)))
                         .paddingSymmetric(horizontal: 8),
@@ -128,6 +95,30 @@ class _WtbTravelReviewScreen extends State<WtbTravelReviewScreen> {
           });
         }).toList(),
       ).paddingOnly(top: 16, bottom: 70, left: 16, right: 16),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: reviews,
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return const Center(
+            child: Text("Error when fetching data"),
+          );
+        } else if (snapshot.hasData) {
+          List<Review> data = snapshot.data as List<Review>;
+
+          if (data.isEmpty) {
+            return const Center(child: Text("Data is empty"));
+          }
+          return reviewPlace(data);
+        }
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
     );
   }
 }
