@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:wtb_travel/controllers/category_controller.dart';
 import 'package:wtb_travel/controllers/place_controller.dart';
+import 'package:wtb_travel/models/category.dart';
 import 'package:wtb_travel/views/detail_place_screen.dart';
 import 'package:wtb_travel/views/list_place_screen.dart';
 import 'package:wtb_travel/models/place.dart';
-
-class Category {
-  String? name;
-  String? icon;
-
-  Category({this.name, this.icon});
-}
 
 class WtbTravelHomeScreen extends StatefulWidget {
   const WtbTravelHomeScreen({Key? key}) : super(key: key);
@@ -20,13 +15,7 @@ class WtbTravelHomeScreen extends StatefulWidget {
 }
 
 class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
-  List<Category> categories = [
-    Category(name: 'Electronics', icon: 'https://img.icons8.com/cotton/344/notre-dame--v1.png'),
-    Category(name: 'Electronics', icon: 'https://img.icons8.com/cotton/344/notre-dame--v1.png'),
-    Category(name: 'Electronics', icon: 'https://img.icons8.com/cotton/344/notre-dame--v1.png'),
-    Category(name: 'Electronics', icon: 'https://img.icons8.com/cotton/344/notre-dame--v1.png'),
-    Category(name: 'Electronics', icon: 'https://img.icons8.com/cotton/344/notre-dame--v1.png'),
-  ];
+  Future categories = getCategories();
   Future places = getPlaces();
 
   @override
@@ -61,7 +50,26 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
               ),
             ),
             const SizedBox(height: 10.0),
-            categoryList(),
+            FutureBuilder(
+              future: categories,
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return const Center(
+                    child: Text("Error when fetching data"),
+                  );
+                } else if (snapshot.hasData) {
+                  List<Category> data = snapshot.data as List<Category>;
+
+                  if (data.isEmpty) {
+                    return const Center(child: Text("Data is empty"));
+                  }
+                  return categoryList(data);
+                }
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              },
+            ),
             const SizedBox(height: 20.0),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -145,7 +153,7 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
     );
   }
 
-  Widget categoryList() {
+  Widget categoryList(List<Category> categories) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       padding: const EdgeInsets.only(right: 8, top: 8),
@@ -162,8 +170,8 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
                   Container(
                     padding: const EdgeInsets.all(8),
                     decoration: const BoxDecoration(
-                        shape: BoxShape.circle, color: Color(0xFF1157FA)),
-                    child: Image.network(e.icon!, width: 30, height: 30),
+                        shape: BoxShape.circle, color: Colors.white),
+                    child: Image.network(e.url_icon!, width: 30, height: 30),
                   ),
                   const SizedBox(height: 4.0),
                   Text(e.name!,
