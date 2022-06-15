@@ -44,7 +44,7 @@ class CategoryController extends Controller
     {
         $validated = $request->validate([
             'name_category' => 'required',
-            'url_icon ' => 'required',
+            'url_icon' => 'required',
         ]);
 
         Category::create($validated);
@@ -87,7 +87,7 @@ class CategoryController extends Controller
     {
         $validated = $request->validate([
             'name_category' => 'required',
-            'url_icon ' => 'required',
+            'url_icon' => 'required',
         ]);
 
         Category::where('id', $id)->update($validated);
