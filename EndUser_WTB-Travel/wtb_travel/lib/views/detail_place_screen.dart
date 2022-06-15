@@ -34,7 +34,9 @@ class _WtbTravelDetailPlaceScreen extends State<WtbTravelDetailPlaceScreen> {
             20.height,
           ]).paddingAll(16);
     } else {
-      return const WtbTravelReviewScreen();
+      return WtbTravelReviewScreen(
+        id: 1,
+      );
     }
   }
 
