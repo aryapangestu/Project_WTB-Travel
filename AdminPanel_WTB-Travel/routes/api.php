@@ -22,3 +22,4 @@ use App\Http\Controllers\API\ReviewController;
 
 Route::apiResource('places', PlaceController::class);
 Route::apiResource('reviews', ReviewController::class);
+Route::apiResource('categories', CategoryController::class);

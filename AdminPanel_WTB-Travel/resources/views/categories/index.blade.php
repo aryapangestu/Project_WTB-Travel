@@ -51,6 +51,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
+                                    <th scope="col">Url link</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -59,6 +60,8 @@
                                 @foreach ($categories as $category)
                                     <tr>
                                         <th scope="row">{{ $category->id }}</th>
+
+                                        <td><img src="{{ $category->url_icon }}" style="width: 70px; height:70px"></td>
 
                                         <td>{{ $category->name_category }}</td>
 

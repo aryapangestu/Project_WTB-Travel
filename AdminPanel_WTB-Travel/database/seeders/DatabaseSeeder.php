@@ -33,14 +33,17 @@ class DatabaseSeeder extends Seeder
         // Category
         Category::create([
             'name_category' => 'Zoo',
+            'url_icon' => 'https://cdn-icons-png.flaticon.com/512/2093/2093843.png'
         ]);
 
         Category::create([
             'name_category' => 'Museum',
+            'url_icon' => 'https://cdn-icons-png.flaticon.com/512/3936/3936783.png'
         ]);
 
         Category::create([
             'name_category' => 'Landmark',
+            'url_icon' => 'https://cdn-icons.flaticon.com/png/512/2334/premium/2334558.png?token=exp=1655302695~hmac=ea637a8909ce1574bd885666de4f6c42'
         ]);
 
         // Place

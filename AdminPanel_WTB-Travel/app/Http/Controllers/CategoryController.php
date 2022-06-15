@@ -43,7 +43,8 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name_category' => 'required',   
+            'name_category' => 'required',
+            'url_icon' => 'required',
         ]);
 
         Category::create($validated);
@@ -71,7 +72,7 @@ class CategoryController extends Controller
     {
         return view('categories.edit', [
             "title" => "Edit Category",
-            "category" => Category::find($id), 
+            "category" => Category::find($id),
         ]);
     }
 
@@ -85,7 +86,8 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-             'name_category' => 'required',
+            'name_category' => 'required',
+            'url_icon' => 'required',
         ]);
 
         Category::where('id', $id)->update($validated);
