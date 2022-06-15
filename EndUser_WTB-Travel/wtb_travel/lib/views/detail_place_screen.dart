@@ -179,7 +179,9 @@ class _WtbTravelDetailPlaceScreen extends State<WtbTravelDetailPlaceScreen> {
                                   ],
                                 ),
                               ).onTap(() {
-                                const SampleNavigationApp().launch(context);
+                                MapNavigationApp(
+                                  element: widget.element,
+                                ).launch(context);
                               }, borderRadius: radius(32)),
                             ],
                           )
