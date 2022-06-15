@@ -35,11 +35,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_rating_bar: ^4.0.1
   nb_utils: ^4.5.2
-  google_maps_flutter: ^2.1.7
   http: ^0.13.4
-  geolocator: ^8.2.1
-  flutter_polyline_points: ^1.0.0
-  geocoding: ^2.0.4
+  google_maps_widget: ^1.0.4
 
 dev_dependencies:
   flutter_test:
