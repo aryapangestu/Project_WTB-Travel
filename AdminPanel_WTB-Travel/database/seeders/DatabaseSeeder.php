@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
 
         Category::create([
             'name_category' => 'Landmark',
-            'url_icon' => 'https://cdn-icons.flaticon.com/png/512/2334/premium/2334558.png?token=exp=1655302695~hmac=ea637a8909ce1574bd885666de4f6c42'
+            'url_icon' => 'https://cdn-icons-png.flaticon.com/512/444/444686.png'
         ]);
 
         // Place
