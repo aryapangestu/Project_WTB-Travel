@@ -7,7 +7,7 @@ import 'package:wtb_travel/models/place.dart';
 
 class Category {
   String? name;
-  IconData? icon;
+  String? icon;
 
   Category({this.name, this.icon});
 }
@@ -21,21 +21,11 @@ class WtbTravelHomeScreen extends StatefulWidget {
 
 class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
   List<Category> categories = [
-    Category(name: 'Electronics', icon: Icons.audiotrack),
-    Category(name: 'Electronics', icon: Icons.audiotrack),
-    Category(name: 'Electronics', icon: Icons.audiotrack),
-    Category(name: 'Electronics', icon: Icons.audiotrack),
-    Category(name: 'Electronics', icon: Icons.audiotrack),
-    Category(name: 'Electronics', icon: Icons.audiotrack),
-    Category(name: 'Electronics', icon: Icons.audiotrack),
-    Category(name: 'Electronics', icon: Icons.audiotrack),
-    Category(name: 'Electronics', icon: Icons.audiotrack),
-    Category(name: 'Electronics', icon: Icons.audiotrack),
-    Category(name: 'Electronics', icon: Icons.audiotrack),
-    Category(name: 'Electronics', icon: Icons.audiotrack),
-    Category(name: 'Electronics', icon: Icons.audiotrack),
-    Category(name: 'Electronics', icon: Icons.audiotrack),
-    Category(name: 'Electronics', icon: Icons.audiotrack),
+    Category(name: 'Electronics', icon: 'https://img.icons8.com/cotton/344/notre-dame--v1.png'),
+    Category(name: 'Electronics', icon: 'https://img.icons8.com/cotton/344/notre-dame--v1.png'),
+    Category(name: 'Electronics', icon: 'https://img.icons8.com/cotton/344/notre-dame--v1.png'),
+    Category(name: 'Electronics', icon: 'https://img.icons8.com/cotton/344/notre-dame--v1.png'),
+    Category(name: 'Electronics', icon: 'https://img.icons8.com/cotton/344/notre-dame--v1.png'),
   ];
   Future places = getPlaces();
 
@@ -173,7 +163,7 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
                     padding: const EdgeInsets.all(8),
                     decoration: const BoxDecoration(
                         shape: BoxShape.circle, color: Color(0xFF1157FA)),
-                    child: Icon(e.icon!, size: 30, color: Colors.white),
+                    child: Image.network(e.icon!, width: 30, height: 30),
                   ),
                   const SizedBox(height: 4.0),
                   Text(e.name!,
