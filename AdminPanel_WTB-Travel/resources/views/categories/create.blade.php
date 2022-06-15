@@ -41,7 +41,7 @@
                             </div>
 
                             <div class="col-12">
-                                <label for="yourUrlIcon" class="form-label">Category</label>
+                                <label for="yourUrlIcon" class="form-label">URL icon</label>
                                 <div class="input-group has-validation">
                                     <input type="text" name="url_icon"
                                         class="form-control @error('url_icon') is-invalid @enderror" id="yourUrlIcon"
