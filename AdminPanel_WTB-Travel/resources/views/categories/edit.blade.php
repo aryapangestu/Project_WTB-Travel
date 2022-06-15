@@ -41,7 +41,19 @@
                                 </div>
                             </div>
 
-                              <div class="col-12">
+                            <div class="col-12">
+                                <label for="yourUrlIcon" class="form-label">Url icon</label>
+                                <div class="input-group has-validation">
+                                    <input type="text" name="url_icon"
+                                        class="form-control @error('category') is-invalid @enderror" id="yourUrlIcon"
+                                        required value="{{ old('url_icon', $category->url_icon) }}">
+                                    @error('url_icon')
+                                        <div class="invalid-feedback">Please enter your URL icon.</div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-12">
                                 <button class="btn btn-primary w-100" type="submit">Create</button>
                             </div>
                         </form><!-- End General Form Elements -->
