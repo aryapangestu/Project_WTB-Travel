@@ -1,9 +1,11 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\LoginController;
 use App\Http\Controllers\API\PlaceController;
 use App\Http\Controllers\API\ReviewController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +24,5 @@ use App\Http\Controllers\API\ReviewController;
 
 Route::apiResource('places', PlaceController::class);
 Route::apiResource('reviews', ReviewController::class);
+Route::apiResource('categories', CategoryController::class);
+Route::post('/login', [LoginController::class, 'login']);

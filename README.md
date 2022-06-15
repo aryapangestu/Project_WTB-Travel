@@ -40,15 +40,19 @@
     ```bash
     php artisan key:generate
     ```
-7. To create the symbolic link:
+8. Create the encryption keys needed to generate secure access tokens:
+    ```bash
+    php artisan passport:install
+    ```
+9. To create the symbolic link:
     ```bash
     php artisan storage:link
     ```
-8. Start the laravel server:
+10. Start the laravel server:
     ```bash
     php artisan serve
     ```
-   If css/js doesn't work:
+    If css/js doesn't work:
     ```bash
     php -S 127.0.0.1:8000 -t public
     ```
