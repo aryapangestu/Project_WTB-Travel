@@ -16,6 +16,9 @@ class ReviewController extends Controller
     public function index()
     {
         $reviews = Review::all();
+        foreach ($reviews as $review) {
+            $review['user_name'] = $review->user->username;
+        }
         return response()->json($reviews);
     }
 
