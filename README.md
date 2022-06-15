@@ -52,7 +52,7 @@
     ```bash
     php artisan serve
     ```
-   If css/js doesn't work:
+    If css/js doesn't work:
     ```bash
     php -S 127.0.0.1:8000 -t public
     ```
