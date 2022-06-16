@@ -48,6 +48,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    var username, password;
     return Scaffold(
       backgroundColor: const Color(0xfff6f0e4),
       body: Container(
@@ -71,13 +72,6 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 children: [
                   TextFormField(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your username';
-                      }
-                      return null;
-                    },
-                    maxLines: 1,
                     decoration: InputDecoration(
                       hintText: 'Enter your username',
                       prefixIcon: const Icon(Icons.supervisor_account),
@@ -90,19 +84,18 @@ class _LoginPageState extends State<LoginPage> {
                           borderSide:
                               const BorderSide(color: Color(0xff543c0d))),
                     ),
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your username';
+                      }
+                      username = value;
+                      return null;
+                    },
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   TextFormField(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your password';
-                      }
-                      return null;
-                    },
-                    maxLines: 1,
-                    obscureText: true,
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.lock),
                       focusedBorder: OutlineInputBorder(
@@ -114,19 +107,29 @@ class _LoginPageState extends State<LoginPage> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your password';
+                      }
+                      password = value;
+                      return null;
+                    },
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              const WtbTravelFullAppScreen(title: 'WTB-Travel'),
-                        ),
-                      );
+                      if (_formKey.currentState!.validate()) {
+                        print(login(username, password));
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const WtbTravelFullAppScreen(
+                                title: 'WTB-Travel'),
+                          ),
+                        );
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.fromLTRB(40, 15, 40, 15),

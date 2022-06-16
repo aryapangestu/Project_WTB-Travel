@@ -4,16 +4,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:dio/dio.dart';
 
-Future<Response> login(String username, String password) async {
-  try {
-    Response response = await Dio().post(
-      'http://wtb-travel1.herokuapp.com/api/login',
-      data: {'email': username, 'password': password},
-    );
-    //returns the successful user data json object
-    return response.data;
-  } on DioError catch (e) {
-    //returns the error object if any
-    return e.response!.data;
+login(String username, String password) async {
+  var response =
+      await http.post(Uri.parse("http://wtb-travel1.herokuapp.com/api/login"),
+          headers: {'Content-Type': 'application/json; charset=UTF-8'},
+          body: jsonEncode({
+            "username": username,
+            "password": password,
+          }));
+
+  if (response.statusCode != 200) {
+    throw "Gagal login";
   }
+
+  Map<String, dynamic> body = jsonDecode(response.body);
+
+  return body['token'];
 }
