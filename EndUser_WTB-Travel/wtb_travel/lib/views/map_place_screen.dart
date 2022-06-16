@@ -15,9 +15,10 @@ class _MapNavigationAppState extends State<MapNavigationApp> {
   Widget build(BuildContext context) {
     return GoogleMapsWidget(
       apiKey: "AIzaSyA-eP8XoOktXEmVllh4Sr-114P6l4ki5Ic",
-      sourceLatLng: LatLng(40.484000837597925, -3.369978368282318),
-      destinationLatLng: LatLng(widget.element.lat!, widget.element.lng!),
+      sourceLatLng: const LatLng(-6.9344694, 107.6049539),
+      destinationLatLng: LatLng(-6.947386633999832, 107.60112762451173),
       routeWidth: 2,
+      updatePolylinesOnDriverLocUpdate: true,
     );
   }
 }

@@ -40,7 +40,8 @@
             "chmod -R 777 storage",
             "@php artisan cache:clear",
             "@php artisan config:clear",
-            "ln -sr storage/app/public public/storage"
+            "ln -sr storage/app/public public/storage",
+            "php artisan passport:keys"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",

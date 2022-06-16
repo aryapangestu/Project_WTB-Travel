@@ -29,7 +29,7 @@ class PlaceController extends Controller
                 $avgRate = 0;
             } else {
                 $avgRate = $sumRate / $countRate;
-                round($avgRate, 1);
+                $avgRate = round($avgRate, 1);
             }
 
             $places[$key]['src'] = asset('storage/' . $place->src);
