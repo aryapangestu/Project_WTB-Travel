@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:wtb_travel/views/full_app_screen.dart';
+import 'package:wtb_travel/views/home_screen.dart';
 import 'package:wtb_travel/views/login_screen.dart';
 
 class DrawerScreen extends StatefulWidget {
@@ -29,20 +31,27 @@ class _DrawwerScreenState extends State<DrawerScreen> {
             const SizedBox(height: 30),
             DrawerListTitle(
               iconData: Icons.account_circle_outlined,
-              title: "Profile settings",
+              title: "Change Username",
               onTilePressed: () {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const SettingsProfile(),
+                    builder: (context) => const ChangeUsername(),
                   ),
                 );
               },
             ),
             DrawerListTitle(
-              iconData: Icons.reviews_outlined,
-              title: "My reviews",
-              onTilePressed: () {},
+              iconData: Icons.lock_outlined,
+              title: "Change Password",
+              onTilePressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ChangePassword(),
+                  ),
+                );
+              },
             ),
             DrawerListTitle(
               iconData: Icons.logout_outlined,
@@ -92,17 +101,17 @@ class DrawerListTitle extends StatelessWidget {
   }
 }
 
-class SettingsProfile extends StatefulWidget {
-  const SettingsProfile({Key? key}) : super(key: key);
-
+class ChangeUsername extends StatefulWidget {
   @override
-  State<SettingsProfile> createState() => _SettingsProfileState();
+  const ChangeUsername({Key? key}) : super(key: key);
+  @override
+  State<ChangeUsername> createState() => _ChangeUsernameState();
 }
 
-class _SettingsProfileState extends State<SettingsProfile> {
+class _ChangeUsernameState extends State<ChangeUsername> {
   final _formKey = GlobalKey<FormState>();
-
-  var rememberValue = false;
+  // ignore: prefer_typing_uninitialized_variables
+  var username;
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +124,7 @@ class _SettingsProfileState extends State<SettingsProfile> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'Profile Settings',
+              'Change username',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 40,
@@ -127,15 +136,39 @@ class _SettingsProfileState extends State<SettingsProfile> {
               child: Column(
                 children: [
                   TextFormField(
-                    validator: (value) {
+                    validator: (String? value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your username';
+                        return 'Please enter current username';
                       }
+                      username = value;
                       return null;
                     },
                     maxLines: 1,
                     decoration: InputDecoration(
-                      hintText: 'Change your username',
+                      hintText: 'Current username',
+                      prefixIcon: const Icon(Icons.supervisor_account),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(color: Color(0xff464544)),
+                      ),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide:
+                              const BorderSide(color: Color(0xff543c0d))),
+                    ),
+                  ),
+                  const SizedBox(height: 30),
+                  TextFormField(
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter new username';
+                      }
+                      username = value;
+                      return null;
+                    },
+                    maxLines: 1,
+                    decoration: InputDecoration(
+                      hintText: 'New username',
                       prefixIcon: const Icon(Icons.supervisor_account),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -148,28 +181,152 @@ class _SettingsProfileState extends State<SettingsProfile> {
                     ),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 15,
                   ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.fromLTRB(35, 5, 35, 5),
-                        primary: const Color(0xff543c0d)),
-                    child: const Text(
-                      'Change username',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
+                  // ElevatedButton(
+                  //   onPressed: () {},
+                  //   style: ElevatedButton.styleFrom(
+                  //       padding: const EdgeInsets.fromLTRB(35, 5, 35, 5),
+                  //       primary: const Color(0xff543c0d)),
+                  //   child: const Text(
+                  //     'Change username',
+                  //     style: TextStyle(
+                  //       fontWeight: FontWeight.bold,
+                  //     ),
+                  //   ),
+                  // ),
+                  // const SizedBox(
+                  //   height: 30,
+                  // ),
+                  // TextFormField(
+                  //   validator: (value) {
+                  //     if (value == null || value.isEmpty) {
+                  //       return 'Please enter your password';
+                  //     }
+                  //     return null;
+                  //   },
+                  //   maxLines: 1,
+                  //   obscureText: true,
+                  //   decoration: InputDecoration(
+                  //     prefixIcon: const Icon(Icons.lock),
+                  //     focusedBorder: OutlineInputBorder(
+                  //       borderRadius: BorderRadius.circular(10),
+                  //       borderSide: const BorderSide(color: Color(0xff543c0d)),
+                  //     ),
+                  //     hintText: 'Change your password',
+                  //     border: OutlineInputBorder(
+                  //       borderRadius: BorderRadius.circular(10),
+                  //     ),
+                  //   ),
+                  // ),
+                  // const SizedBox(
+                  //   height: 15,
+                  // ),
+                  // ElevatedButton(
+                  //   onPressed: () {},
+                  //   style: ElevatedButton.styleFrom(
+                  //       padding: const EdgeInsets.fromLTRB(35, 5, 35, 5),
+                  //       primary: const Color(0xff543c0d)),
+                  //   child: const Text(
+                  //     'Change password',
+                  //     style: TextStyle(
+                  //       fontWeight: FontWeight.bold,
+                  //     ),
+                  //   ),
+                  // ),
                   const SizedBox(
-                    height: 10,
+                    height: 100,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  const WtbTravelFullAppScreen(
+                                title: 'wtb-travel',
+                              ),
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.fromLTRB(35, 5, 35, 5),
+                            primary: const Color(0xff543c0d)),
+                        child: const Text(
+                          'Cancel',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.fromLTRB(35, 5, 35, 5),
+                            primary: const Color(0xff543c0d)),
+                        child: const Text(
+                          'Save',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ChangePassword extends StatefulWidget {
+  const ChangePassword({Key? key}) : super(key: key);
+  @override
+  State<ChangePassword> createState() => _ChangePasswordState();
+}
+
+class _ChangePasswordState extends State<ChangePassword> {
+  final _formKey = GlobalKey<FormState>();
+  var password;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xfff6f0e4),
+      body: Container(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            const Text(
+              'Change password',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 40,
+              ),
+            ),
+            const SizedBox(height: 60),
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 15,
                   ),
                   TextFormField(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your password';
                       }
+                      password = value;
                       return null;
                     },
                     maxLines: 1,
@@ -180,29 +337,78 @@ class _SettingsProfileState extends State<SettingsProfile> {
                         borderRadius: BorderRadius.circular(10),
                         borderSide: const BorderSide(color: Color(0xff543c0d)),
                       ),
-                      hintText: 'Change your password',
+                      hintText: 'Current password',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 15,
                   ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.fromLTRB(35, 5, 35, 5),
-                        primary: const Color(0xff543c0d)),
-                    child: const Text(
-                      'Change password',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
+                  TextFormField(
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your password';
+                      }
+                      password = value;
+                      return null;
+                    },
+                    maxLines: 1,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.lock),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(color: Color(0xff543c0d)),
+                      ),
+                      hintText: 'New password',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
                       ),
                     ),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 100,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  const WtbTravelFullAppScreen(
+                                title: 'wtb-travel',
+                              ),
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.fromLTRB(35, 5, 35, 5),
+                            primary: const Color(0xff543c0d)),
+                        child: const Text(
+                          'Cancel',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.fromLTRB(35, 5, 35, 5),
+                            primary: const Color(0xff543c0d)),
+                        child: const Text(
+                          'Save',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
