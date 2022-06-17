@@ -349,7 +349,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                   TextFormField(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your password';
+                        return 'Please enter new password';
                       }
                       password = value;
                       return null;
@@ -363,6 +363,31 @@ class _ChangePasswordState extends State<ChangePassword> {
                         borderSide: const BorderSide(color: Color(0xff543c0d)),
                       ),
                       hintText: 'New password',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  TextFormField(
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your password';
+                      }
+                      password = value;
+                      return null;
+                    },
+                    maxLines: 1,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.lock),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(color: Color(0xff543c0d)),
+                      ),
+                      hintText: 'Confirm password',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),

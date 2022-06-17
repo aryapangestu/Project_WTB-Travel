@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wtb_travel/controllers/login_controller.dart';
 import 'package:wtb_travel/views/full_app_screen.dart';
+import 'package:wtb_travel/views/register_screen.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key, required this.title}) : super(key: key);
@@ -144,6 +145,29 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(
                     height: 20,
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text('Not registered yet?'),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  const RegisterPage(title: 'Register UI'),
+                            ),
+                          );
+                        },
+                        child: const Text(
+                          'Create an account',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 228, 152, 22)),
+                        ),
+                      )
+                    ],
+                  )
                 ],
               ),
             )
