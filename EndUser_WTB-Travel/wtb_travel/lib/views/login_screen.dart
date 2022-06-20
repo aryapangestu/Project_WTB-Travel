@@ -15,38 +15,6 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   var rememberValue = false;
 
-  // Future<void> loginUsers() async {
-  //   if (_formKey.currentState!.validate()) {
-  //     //show snackbar to indicate loading
-  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-  //       content: const Text('Processing Data'),
-  //       backgroundColor: Colors.green.shade300,
-  //     ));
-
-  //     //get response from ApiClient
-  //     dynamic res = await login(
-  //       emailController.text,
-  //       passwordController.text,
-  //     );
-  //     ScaffoldMessenger.of(context).hideCurrentSnackBar();
-
-  //     //if there is no error, get the user's accesstoken and pass it to HomeScreen
-  //     if (res['ErrorCode'] == null) {
-  //       String accessToken = res['access_token'];
-  //       Navigator.push(
-  //           context,
-  //           MaterialPageRoute(
-  //               builder: (context) => HomeScreen(accesstoken: accessToken)));
-  //     } else {
-  //       //if an error occurs, show snackbar with error message
-  //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-  //         content: Text('Error: ${res['Message']}'),
-  //         backgroundColor: Colors.red.shade300,
-  //       ));
-  //     }
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     var username, password;
@@ -120,9 +88,9 @@ class _LoginPageState extends State<LoginPage> {
                     height: 20,
                   ),
                   ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        print(login(username, password));
+                        print(await login(username, password));
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(

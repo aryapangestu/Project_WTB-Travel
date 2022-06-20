@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
-class LoginController extends Controller
+class AuthenticationController extends Controller
 {
     /**
      * Display a listing of the resource.

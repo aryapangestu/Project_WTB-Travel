@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\CategoryController;
-use App\Http\Controllers\API\LoginController;
+use App\Http\Controllers\API\AuthenticationController;
 use App\Http\Controllers\API\PlaceController;
 use App\Http\Controllers\API\ReviewController;
 use Illuminate\Http\Request;

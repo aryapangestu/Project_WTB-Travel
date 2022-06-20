@@ -3,7 +3,9 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 login(String username, String password) async {
-  var response =
+  http.Response response;
+
+  response =
       await http.post(Uri.parse("http://wtb-travel1.herokuapp.com/api/login"),
           headers: {'Content-Type': 'application/json; charset=UTF-8'},
           body: jsonEncode({
