@@ -41,6 +41,12 @@ class LoginController extends Controller
         }
     }
 
+    /**
+     * Handling new user registration and validation and creation
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -58,6 +64,12 @@ class LoginController extends Controller
         return response($response, 200);
     }
 
+    /**
+     * Handles user authentication for apps and redirects them to the home screen
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function logout(Request $request)
     {
         $token = $request->user()->token();
