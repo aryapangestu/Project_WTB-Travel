@@ -9,7 +9,8 @@ Future<List<Category>> getCategories() async {
       .get(Uri.parse("https://wtb-travel1.herokuapp.com/api/categories"));
 
   if (response.statusCode != 200) {
-    throw "Gagal dalam fetching data";
+    var response = await http
+        .get(Uri.parse("https://wtb-travel1.herokuapp.com/api/categories"));
   }
 
   List body = jsonDecode(response.body);

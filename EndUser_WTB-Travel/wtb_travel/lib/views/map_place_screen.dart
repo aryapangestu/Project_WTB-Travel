@@ -13,8 +13,6 @@ class MapNavigationApp extends StatefulWidget {
 class _MapNavigationAppState extends State<MapNavigationApp> {
   @override
   Widget build(BuildContext context) {
-    print("EKKK");
-    print(widget.element.lat!);
     return GoogleMapsWidget(
       apiKey: "AIzaSyA-eP8XoOktXEmVllh4Sr-114P6l4ki5Ic",
       sourceLatLng: const LatLng(-6.9344694, 107.6049539),

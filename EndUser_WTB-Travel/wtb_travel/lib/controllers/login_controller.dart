@@ -14,7 +14,13 @@ login(String username, String password) async {
           }));
 
   if (response.statusCode != 200) {
-    throw "Gagal login";
+    var response =
+        await http.post(Uri.parse("http://wtb-travel1.herokuapp.com/api/login"),
+            headers: {'Content-Type': 'application/json; charset=UTF-8'},
+            body: jsonEncode({
+              "username": username,
+              "password": password,
+            }));
   }
 
   Map<String, dynamic> body = jsonDecode(response.body);

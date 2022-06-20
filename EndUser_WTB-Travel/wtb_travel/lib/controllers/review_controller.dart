@@ -8,7 +8,8 @@ Future<List<Review>> getReviews() async {
       await http.get(Uri.parse("http://wtb-travel1.herokuapp.com/api/reviews"));
 
   if (response.statusCode != 200) {
-    throw "Gagal dalam fetching data";
+    var response = await http
+        .get(Uri.parse("http://wtb-travel1.herokuapp.com/api/reviews"));
   }
 
   List body = jsonDecode(response.body);
