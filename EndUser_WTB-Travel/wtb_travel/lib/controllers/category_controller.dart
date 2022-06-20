@@ -2,14 +2,13 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:wtb_travel/models/category.dart';
-import 'package:wtb_travel/models/place.dart';
 
 Future<List<Category>> getCategories() async {
   var response = await http
       .get(Uri.parse("https://wtb-travel1.herokuapp.com/api/categories"));
 
   if (response.statusCode != 200) {
-    var response = await http
+    response = await http
         .get(Uri.parse("https://wtb-travel1.herokuapp.com/api/categories"));
   }
 

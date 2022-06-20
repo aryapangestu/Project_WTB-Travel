@@ -8,7 +8,7 @@ Future<List<Review>> getReviews() async {
       await http.get(Uri.parse("http://wtb-travel1.herokuapp.com/api/reviews"));
 
   if (response.statusCode != 200) {
-    var response = await http
+    response = await http
         .get(Uri.parse("http://wtb-travel1.herokuapp.com/api/reviews"));
   }
 
