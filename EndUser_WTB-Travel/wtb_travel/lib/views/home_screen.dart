@@ -15,99 +15,115 @@ class WtbTravelHomeScreen extends StatefulWidget {
 }
 
 class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
-  Future categories = getCategories();
-  Future places = getPlaces();
+  late Future categories;
+  late Future places;
+
+  @override
+  void initState() {
+    categories = getCategories();
+    places = getPlaces();
+    super.initState();
+  }
+
+  Future refreshData() async {
+    await Future.delayed(const Duration(seconds: 2));
+    categories = getCategories();
+    places = getPlaces();
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-      onRefresh: () async {
-        setState(() {
-          places = getPlaces();
-        });
-      },
+      onRefresh: refreshData,
       child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const SizedBox(height: 16.0),
-            searchTxt(),
-            const SizedBox(height: 16.0),
-            bannerWidget(),
-            const SizedBox(height: 8.0),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text(
-                    'Category',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const SizedBox(height: 16.0),
+              searchTxt(),
+              const SizedBox(height: 16.0),
+              bannerWidget(),
+              const SizedBox(height: 8.0),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Text(
+                      'Category',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(height: 10.0),
-            FutureBuilder(
-              future: categories,
-              builder: (context, snapshot) {
-                if (snapshot.hasError) {
-                  return const Center(
-                    child: Text("Error when fetching data"),
-                  );
-                } else if (snapshot.hasData) {
-                  List<Category> data = snapshot.data as List<Category>;
+              const SizedBox(height: 10.0),
+              FutureBuilder(
+                future: categories,
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return const Center(
+                      child: Text("Error when fetching data"),
+                    );
+                  } else if (snapshot.hasData) {
+                    List<Category> data = snapshot.data as List<Category>;
 
-                  if (data.isEmpty) {
-                    return const Center(child: Text("Data is empty"));
+                    if (data.isEmpty) {
+                      return const Center(child: Text("Data is empty"));
+                    }
+                    return categoryList(data);
                   }
-                  return categoryList(data);
-                }
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              },
-            ),
-            const SizedBox(height: 20.0),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text(
-                    'Popular place',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
               ),
-            ),
-            const SizedBox(height: 10.0),
-            FutureBuilder(
-              future: places,
-              builder: (context, snapshot) {
-                if (snapshot.hasError) {
-                  return const Center(
-                    child: Text("Error when fetching data"),
-                  );
-                } else if (snapshot.hasData) {
-                  List<Place> data = snapshot.data as List<Place>;
+              const SizedBox(height: 20.0),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Text(
+                      'Popular place',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 10.0),
+              FutureBuilder(
+                future: places,
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return const Center(
+                      child: Text("Error when fetching data"),
+                    );
+                  } else if (snapshot.hasData) {
+                    List<Place> data = snapshot.data as List<Place>;
 
-                  if (data.isEmpty) {
-                    return const Center(child: Text("Data is empty"));
+                    if (data.isEmpty) {
+                      return const Center(child: Text("Data is empty"));
+                    }
+                    return popularPlaceList(data);
                   }
-                  return popularPlaceList(data);
-                }
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              },
-            ),
-            const SizedBox(height: 20.0),
-          ],
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
+              ),
+              const SizedBox(height: 20.0),
+            ],
+          ),
         ),
       ),
     );
