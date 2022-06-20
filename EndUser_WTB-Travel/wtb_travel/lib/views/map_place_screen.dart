@@ -16,7 +16,7 @@ class _MapNavigationAppState extends State<MapNavigationApp> {
     return GoogleMapsWidget(
       apiKey: "AIzaSyA-eP8XoOktXEmVllh4Sr-114P6l4ki5Ic",
       sourceLatLng: const LatLng(-6.9344694, 107.6049539),
-      destinationLatLng: LatLng(widget.element.lng!, widget.element.lat!),
+      destinationLatLng: LatLng(widget.element.lat!, widget.element.lng!),
       routeWidth: 2,
     );
   }

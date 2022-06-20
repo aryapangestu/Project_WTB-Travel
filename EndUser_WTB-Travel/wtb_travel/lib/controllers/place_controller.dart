@@ -35,7 +35,7 @@ Future<List<Place>> getPlaces() async {
         address: place["address"],
         description: place["description"],
         comments: place["comments"],
-        lat: lngTemp,
+        lat: latTemp,
         lng: lngTemp,
         view: place["view"],
         rating: place["rating"]));
