@@ -18,11 +18,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:api')->group(function () {
-//     Route::apiResource('places', PlaceController::class);
-// });
+Route::post('/login', [AuthenticationController::class, 'login']);
+Route::post('/register', [AuthenticationController::class, 'register']);
+Route::middleware('auth:api')->group(function () {
+    Route::post('/logout', [AuthenticationController::class, 'logout']);
+});
 
 Route::apiResource('places', PlaceController::class);
 Route::apiResource('reviews', ReviewController::class);
 Route::apiResource('categories', CategoryController::class);
-Route::post('/login', [LoginController::class, 'login']);
