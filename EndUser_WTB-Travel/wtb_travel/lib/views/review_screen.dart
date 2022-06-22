@@ -5,15 +5,15 @@ import 'package:wtb_travel/controllers/review_controller.dart';
 import 'package:wtb_travel/models/review.dart';
 
 class WtbTravelReviewScreen extends StatefulWidget {
-  WtbTravelReviewScreen({Key? key, required int id}) : super(key: key);
+  WtbTravelReviewScreen({Key? key, required this.id}) : super(key: key);
+
+  final int id;
 
   @override
   State<WtbTravelReviewScreen> createState() => _WtbTravelReviewScreen();
 }
 
 class _WtbTravelReviewScreen extends State<WtbTravelReviewScreen> {
-  Future reviews = getReviews();
-
   @override
   void initState() {
     setStatusBarColor(const Color(0xfff6f0e4));
@@ -100,6 +100,7 @@ class _WtbTravelReviewScreen extends State<WtbTravelReviewScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Future reviews = getReviews(widget.id);
     return FutureBuilder(
       future: reviews,
       builder: (context, snapshot) {
@@ -111,7 +112,7 @@ class _WtbTravelReviewScreen extends State<WtbTravelReviewScreen> {
           List<Review> data = snapshot.data as List<Review>;
 
           if (data.isEmpty) {
-            return const Center(child: Text("Data is empty"));
+            return const Center(child: Text("Belum ada ulasan"));
           }
           return reviewPlace(data);
         }
