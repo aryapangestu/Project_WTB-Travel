@@ -4,10 +4,12 @@ import 'package:wtb_travel/views/profile_screen.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class WtbTravelFullAppScreen extends StatefulWidget {
-  const WtbTravelFullAppScreen({Key? key, required this.title})
+  const WtbTravelFullAppScreen(
+      {Key? key, required this.title, required this.token})
       : super(key: key);
 
   final String title;
+  final String token;
 
   @override
   State<WtbTravelFullAppScreen> createState() => _WtbTravelFullAppScreen();
@@ -28,7 +30,9 @@ class _WtbTravelFullAppScreen extends State<WtbTravelFullAppScreen> {
           overflow: TextOverflow.ellipsis,
         ),
       ),
-      drawer: const DrawerScreen(),
+      drawer: DrawerScreen(
+        token: widget.token,
+      ),
       body: const Center(
         child: WtbTravelHomeScreen(),
       ),

@@ -96,13 +96,11 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           var token = await login(username, password);
-                          print(token);
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  const WtbTravelFullAppScreen(
-                                      title: 'WTB-Travel'),
+                              builder: (context) => WtbTravelFullAppScreen(
+                                  title: 'WTB-Travel', token: token),
                             ),
                           );
                         }
@@ -152,11 +150,12 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 TextButton(
                   onPressed: () {
+                    var token = "null";
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            const WtbTravelFullAppScreen(title: 'WTB-Travel'),
+                        builder: (context) => WtbTravelFullAppScreen(
+                            title: 'WTB-Travel', token: token),
                       ),
                     );
                   },

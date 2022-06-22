@@ -4,7 +4,9 @@ import 'package:wtb_travel/views/home_screen.dart';
 import 'package:wtb_travel/views/login_screen.dart';
 
 class DrawerScreen extends StatefulWidget {
-  const DrawerScreen({Key? key}) : super(key: key);
+  const DrawerScreen({Key? key, required this.token}) : super(key: key);
+
+  final String token;
 
   @override
   State<DrawerScreen> createState() => _DrawwerScreenState();
@@ -36,7 +38,9 @@ class _DrawwerScreenState extends State<DrawerScreen> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const ChangeUsername(),
+                    builder: (context) => ChangeUsername(
+                      token: widget.token,
+                    ),
                   ),
                 );
               },
@@ -48,7 +52,9 @@ class _DrawwerScreenState extends State<DrawerScreen> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const ChangePassword(),
+                    builder: (context) => ChangePassword(
+                      token: widget.token,
+                    ),
                   ),
                 );
               },
@@ -60,7 +66,8 @@ class _DrawwerScreenState extends State<DrawerScreen> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const LoginPage(title: 'WTB-Travel'),
+                    builder: (context) =>
+                        const LoginPage(title: 'WTB-Travel'), //sementara
                   ),
                 );
               },
@@ -103,7 +110,9 @@ class DrawerListTitle extends StatelessWidget {
 
 class ChangeUsername extends StatefulWidget {
   @override
-  const ChangeUsername({Key? key}) : super(key: key);
+  const ChangeUsername({Key? key, required this.token}) : super(key: key);
+
+  final String token;
   @override
   State<ChangeUsername> createState() => _ChangeUsernameState();
 }
@@ -183,57 +192,6 @@ class _ChangeUsernameState extends State<ChangeUsername> {
                   const SizedBox(
                     height: 15,
                   ),
-                  // ElevatedButton(
-                  //   onPressed: () {},
-                  //   style: ElevatedButton.styleFrom(
-                  //       padding: const EdgeInsets.fromLTRB(35, 5, 35, 5),
-                  //       primary: const Color(0xff543c0d)),
-                  //   child: const Text(
-                  //     'Change username',
-                  //     style: TextStyle(
-                  //       fontWeight: FontWeight.bold,
-                  //     ),
-                  //   ),
-                  // ),
-                  // const SizedBox(
-                  //   height: 30,
-                  // ),
-                  // TextFormField(
-                  //   validator: (value) {
-                  //     if (value == null || value.isEmpty) {
-                  //       return 'Please enter your password';
-                  //     }
-                  //     return null;
-                  //   },
-                  //   maxLines: 1,
-                  //   obscureText: true,
-                  //   decoration: InputDecoration(
-                  //     prefixIcon: const Icon(Icons.lock),
-                  //     focusedBorder: OutlineInputBorder(
-                  //       borderRadius: BorderRadius.circular(10),
-                  //       borderSide: const BorderSide(color: Color(0xff543c0d)),
-                  //     ),
-                  //     hintText: 'Change your password',
-                  //     border: OutlineInputBorder(
-                  //       borderRadius: BorderRadius.circular(10),
-                  //     ),
-                  //   ),
-                  // ),
-                  // const SizedBox(
-                  //   height: 15,
-                  // ),
-                  // ElevatedButton(
-                  //   onPressed: () {},
-                  //   style: ElevatedButton.styleFrom(
-                  //       padding: const EdgeInsets.fromLTRB(35, 5, 35, 5),
-                  //       primary: const Color(0xff543c0d)),
-                  //   child: const Text(
-                  //     'Change password',
-                  //     style: TextStyle(
-                  //       fontWeight: FontWeight.bold,
-                  //     ),
-                  //   ),
-                  // ),
                   const SizedBox(
                     height: 100,
                   ),
@@ -245,10 +203,10 @@ class _ChangeUsernameState extends State<ChangeUsername> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  const WtbTravelFullAppScreen(
+                              builder: (context) => WtbTravelFullAppScreen(
                                 title: 'wtb-travel',
-                              ),
+                                token: widget.token,
+                              ), // panggil controller changeusername
                             ),
                           );
                         },
@@ -287,7 +245,9 @@ class _ChangeUsernameState extends State<ChangeUsername> {
 }
 
 class ChangePassword extends StatefulWidget {
-  const ChangePassword({Key? key}) : super(key: key);
+  const ChangePassword({Key? key, required this.token}) : super(key: key);
+
+  final String token;
   @override
   State<ChangePassword> createState() => _ChangePasswordState();
 }
@@ -404,10 +364,10 @@ class _ChangePasswordState extends State<ChangePassword> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  const WtbTravelFullAppScreen(
+                              builder: (context) => WtbTravelFullAppScreen(
                                 title: 'wtb-travel',
-                              ),
+                                token: widget.token,
+                              ), //panggil change password controller
                             ),
                           );
                         },
