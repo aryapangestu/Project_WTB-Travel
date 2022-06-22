@@ -116,36 +116,36 @@ class _LoginPageState extends State<LoginPage> {
                     const SizedBox(
                       height: 20,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const WtbTravelFullAppScreen(
-                                  title: 'wtb-travel',
-                                ),
-                              ),
-                            );
-                          },
-                          style: ElevatedButton.styleFrom(
-                              padding:
-                                  const EdgeInsets.fromLTRB(47, 14, 47, 14),
-                              primary: const Color(0xff543c0d)),
-                          child: const Text(
-                            'Skip',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    //   children: [
+                    //     ElevatedButton(
+                    //       onPressed: () {
+                    //         Navigator.push(
+                    //           context,
+                    //           MaterialPageRoute(
+                    //             builder: (context) =>
+                    //                 const WtbTravelFullAppScreen(
+                    //               title: 'wtb-travel',
+                    //             ),
+                    //           ),
+                    //         );
+                    //       },
+                    //       style: ElevatedButton.styleFrom(
+                    //           padding:
+                    //               const EdgeInsets.fromLTRB(47, 14, 47, 14),
+                    //           primary: const Color(0xff543c0d)),
+                    //       child: const Text(
+                    //         'Skip',
+                    //         style: TextStyle(
+                    //           fontWeight: FontWeight.bold,
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                     const SizedBox(
-                      height: 150,
+                      height: 50,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -163,6 +163,38 @@ class _LoginPageState extends State<LoginPage> {
                           },
                           child: const Text(
                             'Create an account',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 228, 152, 22)),
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 100,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        // const Text(
+                        //   'Not registered yet?',
+                        //   style: TextStyle(
+                        //       fontWeight: FontWeight.bold,
+                        //       color: Color.fromARGB(255, 228, 152, 22)),
+                        // ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const WtbTravelFullAppScreen(
+                                        title: 'WTB-Travel'),
+                              ),
+                            );
+                          },
+                          child: const Text(
+                            'Skip',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Color.fromARGB(255, 228, 152, 22)),
