@@ -20,17 +20,20 @@ class _LoginPageState extends State<LoginPage> {
     var username, password;
     return Scaffold(
       backgroundColor: const Color(0xfff6f0e4),
+      resizeToAvoidBottomInset: false,
       body: Container(
         padding: const EdgeInsets.all(20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'Log In',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 40,
+            Container(
+              child: const Text(
+                'Log In',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 40,
+                ),
               ),
             ),
             const SizedBox(
@@ -92,7 +95,8 @@ class _LoginPageState extends State<LoginPage> {
                     ElevatedButton(
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
-                          print(await login(username, password));
+                          var token = await login(username, password);
+                          print(token);
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
@@ -116,94 +120,55 @@ class _LoginPageState extends State<LoginPage> {
                     const SizedBox(
                       height: 20,
                     ),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    //   children: [
-                    //     ElevatedButton(
-                    //       onPressed: () {
-                    //         Navigator.push(
-                    //           context,
-                    //           MaterialPageRoute(
-                    //             builder: (context) =>
-                    //                 const WtbTravelFullAppScreen(
-                    //               title: 'wtb-travel',
-                    //             ),
-                    //           ),
-                    //         );
-                    //       },
-                    //       style: ElevatedButton.styleFrom(
-                    //           padding:
-                    //               const EdgeInsets.fromLTRB(47, 14, 47, 14),
-                    //           primary: const Color(0xff543c0d)),
-                    //       child: const Text(
-                    //         'Skip',
-                    //         style: TextStyle(
-                    //           fontWeight: FontWeight.bold,
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
-                    const SizedBox(
-                      height: 50,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text('Not registered yet?'),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const RegisterPage(title: 'Register UI'),
-                              ),
-                            );
-                          },
-                          child: const Text(
-                            'Create an account',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 228, 152, 22)),
-                          ),
-                        )
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 100,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        // const Text(
-                        //   'Not registered yet?',
-                        //   style: TextStyle(
-                        //       fontWeight: FontWeight.bold,
-                        //       color: Color.fromARGB(255, 228, 152, 22)),
-                        // ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const WtbTravelFullAppScreen(
-                                        title: 'WTB-Travel'),
-                              ),
-                            );
-                          },
-                          child: const Text(
-                            'Skip',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 228, 152, 22)),
-                          ),
-                        )
-                      ],
-                    ),
                   ],
-                ))
+                )),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text('Not registered yet?'),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            const RegisterPage(title: 'Register UI'),
+                      ),
+                    );
+                  },
+                  child: const Text(
+                    'Create an account',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 228, 152, 22)),
+                  ),
+                )
+              ],
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            const WtbTravelFullAppScreen(title: 'WTB-Travel'),
+                      ),
+                    );
+                  },
+                  child: const Text(
+                    'Skip',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 228, 152, 22)),
+                  ),
+                )
+              ],
+            ),
           ],
         ),
       ),
