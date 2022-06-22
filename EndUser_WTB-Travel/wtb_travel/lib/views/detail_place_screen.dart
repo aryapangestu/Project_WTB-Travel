@@ -159,6 +159,7 @@ class _WtbTravelDetailPlaceScreen extends State<WtbTravelDetailPlaceScreen> {
                           Wrap(
                             spacing: 16,
                             children: [
+                              // Map
                               Container(
                                 decoration: BoxDecoration(
                                   border: Border.all(
@@ -182,6 +183,30 @@ class _WtbTravelDetailPlaceScreen extends State<WtbTravelDetailPlaceScreen> {
                                 MapNavigationApp(
                                   element: widget.element,
                                 ).launch(context);
+                              }, borderRadius: radius(32)),
+
+                              // Tambah Review
+                              Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: const Color(0xffc7b899)),
+                                  color: const Color(0xfff6f0e4),
+                                  borderRadius: radius(32),
+                                ),
+                                padding: const EdgeInsets.all(8),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    const Icon(Icons.add_outlined,
+                                        color: Color(0xffc7b899)),
+                                    4.width,
+                                    Text('Tambah review',
+                                        style: boldTextStyle(
+                                            color: const Color(0xffc7b899))),
+                                  ],
+                                ),
+                              ).onTap(() {
+                                // screen input ulasan
                               }, borderRadius: radius(32)),
                             ],
                           )
