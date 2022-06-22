@@ -23,7 +23,11 @@ Route::post('/register', [AuthenticationController::class, 'register']);
 Route::middleware('auth:api')->group(function () {
     Route::post('/logout', [AuthenticationController::class, 'logout']);
 });
+Route::post('/logout', [AuthenticationController::class, 'logout']);
 
 Route::apiResource('places', PlaceController::class);
-Route::apiResource('reviews', ReviewController::class);
+Route::post('/categories', [AuthenticationController::class, 'logout']);
 Route::apiResource('categories', CategoryController::class);
+
+Route::get('/reviews', [ReviewController::class, 'index']);
+Route::get('/reviews/{id}', [ReviewController::class, 'getReview']);
