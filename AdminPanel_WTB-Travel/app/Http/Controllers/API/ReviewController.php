@@ -27,6 +27,10 @@ class ReviewController extends Controller
     public function getReview($id)
     {
         $reviews = Review::where('place_id', $id)->get();
+        foreach ($reviews as $key => $review) {
+            $reviews[$key]['user_name'] = $review->user->username;
+            unset($reviews[$key]['user']);
+        }
         return response()->json($reviews);
     }
 }

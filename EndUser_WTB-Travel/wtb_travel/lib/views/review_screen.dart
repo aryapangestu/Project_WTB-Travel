@@ -112,7 +112,7 @@ class _WtbTravelReviewScreen extends State<WtbTravelReviewScreen> {
           List<Review> data = snapshot.data as List<Review>;
 
           if (data.isEmpty) {
-            return const Center(child: Text("Data is empty"));
+            return const Center(child: Text("Belum ada ulasan"));
           }
           return reviewPlace(data);
         }
