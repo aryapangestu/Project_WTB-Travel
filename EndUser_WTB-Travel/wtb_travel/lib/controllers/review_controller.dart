@@ -3,15 +3,15 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:wtb_travel/models/review.dart';
 
-Future<List<Review>> getReviews() async {
+Future<List<Review>> getReviews(int id) async {
   http.Response response;
 
-  response =
-      await http.get(Uri.parse("http://wtb-travel1.herokuapp.com/api/reviews"));
+  response = await http
+      .get(Uri.parse("http://wtb-travel1.herokuapp.com/api/reviews/$id"));
 
   if (response.statusCode != 200) {
     response = await http
-        .get(Uri.parse("http://wtb-travel1.herokuapp.com/api/reviews"));
+        .get(Uri.parse("http://wtb-travel1.herokuapp.com/api/reviews/$id"));
   }
 
   List body = jsonDecode(response.body);
