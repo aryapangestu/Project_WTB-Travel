@@ -42,12 +42,28 @@ class PlaceController extends Controller
 
     function search($name)
     {
-        $result = Place::where('name', 'LIKE', '%' . $name . '%')->get();
-        if (count($result)) {
-            return Response()->json($result);
-        } else {
-            return response()->json(['Result' => 'No Data not found'], 404);
+        $places = Place::where('status', true)->where('name', 'LIKE', '%' . $name . '%')->get();
+
+        foreach ($places as $key => $place) {
+            $sumRate = 0;
+            $countRate = 0;
+            foreach (Review::where('place_id', $place->id)->get() as $item) {
+                $sumRate = $sumRate + $item->rating;
+                $countRate = $countRate + 1;
+            }
+            if ($countRate == 0) {
+                $avgRate = 0;
+            } else {
+                $avgRate = $sumRate / $countRate;
+                $avgRate = round($avgRate, 1);
+            }
+
+            $places[$key]['src'] = asset('storage/' . $place->src);
+            $places[$key]['comments'] = (string)$countRate;
+            $places[$key]['rating'] = (string)$avgRate;
         }
+
+        return Response()->json($places);
     }
 
     /**

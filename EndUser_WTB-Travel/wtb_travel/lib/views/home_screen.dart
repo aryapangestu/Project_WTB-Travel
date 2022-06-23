@@ -6,6 +6,7 @@ import 'package:wtb_travel/models/category.dart';
 import 'package:wtb_travel/views/detail_place_screen.dart';
 import 'package:wtb_travel/views/list_place_screen.dart';
 import 'package:wtb_travel/models/place.dart';
+import 'package:wtb_travel/views/list_search_results_places.dart';
 
 class WtbTravelHomeScreen extends StatefulWidget {
   const WtbTravelHomeScreen({Key? key}) : super(key: key);
@@ -130,6 +131,7 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
   }
 
   Widget searchTxt() {
+    final myController = TextEditingController();
     return Container(
       margin: const EdgeInsets.only(left: 8, right: 8),
       decoration: BoxDecoration(
@@ -146,6 +148,11 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
             hintStyle: boldTextStyle(color: Colors.black)),
         textFieldType: TextFieldType.NAME,
         cursorColor: const Color(0xffc79a9a),
+        controller: myController,
+        onFieldSubmitted: (s) {
+          WtbTravelListSearchResultsPlaceScreen(name: myController.text)
+              .launch(context);
+        },
       ),
     );
   }
