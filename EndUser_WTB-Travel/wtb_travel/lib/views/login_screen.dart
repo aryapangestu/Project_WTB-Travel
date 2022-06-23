@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wtb_travel/controllers/login_controller.dart';
+import 'package:wtb_travel/controllers/authentication_controller.dart';
 import 'package:wtb_travel/views/full_app_screen.dart';
 import 'package:wtb_travel/views/register_screen.dart';
 
