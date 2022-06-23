@@ -40,6 +40,16 @@ class PlaceController extends Controller
         return response()->json($places);
     }
 
+    function search($name)
+    {
+        $result = Place::where('name', 'LIKE', '%' . $name . '%')->get();
+        if (count($result)) {
+            return Response()->json($result);
+        } else {
+            return response()->json(['Result' => 'No Data not found'], 404);
+        }
+    }
+
     /**
      * Store a newly created resource in storage.
      *
