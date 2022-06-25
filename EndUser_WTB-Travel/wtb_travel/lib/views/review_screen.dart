@@ -14,18 +14,6 @@ class WtbTravelReviewScreen extends StatefulWidget {
 }
 
 class _WtbTravelReviewScreen extends State<WtbTravelReviewScreen> {
-  @override
-  void initState() {
-    setStatusBarColor(const Color(0xfff6f0e4));
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    setStatusBarColor(const Color(0xff88692b));
-    super.dispose();
-  }
-
   Widget reviewPlace(List<Review> data) {
     return SingleChildScrollView(
       child: Wrap(
