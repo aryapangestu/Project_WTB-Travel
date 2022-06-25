@@ -206,7 +206,8 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
               ),
             ),
             onTap: () {
-              const WtbTravelListPlaceScreen().launch(context);
+              WtbTravelListPlaceScreen(id: e.id!, name: e.name!)
+                  .launch(context);
             },
           );
         }).toList(),
