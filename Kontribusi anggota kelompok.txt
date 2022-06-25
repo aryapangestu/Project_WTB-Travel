@@ -1,4 +1,11 @@
-Arya Pangestu (1301190144): Dashboard & Places
+Web Laravel
+Arya Pangestu (1301190144): Dashboard, Places, login, & register 
 Najla Nur Adila (1301194001): Users
 Putri Samapa Hutapea (1301190336): Category
 Muhammad Ihsan Adly (1301194446): Review
+
+Mobile Flutter
+Arya Pangestu (1301190144): Mengerjakan bagian place dan search 
+Najla Nur Adila (1301194001): Mengerjakan bagian Profil, login, & register
+Putri Samapa Hutapea (1301190336): Mengerjakan bagian Profil
+Muhammad Ihsan Adly (1301194446): Mengerjakan bagian review
