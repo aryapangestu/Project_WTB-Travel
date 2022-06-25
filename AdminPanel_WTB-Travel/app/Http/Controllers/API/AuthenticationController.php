@@ -26,6 +26,11 @@ class AuthenticationController extends Controller
             return response(['errors' => $validator->errors()->all()], 422);
         }
         $user = User::where('username', $request->username)->first();
+        if ($user->status == 0) {
+            $response = ["message" => "Status akun Anda OFF"];
+            return response($response, 422);
+        }
+
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
                 $token = $user->createToken('Laravel Password Grant Client')->accessToken;
