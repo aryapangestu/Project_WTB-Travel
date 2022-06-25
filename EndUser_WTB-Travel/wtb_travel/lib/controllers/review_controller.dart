@@ -41,6 +41,7 @@ storeReviews(String token, double rating, String comment, int user_id,
   response = await http.post(
     Uri.parse('https://wtb-travel1.herokuapp.com/api/reviews'),
     headers: <String, String>{
+      'Content-type': 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
     },
