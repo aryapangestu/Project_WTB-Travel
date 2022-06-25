@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\Category;
-
+use App\Models\Place;
+use App\Models\Review;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -15,23 +17,34 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('categories.index', [
-            "title" => "Categories",
-            "categories" => Category::all(),
-        ]);
+        $categories = Category::all();
+        return response()->json($categories);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    function placeCategory($id)
     {
-        //menampilkan halaman create
-        return view('categories.create', [
-            "title" => "Category",
-        ]);
+        $places = Place::where('status', true)->where('category_id', $id)->get();
+
+        foreach ($places as $key => $place) {
+            $sumRate = 0;
+            $countRate = 0;
+            foreach (Review::where('place_id', $place->id)->get() as $item) {
+                $sumRate = $sumRate + $item->rating;
+                $countRate = $countRate + 1;
+            }
+            if ($countRate == 0) {
+                $avgRate = 0;
+            } else {
+                $avgRate = $sumRate / $countRate;
+                $avgRate = round($avgRate, 1);
+            }
+
+            $places[$key]['src'] = asset('storage/' . $place->src);
+            $places[$key]['comments'] = (string)$countRate;
+            $places[$key]['rating'] = (string)$avgRate;
+        }
+
+        return Response()->json($places);
     }
 
     /**
@@ -42,13 +55,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name_category' => 'required',
-            'url_icon' => 'required',
-        ]);
-
-        Category::create($validated);
-        return redirect('/categories')->with('alert', 'category added successfully!');
+        //
     }
 
     /**
@@ -63,20 +70,6 @@ class CategoryController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        return view('categories.edit', [
-            "title" => "Edit Category",
-            "category" => Category::find($id),
-        ]);
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -85,13 +78,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validated = $request->validate([
-            'name_category' => 'required',
-            'url_icon' => 'required',
-        ]);
-
-        Category::where('id', $id)->update($validated);
-        return redirect('/categories')->with('alert', 'category updated successfully!');
+        //
     }
 
     /**
@@ -102,7 +89,6 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        Category::destroy($id);
-        return redirect('/categories')->with('alert', 'Category deleted successfully!');
+        //
     }
 }

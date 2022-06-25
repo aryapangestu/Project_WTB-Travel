@@ -31,7 +31,8 @@ Route::get('/places', [PlaceController::class, 'index']);
 Route::get('/search/{name}', [PlaceController::class, 'search']);
 
 Route::post('/categories', [AuthenticationController::class, 'logout']);
-Route::apiResource('categories', CategoryController::class);
+Route::get('/categories', [CategoryController::class, 'index']);
+Route::get('/categories/places/{id}', [CategoryController::class, 'placeCategory']);
 
 Route::get('/reviews', [ReviewController::class, 'index']);
 Route::get('/reviews/{id}', [ReviewController::class, 'getReview']);
