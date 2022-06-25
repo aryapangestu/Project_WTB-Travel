@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Place;
+use App\Models\Review;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -17,6 +19,32 @@ class CategoryController extends Controller
     {
         $categories = Category::all();
         return response()->json($categories);
+    }
+
+    function placeCategory($id)
+    {
+        $places = Place::where('status', true)->where('category_id', $id)->get();
+
+        foreach ($places as $key => $place) {
+            $sumRate = 0;
+            $countRate = 0;
+            foreach (Review::where('place_id', $place->id)->get() as $item) {
+                $sumRate = $sumRate + $item->rating;
+                $countRate = $countRate + 1;
+            }
+            if ($countRate == 0) {
+                $avgRate = 0;
+            } else {
+                $avgRate = $sumRate / $countRate;
+                $avgRate = round($avgRate, 1);
+            }
+
+            $places[$key]['src'] = asset('storage/' . $place->src);
+            $places[$key]['comments'] = (string)$countRate;
+            $places[$key]['rating'] = (string)$avgRate;
+        }
+
+        return Response()->json($places);
     }
 
     /**

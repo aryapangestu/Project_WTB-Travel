@@ -37,6 +37,7 @@ dependencies:
   nb_utils: ^4.5.2
   http: ^0.13.4
   google_maps_widget: ^1.0.4
+  autocomplete_textfield: ^2.0.1
 
 dev_dependencies:
   flutter_test:
