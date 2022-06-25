@@ -1,3 +1,4 @@
+import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:wtb_travel/controllers/category_controller.dart';
@@ -49,7 +50,27 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const SizedBox(height: 16.0),
-              searchTxt(),
+              FutureBuilder(
+                future: places,
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return const Center(
+                      child: Text("Error when fetching data"),
+                    );
+                  } else if (snapshot.hasData) {
+                    List<String> suggestions_data = [];
+                    List<Place> data = snapshot.data as List<Place>;
+                    data.map((e) {
+                      suggestions_data.add(e.name!);
+                    }).toList();
+
+                    return searchTxt(suggestions_data);
+                  }
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
+              ),
               const SizedBox(height: 16.0),
               bannerWidget(),
               const SizedBox(height: 8.0),
@@ -134,8 +155,9 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
     );
   }
 
-  Widget searchTxt() {
+  Widget searchTxt(List<String> suggestions) {
     final myController = TextEditingController();
+    GlobalKey<AutoCompleteTextFieldState<String>> key = GlobalKey();
     return Container(
       margin: const EdgeInsets.only(left: 8, right: 8),
       decoration: BoxDecoration(
@@ -144,16 +166,17 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
         borderRadius: const BorderRadius.all(Radius.circular(32)),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: AppTextField(
+      child: SimpleAutoCompleteTextField(
+        key: key,
         decoration: InputDecoration(
             border: InputBorder.none,
             prefixIcon: const Icon(Icons.search_sharp, color: Colors.black),
             hintText: 'Find your place...',
             hintStyle: boldTextStyle(color: Colors.black)),
-        textFieldType: TextFieldType.NAME,
+        suggestions: suggestions,
         cursorColor: const Color(0xffc79a9a),
         controller: myController,
-        onFieldSubmitted: (s) {
+        textSubmitted: (s) {
           WtbTravelListSearchResultsPlaceScreen(
                   name: myController.text,
                   token: widget.token,
