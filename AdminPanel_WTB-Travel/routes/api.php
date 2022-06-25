@@ -27,7 +27,9 @@ Route::middleware('auth:api')->group(function () {
 });
 Route::post('/logout', [AuthenticationController::class, 'logout']);
 
-Route::apiResource('places', PlaceController::class);
+Route::get('/places', [PlaceController::class, 'index']);
+Route::get('/search/{name}', [PlaceController::class, 'search']);
+
 Route::post('/categories', [AuthenticationController::class, 'logout']);
 Route::apiResource('categories', CategoryController::class);
 
