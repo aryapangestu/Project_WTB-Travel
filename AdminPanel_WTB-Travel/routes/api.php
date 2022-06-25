@@ -24,6 +24,7 @@ Route::post('/register', [AuthenticationController::class, 'register']);
 Route::middleware('auth:api')->group(function () {
     Route::post('/logout', [AuthenticationController::class, 'logout']);
     Route::get('/user', [UserController::class, 'index']);
+    Route::post('/reviews', [ReviewController::class, 'storeReview']);
 });
 
 Route::get('/places', [PlaceController::class, 'index']);
