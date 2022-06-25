@@ -99,17 +99,35 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           var token = await login(username, password);
-                          var user = await getProfilUser(token);
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => WtbTravelFullAppScreen(
-                                title: 'WTB-Travel',
-                                token: token,
-                                user: user,
+                          if (token == null) {
+                            showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: const Text('Login gagal'),
+                                content: const Text(
+                                    'Username atau password yang dimasukkan salah'),
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(context, 'OK'),
+                                    child: const Text('OK'),
+                                  ),
+                                ],
                               ),
-                            ),
-                          );
+                            );
+                          } else {
+                            var user = await getProfilUser(token);
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => WtbTravelFullAppScreen(
+                                  title: 'WTB-Travel',
+                                  token: token,
+                                  user: user,
+                                ),
+                              ),
+                            );
+                          }
                         }
                       },
                       style: ElevatedButton.styleFrom(

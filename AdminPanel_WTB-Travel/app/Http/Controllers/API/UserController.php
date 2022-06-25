@@ -59,7 +59,8 @@ class UserController extends Controller
     public function updatePassword(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'password' => 'required|string|min:6|confirmed',
+            'currentPassword' => 'required',
+            'newPassword' => 'required|string|min:6',
         ]);
 
         if ($validator->fails()) {
@@ -69,9 +70,7 @@ class UserController extends Controller
             ], 422);
         }
 
-        $request['password'] = Hash::make($request['password']);
-        $user = User::where('id', $id);
-
+        $user = User::where('id', $id)->first();
         if (!$user) {
             return response()->json([
                 'success' => false,
@@ -79,16 +78,24 @@ class UserController extends Controller
             ], 400);
         }
 
-        $updated = User::where('id', $id)->update($request->toArray());
-
-        if ($updated)
-            return response()->json([
-                'success' => true,
-            ]);
-        else
+        if (Hash::check($request->currentPassword, $user->password)) {
+            $update['password'] = Hash::make($request['newPassword']);
+            $updated = User::where('id', $id)->update($update);
+            if ($updated) {
+                return response()->json([
+                    'success' => true,
+                ]);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Password can not be updated'
+                ], 500);
+            }
+        } else {
             return response()->json([
                 'success' => false,
-                'message' => 'Password can not be updated'
-            ], 500);
+                'message' => 'Password tidak cocok'
+            ], 400);
+        }
     }
 }

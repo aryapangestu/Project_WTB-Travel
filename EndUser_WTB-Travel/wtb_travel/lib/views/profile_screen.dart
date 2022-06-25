@@ -5,6 +5,7 @@ import 'package:wtb_travel/models/user.dart';
 import 'package:wtb_travel/views/full_app_screen.dart';
 import 'package:wtb_travel/views/home_screen.dart';
 import 'package:wtb_travel/views/login_screen.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 class DrawerScreen extends StatefulWidget {
   const DrawerScreen({Key? key, required this.token, required this.user})
@@ -70,7 +71,8 @@ class _DrawwerScreenState extends State<DrawerScreen> {
                 DrawerListTitle(
                   iconData: Icons.logout_outlined,
                   title: "Logout",
-                  onTilePressed: () {
+                  onTilePressed: () async {
+                    await logout(widget.token);
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
@@ -190,29 +192,6 @@ class _ChangeUsernameState extends State<ChangeUsername> {
                   TextFormField(
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter current username';
-                      }
-                      username = value;
-                      return null;
-                    },
-                    maxLines: 1,
-                    decoration: InputDecoration(
-                      hintText: 'Current username',
-                      prefixIcon: const Icon(Icons.supervisor_account),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: const BorderSide(color: Color(0xff464544)),
-                      ),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide:
-                              const BorderSide(color: Color(0xff543c0d))),
-                    ),
-                  ),
-                  const SizedBox(height: 30),
-                  TextFormField(
-                    validator: (String? value) {
-                      if (value == null || value.isEmpty) {
                         return 'Please enter new username';
                       }
                       username = value;
@@ -250,7 +229,7 @@ class _ChangeUsernameState extends State<ChangeUsername> {
                                 title: 'wtb-travel',
                                 token: widget.token,
                                 user: widget.user,
-                              ), // panggil controller changeusername
+                              ), //panggil change password controller
                             ),
                           );
                         },
@@ -265,7 +244,59 @@ class _ChangeUsernameState extends State<ChangeUsername> {
                         ),
                       ),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            var data = await updateUsername(
+                                widget.token, widget.user.id!, username);
+                            if (data[0] == true) {
+                              showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) => AlertDialog(
+                                  title: const Text('Update username berhasil'),
+                                  content: const Text(
+                                      'Selamat username Anda berhasil diubah'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () async {
+                                        await logout(widget.token);
+                                        Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const LoginPage(
+                                                    title: 'Login UI'),
+                                          ),
+                                        );
+                                      },
+                                      child: const Text('OK'),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            } else {
+                              showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) => AlertDialog(
+                                  title: const Text('Update username gagal'),
+                                  content: Wrap(
+                                      spacing: 20,
+                                      runSpacing: 20,
+                                      children: [
+                                        for (var i = 0; i < data[1].length; i++)
+                                          Text(data[1][i]),
+                                      ]),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(context, 'OK'),
+                                      child: const Text('OK'),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }
+                          }
+                        },
                         style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.fromLTRB(35, 5, 35, 5),
                             primary: const Color(0xff543c0d)),
@@ -301,7 +332,7 @@ class ChangePassword extends StatefulWidget {
 
 class _ChangePasswordState extends State<ChangePassword> {
   final _formKey = GlobalKey<FormState>();
-  var password;
+  var currentPassword, newPassword;
 
   @override
   Widget build(BuildContext context) {
@@ -333,7 +364,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your password';
                       }
-                      password = value;
+                      currentPassword = value;
                       return null;
                     },
                     maxLines: 1,
@@ -358,7 +389,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                       if (value == null || value.isEmpty) {
                         return 'Please enter new password';
                       }
-                      password = value;
+                      newPassword = value;
                       return null;
                     },
                     maxLines: 1,
@@ -370,31 +401,6 @@ class _ChangePasswordState extends State<ChangePassword> {
                         borderSide: const BorderSide(color: Color(0xff543c0d)),
                       ),
                       hintText: 'New password',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  TextFormField(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your password';
-                      }
-                      password = value;
-                      return null;
-                    },
-                    maxLines: 1,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.lock),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: const BorderSide(color: Color(0xff543c0d)),
-                      ),
-                      hintText: 'Confirm password',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -430,7 +436,59 @@ class _ChangePasswordState extends State<ChangePassword> {
                         ),
                       ),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            var data = await updatePassword(widget.token,
+                                widget.user.id!, currentPassword, newPassword);
+                            if (data[0] == true) {
+                              showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) => AlertDialog(
+                                  title: const Text('Update password berhasil'),
+                                  content: const Text(
+                                      'Selamat password Anda berhasil diubah'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () async {
+                                        await logout(widget.token);
+                                        Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const LoginPage(
+                                                    title: 'Login UI'),
+                                          ),
+                                        );
+                                      },
+                                      child: const Text('OK'),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            } else {
+                              showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) => AlertDialog(
+                                  title: const Text('Update password gagal'),
+                                  content: Wrap(
+                                      spacing: 20,
+                                      runSpacing: 20,
+                                      children: [
+                                        for (var i = 0; i < data[1].length; i++)
+                                          Text(data[1][i]),
+                                      ]),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(context, 'OK'),
+                                      child: const Text('OK'),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }
+                          }
+                        },
                         style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.fromLTRB(35, 5, 35, 5),
                             primary: const Color(0xff543c0d)),
