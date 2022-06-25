@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wtb_travel/controllers/authentication_controller.dart';
+import 'package:wtb_travel/controllers/profile_controller.dart';
+import 'package:wtb_travel/models/user.dart';
 import 'package:wtb_travel/views/full_app_screen.dart';
 import 'package:wtb_travel/views/register_screen.dart';
 
@@ -96,11 +98,15 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           var token = await login(username, password);
+                          var user = await getProfilUser(token);
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                               builder: (context) => WtbTravelFullAppScreen(
-                                  title: 'WTB-Travel', token: token),
+                                title: 'WTB-Travel',
+                                token: token,
+                                user: user,
+                              ),
                             ),
                           );
                         }
@@ -151,11 +157,16 @@ class _LoginPageState extends State<LoginPage> {
                 TextButton(
                   onPressed: () {
                     var token = "null";
+                    profilUser user =
+                        profilUser(id: -1, name: 'Tamu', status: 1);
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                         builder: (context) => WtbTravelFullAppScreen(
-                            title: 'WTB-Travel', token: token),
+                          title: 'WTB-Travel',
+                          token: token,
+                          user: user,
+                        ),
                       ),
                     );
                   },

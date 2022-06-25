@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:wtb_travel/models/user.dart';
 import 'package:wtb_travel/views/home_screen.dart';
 import 'package:wtb_travel/views/profile_screen.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class WtbTravelFullAppScreen extends StatefulWidget {
   const WtbTravelFullAppScreen(
-      {Key? key, required this.title, required this.token})
+      {Key? key, required this.title, required this.token, required this.user})
       : super(key: key);
 
-  final String title;
-  final String token;
+  final String title, token;
+  final profilUser user;
 
   @override
   State<WtbTravelFullAppScreen> createState() => _WtbTravelFullAppScreen();
@@ -32,6 +33,7 @@ class _WtbTravelFullAppScreen extends State<WtbTravelFullAppScreen> {
       ),
       drawer: DrawerScreen(
         token: widget.token,
+        user: widget.user,
       ),
       body: const Center(
         child: WtbTravelHomeScreen(),

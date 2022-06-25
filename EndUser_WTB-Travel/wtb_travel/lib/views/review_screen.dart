@@ -111,3 +111,122 @@ class _WtbTravelReviewScreen extends State<WtbTravelReviewScreen> {
     );
   }
 }
+
+class inputReview extends StatefulWidget {
+  @override
+  const inputReview({Key? key}) : super(key: key);
+
+  @override
+  State<inputReview> createState() => _inputReviewState();
+}
+
+class _inputReviewState extends State<inputReview> {
+  final _formKey = GlobalKey<FormState>();
+  // ignore: prefer_typing_uninitialized_variables
+  var username;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xfff6f0e4),
+      body: Container(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            const Text(
+              'Ulasan',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 40,
+              ),
+            ),
+            const SizedBox(height: 60),
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  RatingBar.builder(
+                    initialRating: 3,
+                    minRating: 1,
+                    direction: Axis.horizontal,
+                    allowHalfRating: true,
+                    itemCount: 5,
+                    itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                    itemBuilder: (context, _) => const Icon(
+                      Icons.star,
+                      color: Colors.amber,
+                    ),
+                    onRatingUpdate: (rating) {
+                      print(rating);
+                    },
+                  ),
+                  const SizedBox(height: 30),
+                  TextFormField(
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Silahkan masukkan ulasan';
+                      }
+                      username = value;
+                      return null;
+                    },
+                    maxLines: 6,
+                    decoration: InputDecoration(
+                      hintText: 'Ulasan',
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(color: Color(0xff464544)),
+                      ),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide:
+                              const BorderSide(color: Color(0xff543c0d))),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  const SizedBox(
+                    height: 100,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          finish(context);
+                        },
+                        style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.fromLTRB(35, 5, 35, 5),
+                            primary: const Color(0xff543c0d)),
+                        child: const Text(
+                          'Cancel',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.fromLTRB(35, 5, 35, 5),
+                            primary: const Color(0xff543c0d)),
+                        child: const Text(
+                          'Save',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
