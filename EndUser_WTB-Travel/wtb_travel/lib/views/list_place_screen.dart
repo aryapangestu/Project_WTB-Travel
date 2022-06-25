@@ -6,11 +6,11 @@ import 'package:wtb_travel/models/place.dart';
 
 class WtbTravelListPlaceScreen extends StatefulWidget {
   const WtbTravelListPlaceScreen(
-      {Key? key, required this.id, required this.name})
+      {Key? key, required this.id, required this.name, required this.token})
       : super(key: key);
 
   final int id;
-  final String name;
+  final String name, token;
   @override
   State<WtbTravelListPlaceScreen> createState() => _WtbTravelListPlaceScreen();
 }
@@ -93,7 +93,10 @@ class _WtbTravelListPlaceScreen extends State<WtbTravelListPlaceScreen> {
             ),
           ).onTap(() {
             // const WtbTravelDetailPlaceScreen(element: e).launch(context);
-            WtbTravelDetailPlaceScreen(element: e).launch(context);
+            WtbTravelDetailPlaceScreen(
+              element: e,
+              token: widget.token,
+            ).launch(context);
           });
         }).toList(),
       ).paddingOnly(top: 16, bottom: 70, left: 16, right: 16),

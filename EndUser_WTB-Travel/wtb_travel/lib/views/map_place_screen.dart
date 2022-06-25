@@ -52,17 +52,6 @@ class _MapNavigationAppState extends State<MapNavigationApp> {
           ),
         ],
       ),
-      floatingActionButton: Padding(
-        padding: EdgeInsets.only(bottom: 110),
-        child: FloatingActionButton(
-          onPressed: () {
-            //
-          },
-          mini: true,
-          backgroundColor: context.cardColor,
-          child: Icon(Icons.my_location, color: Color(0xffc7b899)),
-        ),
-      ),
     );
   }
 }

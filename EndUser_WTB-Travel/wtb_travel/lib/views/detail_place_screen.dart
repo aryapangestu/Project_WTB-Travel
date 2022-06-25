@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:wtb_travel/models/place.dart';
+import 'package:wtb_travel/views/login_screen.dart';
 import 'package:wtb_travel/views/map_place_screen.dart';
 import 'package:wtb_travel/views/review_screen.dart';
 
 class WtbTravelDetailPlaceScreen extends StatefulWidget {
   final Place element;
-  const WtbTravelDetailPlaceScreen({Key? key, required this.element})
+  const WtbTravelDetailPlaceScreen(
+      {Key? key, required this.element, required this.token})
       : super(key: key);
 
+  final String token;
   @override
   State<WtbTravelDetailPlaceScreen> createState() =>
       _WtbTravelDetailPlaceScreen();
@@ -206,7 +209,34 @@ class _WtbTravelDetailPlaceScreen extends State<WtbTravelDetailPlaceScreen> {
                                   ],
                                 ),
                               ).onTap(() {
-                                const inputReview().launch(context);
+                                if (widget.token == 'null') {
+                                  showDialog<String>(
+                                    context: context,
+                                    builder: (BuildContext context) =>
+                                        AlertDialog(
+                                      title: const Text('Tambah ulasan gagal'),
+                                      content: const Text(
+                                          'Login terlebih dahulu untuk menambah ulasan'),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.pushReplacement(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const LoginPage(
+                                                        title: 'Login UI'),
+                                              ),
+                                            );
+                                          },
+                                          child: const Text('Login'),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                } else {
+                                  const inputReview().launch(context);
+                                }
                               }, borderRadius: radius(32)),
                             ],
                           )

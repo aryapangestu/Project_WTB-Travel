@@ -9,8 +9,9 @@ import 'package:wtb_travel/models/place.dart';
 import 'package:wtb_travel/views/list_search_results_places.dart';
 
 class WtbTravelHomeScreen extends StatefulWidget {
-  const WtbTravelHomeScreen({Key? key}) : super(key: key);
+  const WtbTravelHomeScreen({Key? key, required this.token}) : super(key: key);
 
+  final String token;
   @override
   State<WtbTravelHomeScreen> createState() => _WtbTravelHomeScreen();
 }
@@ -150,8 +151,10 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
         cursorColor: const Color(0xffc79a9a),
         controller: myController,
         onFieldSubmitted: (s) {
-          WtbTravelListSearchResultsPlaceScreen(name: myController.text)
-              .launch(context);
+          WtbTravelListSearchResultsPlaceScreen(
+            name: myController.text,
+            token: widget.token,
+          ).launch(context);
         },
       ),
     );
@@ -206,7 +209,8 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
               ),
             ),
             onTap: () {
-              WtbTravelListPlaceScreen(id: e.id!, name: e.name!)
+              WtbTravelListPlaceScreen(
+                      id: e.id!, name: e.name!, token: widget.token)
                   .launch(context);
             },
           );
@@ -229,7 +233,8 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
         children: places.map((e) {
           return InkWell(
             onTap: () {
-              WtbTravelDetailPlaceScreen(element: e).launch(context);
+              WtbTravelDetailPlaceScreen(element: e, token: widget.token)
+                  .launch(context);
             },
             borderRadius: const BorderRadius.all(Radius.circular(32)),
             child: Container(
