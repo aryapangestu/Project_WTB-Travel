@@ -38,6 +38,7 @@ class _WtbTravelFullAppScreen extends State<WtbTravelFullAppScreen> {
       body: Center(
         child: WtbTravelHomeScreen(
           token: widget.token,
+          user: widget.user,
         ),
       ),
     );

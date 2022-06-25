@@ -7,7 +7,7 @@ Future<List<Place>> getPlaces() async {
   http.Response response;
 
   response =
-      await http.get(Uri.parse("http://wtb-travel1.herokuapp.com/api/places"));
+      await http.get(Uri.parse("https://wtb-travel1.herokuapp.com/api/places"));
 
   if (response.statusCode != 200) {
     response = await http

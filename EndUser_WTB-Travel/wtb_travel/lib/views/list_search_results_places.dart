@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:wtb_travel/controllers/place_controller.dart';
+import 'package:wtb_travel/models/user.dart';
 import 'package:wtb_travel/views/detail_place_screen.dart';
 import 'package:wtb_travel/models/place.dart';
 
 class WtbTravelListSearchResultsPlaceScreen extends StatefulWidget {
   WtbTravelListSearchResultsPlaceScreen(
-      {Key? key, required this.name, required this.token})
+      {Key? key, required this.name, required this.token, required this.user})
       : super(key: key);
 
   final String name, token;
+  final profilUser user;
 
   @override
   State<WtbTravelListSearchResultsPlaceScreen> createState() =>
@@ -101,8 +103,11 @@ class _WtbTravelListPlaceScreen
             ),
           ).onTap(() {
             // const WtbTravelDetailPlaceScreen(element: e).launch(context);
-            WtbTravelDetailPlaceScreen(element: e, token: widget.token)
-                .launch(context);
+            WtbTravelDetailPlaceScreen(
+              element: e,
+              token: widget.token,
+              user: widget.user,
+            ).launch(context);
           });
         }).toList(),
       ).paddingOnly(top: 16, bottom: 70, left: 16, right: 16),

@@ -3,15 +3,18 @@ import 'package:nb_utils/nb_utils.dart';
 import 'package:wtb_travel/controllers/category_controller.dart';
 import 'package:wtb_travel/controllers/place_controller.dart';
 import 'package:wtb_travel/models/category.dart';
+import 'package:wtb_travel/models/user.dart';
 import 'package:wtb_travel/views/detail_place_screen.dart';
 import 'package:wtb_travel/views/list_place_screen.dart';
 import 'package:wtb_travel/models/place.dart';
 import 'package:wtb_travel/views/list_search_results_places.dart';
 
 class WtbTravelHomeScreen extends StatefulWidget {
-  const WtbTravelHomeScreen({Key? key, required this.token}) : super(key: key);
+  const WtbTravelHomeScreen({Key? key, required this.token, required this.user})
+      : super(key: key);
 
   final String token;
+  final profilUser user;
   @override
   State<WtbTravelHomeScreen> createState() => _WtbTravelHomeScreen();
 }
@@ -152,9 +155,10 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
         controller: myController,
         onFieldSubmitted: (s) {
           WtbTravelListSearchResultsPlaceScreen(
-            name: myController.text,
-            token: widget.token,
-          ).launch(context);
+                  name: myController.text,
+                  token: widget.token,
+                  user: widget.user)
+              .launch(context);
         },
       ),
     );
@@ -210,8 +214,11 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
             ),
             onTap: () {
               WtbTravelListPlaceScreen(
-                      id: e.id!, name: e.name!, token: widget.token)
-                  .launch(context);
+                id: e.id!,
+                name: e.name!,
+                token: widget.token,
+                user: widget.user,
+              ).launch(context);
             },
           );
         }).toList(),
@@ -233,8 +240,11 @@ class _WtbTravelHomeScreen extends State<WtbTravelHomeScreen> {
         children: places.map((e) {
           return InkWell(
             onTap: () {
-              WtbTravelDetailPlaceScreen(element: e, token: widget.token)
-                  .launch(context);
+              WtbTravelDetailPlaceScreen(
+                element: e,
+                token: widget.token,
+                user: widget.user,
+              ).launch(context);
             },
             borderRadius: const BorderRadius.all(Radius.circular(32)),
             child: Container(

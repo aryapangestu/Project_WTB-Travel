@@ -20,8 +20,6 @@ class DrawerScreen extends StatefulWidget {
 class _DrawwerScreenState extends State<DrawerScreen> {
   @override
   Widget build(BuildContext context) {
-    Future User = getProfilUser(widget.token);
-
     return Drawer(
       backgroundColor: const Color(0xfff6f0e4),
       child: ListView(

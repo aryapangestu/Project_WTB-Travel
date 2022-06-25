@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:wtb_travel/models/place.dart';
+import 'package:wtb_travel/models/user.dart';
 import 'package:wtb_travel/views/login_screen.dart';
 import 'package:wtb_travel/views/map_place_screen.dart';
 import 'package:wtb_travel/views/review_screen.dart';
@@ -9,10 +10,15 @@ import 'package:wtb_travel/views/review_screen.dart';
 class WtbTravelDetailPlaceScreen extends StatefulWidget {
   final Place element;
   const WtbTravelDetailPlaceScreen(
-      {Key? key, required this.element, required this.token})
+      {Key? key,
+      required this.element,
+      required this.token,
+      required this.user})
       : super(key: key);
 
   final String token;
+  final profilUser user;
+
   @override
   State<WtbTravelDetailPlaceScreen> createState() =>
       _WtbTravelDetailPlaceScreen();
@@ -235,7 +241,11 @@ class _WtbTravelDetailPlaceScreen extends State<WtbTravelDetailPlaceScreen> {
                                     ),
                                   );
                                 } else {
-                                  const inputReview().launch(context);
+                                  inputReview(
+                                    token: widget.token,
+                                    user_id: widget.user.id,
+                                    place_id: widget.element.id,
+                                  ).launch(context);
                                 }
                               }, borderRadius: radius(32)),
                             ],

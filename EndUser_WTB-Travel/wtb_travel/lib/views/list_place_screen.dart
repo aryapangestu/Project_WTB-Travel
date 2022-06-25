@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:wtb_travel/controllers/category_controller.dart';
+import 'package:wtb_travel/models/user.dart';
 import 'package:wtb_travel/views/detail_place_screen.dart';
 import 'package:wtb_travel/models/place.dart';
 
 class WtbTravelListPlaceScreen extends StatefulWidget {
   const WtbTravelListPlaceScreen(
-      {Key? key, required this.id, required this.name, required this.token})
+      {Key? key,
+      required this.id,
+      required this.name,
+      required this.token,
+      required this.user})
       : super(key: key);
 
   final int id;
   final String name, token;
+  final profilUser user;
   @override
   State<WtbTravelListPlaceScreen> createState() => _WtbTravelListPlaceScreen();
 }
@@ -96,6 +102,7 @@ class _WtbTravelListPlaceScreen extends State<WtbTravelListPlaceScreen> {
             WtbTravelDetailPlaceScreen(
               element: e,
               token: widget.token,
+              user: widget.user,
             ).launch(context);
           });
         }).toList(),
