@@ -140,7 +140,6 @@ class _RegisterPageState extends State<RegisterPage> {
                         if (_formKey.currentState!.validate()) {
                           var data = await register(
                               username, password, password_confirmation);
-                          print(data);
                           if (data[0] == 'alert') {
                             showDialog<String>(
                               context: context,
