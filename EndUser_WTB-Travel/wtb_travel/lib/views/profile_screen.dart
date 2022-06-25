@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:wtb_travel/controllers/profile_controller.dart';
+import 'package:wtb_travel/models/user.dart';
 import 'package:wtb_travel/views/full_app_screen.dart';
 import 'package:wtb_travel/views/home_screen.dart';
 import 'package:wtb_travel/views/login_screen.dart';
 
 class DrawerScreen extends StatefulWidget {
-  const DrawerScreen({Key? key, required this.token}) : super(key: key);
+  const DrawerScreen({Key? key, required this.token, required this.user})
+      : super(key: key);
 
   final String token;
+  final profilUser user;
 
   @override
   State<DrawerScreen> createState() => _DrawwerScreenState();
@@ -15,65 +19,98 @@ class DrawerScreen extends StatefulWidget {
 class _DrawwerScreenState extends State<DrawerScreen> {
   @override
   Widget build(BuildContext context) {
+    Future User = getProfilUser(widget.token);
+
     return Drawer(
-        backgroundColor: const Color(0xfff6f0e4),
-        child: ListView(
-          children: <Widget>[
-            const SizedBox(height: 30),
-            const Center(
-              child: Text(
-                'Leonardo Palmeiro',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+      backgroundColor: const Color(0xfff6f0e4),
+      child: ListView(
+        children: widget.token != 'null'
+            ? <Widget>[
+                const SizedBox(height: 30),
+                Center(
+                  child: Text(
+                    widget.user.name!,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            const SizedBox(height: 30),
-            DrawerListTitle(
-              iconData: Icons.account_circle_outlined,
-              title: "Change Username",
-              onTilePressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ChangeUsername(
-                      token: widget.token,
+                const SizedBox(height: 30),
+                DrawerListTitle(
+                  iconData: Icons.account_circle_outlined,
+                  title: "Change Username",
+                  onTilePressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ChangeUsername(
+                          token: widget.token,
+                          user: widget.user,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+                DrawerListTitle(
+                  iconData: Icons.lock_outlined,
+                  title: "Change Password",
+                  onTilePressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ChangePassword(
+                          token: widget.token,
+                          user: widget.user,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+                DrawerListTitle(
+                  iconData: Icons.logout_outlined,
+                  title: "Logout",
+                  onTilePressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            const LoginPage(title: 'WTB-Travel'), //sementara
+                      ),
+                    );
+                  },
+                ),
+              ]
+            : <Widget>[
+                const SizedBox(height: 30),
+                const Center(
+                  child: Text(
+                    'Tamu',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
                     ),
                   ),
-                );
-              },
-            ),
-            DrawerListTitle(
-              iconData: Icons.lock_outlined,
-              title: "Change Password",
-              onTilePressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ChangePassword(
-                      token: widget.token,
-                    ),
-                  ),
-                );
-              },
-            ),
-            DrawerListTitle(
-              iconData: Icons.logout_outlined,
-              title: "Logout",
-              onTilePressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        const LoginPage(title: 'WTB-Travel'), //sementara
-                  ),
-                );
-              },
-            ),
-          ],
-        ));
+                ),
+                const SizedBox(height: 30),
+                DrawerListTitle(
+                  iconData: Icons.logout_outlined,
+                  title: "Login",
+                  onTilePressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            const LoginPage(title: 'WTB-Travel'), //sementara
+                      ),
+                    );
+                  },
+                ),
+              ],
+      ),
+    );
   }
 }
 
@@ -110,9 +147,12 @@ class DrawerListTitle extends StatelessWidget {
 
 class ChangeUsername extends StatefulWidget {
   @override
-  const ChangeUsername({Key? key, required this.token}) : super(key: key);
+  const ChangeUsername({Key? key, required this.token, required this.user})
+      : super(key: key);
 
   final String token;
+  final profilUser user;
+
   @override
   State<ChangeUsername> createState() => _ChangeUsernameState();
 }
@@ -206,6 +246,7 @@ class _ChangeUsernameState extends State<ChangeUsername> {
                               builder: (context) => WtbTravelFullAppScreen(
                                 title: 'wtb-travel',
                                 token: widget.token,
+                                user: widget.user,
                               ), // panggil controller changeusername
                             ),
                           );
@@ -245,9 +286,12 @@ class _ChangeUsernameState extends State<ChangeUsername> {
 }
 
 class ChangePassword extends StatefulWidget {
-  const ChangePassword({Key? key, required this.token}) : super(key: key);
+  const ChangePassword({Key? key, required this.token, required this.user})
+      : super(key: key);
 
   final String token;
+  final profilUser user;
+
   @override
   State<ChangePassword> createState() => _ChangePasswordState();
 }
@@ -367,6 +411,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                               builder: (context) => WtbTravelFullAppScreen(
                                 title: 'wtb-travel',
                                 token: widget.token,
+                                user: widget.user,
                               ), //panggil change password controller
                             ),
                           );
