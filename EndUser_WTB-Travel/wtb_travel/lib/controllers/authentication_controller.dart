@@ -59,3 +59,14 @@ register(String username, String password, String password_confirmation) async {
 
   return ['alert', body['alert']];
 }
+
+logout(String token) async {
+  http.Response response;
+
+  response = await http.post(
+    Uri.parse("http://wtb-travel1.herokuapp.com/api/logout"),
+    headers: {'Accept': 'application/json', 'Authorization': 'Bearer $token'},
+  );
+
+  return;
+}

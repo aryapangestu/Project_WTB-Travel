@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -18,48 +21,74 @@ class UserController extends Controller
         return response()->json(Auth::user());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function updateUsername(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|string|max:255|unique:users',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => $validator->errors()->all()
+            ], 422);
+        }
+
+        $user = User::where('id', $id);
+
+        if (!$user) {
+            return response()->json([
+                'success' => false,
+                'message' => 'User not found'
+            ], 400);
+        }
+
+        $updated = User::where('id', $id)->update($request->toArray());
+
+        if ($updated)
+            return response()->json([
+                'success' => true,
+            ]);
+        else
+            return response()->json([
+                'success' => false,
+                'message' => 'Username can not be updated'
+            ], 500);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function updatePassword(Request $request, $id)
     {
-        //
-    }
+        $validator = Validator::make($request->all(), [
+            'password' => 'required|string|min:6|confirmed',
+        ]);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => $validator->errors()->all()
+            ], 422);
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $request['password'] = Hash::make($request['password']);
+        $user = User::where('id', $id);
+
+        if (!$user) {
+            return response()->json([
+                'success' => false,
+                'message' => 'User not found'
+            ], 400);
+        }
+
+        $updated = User::where('id', $id)->update($request->toArray());
+
+        if ($updated)
+            return response()->json([
+                'success' => true,
+            ]);
+        else
+            return response()->json([
+                'success' => false,
+                'message' => 'Password can not be updated'
+            ], 500);
     }
 }

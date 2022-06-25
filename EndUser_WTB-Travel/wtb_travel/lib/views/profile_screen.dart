@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wtb_travel/controllers/authentication_controller.dart';
 import 'package:wtb_travel/controllers/profile_controller.dart';
 import 'package:wtb_travel/models/user.dart';
 import 'package:wtb_travel/views/full_app_screen.dart';
@@ -98,7 +99,11 @@ class _DrawwerScreenState extends State<DrawerScreen> {
                 DrawerListTitle(
                   iconData: Icons.logout_outlined,
                   title: "Login",
-                  onTilePressed: () {
+                  onTilePressed: () async {
+                    // destroy session
+                    await logout(widget.token);
+
+                    // menu login
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(

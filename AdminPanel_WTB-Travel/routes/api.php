@@ -25,7 +25,6 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/logout', [AuthenticationController::class, 'logout']);
     Route::get('/user', [UserController::class, 'index']);
 });
-Route::post('/logout', [AuthenticationController::class, 'logout']);
 
 Route::get('/places', [PlaceController::class, 'index']);
 Route::get('/search/{name}', [PlaceController::class, 'search']);
