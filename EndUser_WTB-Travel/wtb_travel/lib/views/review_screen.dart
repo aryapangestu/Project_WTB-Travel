@@ -114,8 +114,15 @@ class _WtbTravelReviewScreen extends State<WtbTravelReviewScreen> {
 
 class inputReview extends StatefulWidget {
   @override
-  const inputReview({Key? key}) : super(key: key);
+  const inputReview(
+      {Key? key,
+      required this.token,
+      required this.user_id,
+      required this.place_id})
+      : super(key: key);
 
+  final String token;
+  final int? user_id, place_id;
   @override
   State<inputReview> createState() => _inputReviewState();
 }
@@ -123,7 +130,8 @@ class inputReview extends StatefulWidget {
 class _inputReviewState extends State<inputReview> {
   final _formKey = GlobalKey<FormState>();
   // ignore: prefer_typing_uninitialized_variables
-  var username;
+  double rating = 3.0;
+  var comment;
 
   @override
   Widget build(BuildContext context) {
@@ -158,8 +166,9 @@ class _inputReviewState extends State<inputReview> {
                       Icons.star,
                       color: Colors.amber,
                     ),
-                    onRatingUpdate: (rating) {
-                      print(rating);
+                    onRatingUpdate: (rating_set) {
+                      print(rating_set);
+                      rating = rating_set;
                     },
                   ),
                   const SizedBox(height: 30),
@@ -168,7 +177,7 @@ class _inputReviewState extends State<inputReview> {
                       if (value == null || value.isEmpty) {
                         return 'Silahkan masukkan ulasan';
                       }
-                      username = value;
+                      comment = value;
                       return null;
                     },
                     maxLines: 6,
@@ -208,7 +217,52 @@ class _inputReviewState extends State<inputReview> {
                         ),
                       ),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            var data = await storeReviews(widget.token, rating,
+                                comment, widget.user_id!, widget.place_id!);
+                            Navigator.pop(context, 'OK');
+                            if (data[0] == true) {
+                              showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) => AlertDialog(
+                                  title: const Text('Tambah ulasan berhasil'),
+                                  content: const Text(
+                                      'Selamat ulasan Anda berhasil ditambahkan'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context, 'OK');
+                                      },
+                                      child: const Text('OK'),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            } else {
+                              showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) => AlertDialog(
+                                  title: const Text('Tambah ulasan gagal'),
+                                  content: Wrap(
+                                      spacing: 20,
+                                      runSpacing: 20,
+                                      children: [
+                                        for (var i = 0; i < data[1].length; i++)
+                                          Text(data[1][i]),
+                                      ]),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(context, 'OK'),
+                                      child: const Text('OK'),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }
+                          }
+                        },
                         style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.fromLTRB(35, 5, 35, 5),
                             primary: const Color(0xff543c0d)),
