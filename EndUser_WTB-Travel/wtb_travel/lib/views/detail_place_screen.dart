@@ -206,7 +206,7 @@ class _WtbTravelDetailPlaceScreen extends State<WtbTravelDetailPlaceScreen> {
                                   ],
                                 ),
                               ).onTap(() {
-                                // screen input ulasan
+                                const inputReview().launch(context);
                               }, borderRadius: radius(32)),
                             ],
                           )
