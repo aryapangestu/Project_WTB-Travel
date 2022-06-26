@@ -11,7 +11,7 @@ username: admin
 1. Clone the github repo:
 
     ```bash
-    https://github.com/aryapangestu/Project_WTB-Travel.git
+    git clone https://github.com/aryapangestu/Project_WTB-Travel.git
     ```
 2. Go the project directory:
 
