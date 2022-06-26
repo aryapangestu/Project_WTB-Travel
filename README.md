@@ -1,10 +1,10 @@
-# Project_WTB-Travel
-![alt text](https://github.com/aryapangestu/Project_WTB-Travel/blob/main/Image-UI/WTB-Travel%20Login.jpg)
-![alt text](https://github.com/aryapangestu/Project_WTB-Travel/blob/main/Image-UI/WTB-Travel%20Dashboard.jpg)
-![alt text](https://github.com/aryapangestu/Project_WTB-Travel/blob/main/Image-UI/WTB-Travel%20Places.jpg)
-![alt text](https://github.com/aryapangestu/Project_WTB-Travel/blob/main/Image-UI/WTB-Travel%20Users.jpg)
-![alt text](https://github.com/aryapangestu/Project_WTB-Travel/blob/main/Image-UI/WTB-Travel%20Category.jpg)
-![alt text](https://github.com/aryapangestu/Project_WTB-Travel/blob/main/Image-UI/WTB-Travel%20Review.jpg)
+## Demo
+You can immediately try this Project-Perjalanan project:
+</br>http://wtb-travel1.herokuapp.com/
+
+account test </br>
+username: admin
+</br> password: admin
 
 ## Installation
 
